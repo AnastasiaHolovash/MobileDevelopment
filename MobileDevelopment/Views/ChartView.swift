@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChartView: UIView {
+final class ChartView: UIView {
     
     // MARK: - Variables
     
@@ -41,6 +41,22 @@ class ChartView: UIView {
     }
     
     // MARK: - Life cycle
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        setup()
+    }
+    
+    private func setup() {
+        backgroundColor = .clear
+    }
 
     override func draw(_ rect: CGRect) {
         

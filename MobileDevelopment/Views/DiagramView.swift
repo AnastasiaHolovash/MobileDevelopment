@@ -13,9 +13,25 @@ final class DiagramView: UIView {
     
     var units: [DiagramUnit] = [DiagramUnit(value: 0.35, color: .systemGreen),
                                 DiagramUnit(value: 0.4, color: .yellow),
-                                DiagramUnit(value: 0.5, color: .red)]
+                                DiagramUnit(value: 0.25, color: .red)]
     
     // MARK: - Life cycle
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        setup()
+    }
+    
+    private func setup() {
+        backgroundColor = .clear
+    }
     
     override func draw(_ rect: CGRect) {
         
@@ -26,9 +42,9 @@ final class DiagramView: UIView {
             
             let endAngle: CGFloat = lastAngle + CGFloat(unit.value * 2 * Double.pi)
             
-            path.addArc(withCenter: CGPoint(x: frame.width / 2, y: frame.height / 2), radius: frame.width / 2 - 25, startAngle: lastAngle, endAngle: endAngle, clockwise: true)
+            path.addArc(withCenter: CGPoint(x: frame.width / 2, y: frame.height / 2), radius: frame.width / 2 - 38, startAngle: lastAngle, endAngle: endAngle, clockwise: true)
 
-            path.lineWidth = 50
+            path.lineWidth = 76
             unit.color.setStroke()
             path.stroke()
 

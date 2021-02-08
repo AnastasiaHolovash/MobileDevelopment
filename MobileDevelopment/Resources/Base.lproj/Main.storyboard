@@ -16,35 +16,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJy-xG-vQN" customClass="ChartView" customModule="MobileDevelopment" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gX5-Is-d2U">
                                 <rect key="frame" x="0.0" y="221.5" width="414" height="414"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="gJy-xG-vQN" secondAttribute="height" multiplier="1:1" id="QF6-2H-9HZ"/>
-                                </constraints>
-                            </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OP7-Sa-FJ6" customClass="DiagramView" customModule="MobileDevelopment" customModuleProvider="target">
-                                <rect key="frame" x="20" y="241.5" width="374" height="374"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="OP7-Sa-FJ6" secondAttribute="height" multiplier="1:1" id="NMH-rQ-qpA"/>
-                                </constraints>
-                            </view>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="sqa-Ae-LZB">
+                                <rect key="frame" x="155.5" y="637.5" width="103.5" height="28"/>
+                                <color key="pageIndicatorTintColor" systemColor="secondaryLabelColor"/>
+                                <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
+                                <connections>
+                                    <action selector="didChangePageControl:" destination="mWW-rE-coW" eventType="valueChanged" id="Zq0-14-M7N"/>
+                                </connections>
+                            </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MX4-EK-LmH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gJy-xG-vQN" firstAttribute="width" secondItem="b4o-NU-QYX" secondAttribute="width" id="9Qh-Ls-O8P"/>
-                            <constraint firstItem="OP7-Sa-FJ6" firstAttribute="centerX" secondItem="MX4-EK-LmH" secondAttribute="centerX" id="K9Y-hS-8oQ"/>
-                            <constraint firstItem="OP7-Sa-FJ6" firstAttribute="centerY" secondItem="MX4-EK-LmH" secondAttribute="centerY" id="Ltp-ZP-E3c"/>
-                            <constraint firstItem="OP7-Sa-FJ6" firstAttribute="width" secondItem="MX4-EK-LmH" secondAttribute="width" multiplier="0.903382" id="aoU-6Y-cos"/>
-                            <constraint firstItem="gJy-xG-vQN" firstAttribute="centerX" secondItem="MX4-EK-LmH" secondAttribute="centerX" id="pZX-hO-c4a"/>
-                            <constraint firstItem="gJy-xG-vQN" firstAttribute="centerY" secondItem="MX4-EK-LmH" secondAttribute="centerY" id="q4s-Yl-d8M"/>
+                            <constraint firstItem="gX5-Is-d2U" firstAttribute="height" secondItem="b4o-NU-QYX" secondAttribute="height" multiplier="0.417411" constant="40" id="5nn-Db-DuZ"/>
+                            <constraint firstItem="gX5-Is-d2U" firstAttribute="centerY" secondItem="MX4-EK-LmH" secondAttribute="centerY" id="83q-c3-oiT"/>
+                            <constraint firstItem="sqa-Ae-LZB" firstAttribute="top" secondItem="gX5-Is-d2U" secondAttribute="bottom" constant="2" id="K7q-Xr-aHw"/>
+                            <constraint firstItem="gX5-Is-d2U" firstAttribute="centerX" secondItem="MX4-EK-LmH" secondAttribute="centerX" id="UOl-cY-lgi"/>
+                            <constraint firstItem="sqa-Ae-LZB" firstAttribute="centerX" secondItem="MX4-EK-LmH" secondAttribute="centerX" id="mPQ-C5-bnT"/>
+                            <constraint firstItem="gX5-Is-d2U" firstAttribute="width" secondItem="b4o-NU-QYX" secondAttribute="width" id="wVM-kj-Bfk"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Lab 2" image="chart.pie" catalog="system" id="Qxi-qx-btq"/>
                     <connections>
-                        <outlet property="chartView" destination="gJy-xG-vQN" id="g3T-oy-ctP"/>
+                        <outlet property="pageControl" destination="sqa-Ae-LZB" id="lI0-f2-x5u"/>
+                        <outlet property="scrollView" destination="gX5-Is-d2U" id="8gs-kC-sr6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FaN-hK-nTB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -104,6 +102,12 @@
     <resources>
         <image name="chart.pie" catalog="system" width="128" height="121"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
