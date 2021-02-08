@@ -8,21 +8,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--Lab 2-->
         <scene sceneID="jIg-f1-sb2">
             <objects>
                 <viewController id="mWW-rE-coW" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b4o-NU-QYX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJy-xG-vQN" customClass="ChartView" customModule="MobileDevelopment" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="180" width="414" height="497"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gJy-xG-vQN" secondAttribute="height" multiplier="1:1.2" id="QF6-2H-9HZ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="MX4-EK-LmH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gJy-xG-vQN" firstAttribute="width" secondItem="b4o-NU-QYX" secondAttribute="width" id="9Qh-Ls-O8P"/>
+                            <constraint firstItem="gJy-xG-vQN" firstAttribute="centerX" secondItem="MX4-EK-LmH" secondAttribute="centerX" id="pZX-hO-c4a"/>
+                            <constraint firstItem="gJy-xG-vQN" firstAttribute="centerY" secondItem="MX4-EK-LmH" secondAttribute="centerY" id="q4s-Yl-d8M"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="Qxi-qx-btq"/>
+                    <tabBarItem key="tabBarItem" title="Lab 2" image="chart.pie" catalog="system" id="Qxi-qx-btq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FaN-hK-nTB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1771" y="396"/>
+            <point key="canvasLocation" x="1769.5652173913045" y="395.75892857142856"/>
         </scene>
         <!--Name-->
         <scene sceneID="ToJ-0N-asF">
@@ -75,6 +89,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chart.pie" catalog="system" width="128" height="121"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
