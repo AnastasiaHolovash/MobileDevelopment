@@ -14,6 +14,7 @@
 		5D0CDAFF25CF481100932892 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D0CDAFD25CF481100932892 /* LaunchScreen.storyboard */; };
 		5D0CDB0925D0A5FE00932892 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CDB0825D0A5FE00932892 /* DrawingViewController.swift */; };
 		5D0CDB1125D0AFA700932892 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CDB1025D0AFA700932892 /* ChartView.swift */; };
+		5DA195F425D1CB6300962062 /* DiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA195F325D1CB6300962062 /* DiagramView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		5D0CDB0025CF481100932892 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D0CDB0825D0A5FE00932892 /* DrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		5D0CDB1025D0AFA700932892 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		5DA195F325D1CB6300962062 /* DiagramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagramView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				5D0CDAF225CF480F00932892 /* AppDelegate.swift */,
 				5D0CDB0B25D0A60B00932892 /* ViewControllers */,
+				5DA195F225D1CA4900962062 /* Views */,
 				5D0CDB0D25D0A86100932892 /* Resources */,
 			);
 			path = MobileDevelopment;
@@ -70,7 +73,6 @@
 			children = (
 				5D0CDB0825D0A5FE00932892 /* DrawingViewController.swift */,
 				5D0CDAF625CF480F00932892 /* ViewController.swift */,
-				5D0CDB1025D0AFA700932892 /* ChartView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -84,6 +86,15 @@
 				5D0CDB0025CF481100932892 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		5DA195F225D1CA4900962062 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5D0CDB1025D0AFA700932892 /* ChartView.swift */,
+				5DA195F325D1CB6300962062 /* DiagramView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +169,7 @@
 			files = (
 				5D0CDB1125D0AFA700932892 /* ChartView.swift in Sources */,
 				5D0CDAF725CF480F00932892 /* ViewController.swift in Sources */,
+				5DA195F425D1CB6300962062 /* DiagramView.swift in Sources */,
 				5D0CDB0925D0A5FE00932892 /* DrawingViewController.swift in Sources */,
 				5D0CDAF325CF480F00932892 /* AppDelegate.swift in Sources */,
 			);

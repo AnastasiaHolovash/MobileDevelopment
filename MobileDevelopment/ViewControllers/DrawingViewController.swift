@@ -8,10 +8,11 @@
 import UIKit
 
 class DrawingViewController: UIViewController {
-
+    
+    @IBOutlet weak var chartView: ChartView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
 }

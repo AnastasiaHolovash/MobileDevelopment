@@ -11,16 +11,23 @@
         <!--Lab 2-->
         <scene sceneID="jIg-f1-sb2">
             <objects>
-                <viewController id="mWW-rE-coW" sceneMemberID="viewController">
+                <viewController id="mWW-rE-coW" customClass="DrawingViewController" customModule="MobileDevelopment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b4o-NU-QYX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJy-xG-vQN" customClass="ChartView" customModule="MobileDevelopment" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="180" width="414" height="497"/>
+                                <rect key="frame" x="0.0" y="221.5" width="414" height="414"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="gJy-xG-vQN" secondAttribute="height" multiplier="1:1.2" id="QF6-2H-9HZ"/>
+                                    <constraint firstAttribute="width" secondItem="gJy-xG-vQN" secondAttribute="height" multiplier="1:1" id="QF6-2H-9HZ"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OP7-Sa-FJ6" customClass="DiagramView" customModule="MobileDevelopment" customModuleProvider="target">
+                                <rect key="frame" x="20" y="241.5" width="374" height="374"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="OP7-Sa-FJ6" secondAttribute="height" multiplier="1:1" id="NMH-rQ-qpA"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -28,11 +35,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="gJy-xG-vQN" firstAttribute="width" secondItem="b4o-NU-QYX" secondAttribute="width" id="9Qh-Ls-O8P"/>
+                            <constraint firstItem="OP7-Sa-FJ6" firstAttribute="centerX" secondItem="MX4-EK-LmH" secondAttribute="centerX" id="K9Y-hS-8oQ"/>
+                            <constraint firstItem="OP7-Sa-FJ6" firstAttribute="centerY" secondItem="MX4-EK-LmH" secondAttribute="centerY" id="Ltp-ZP-E3c"/>
+                            <constraint firstItem="OP7-Sa-FJ6" firstAttribute="width" secondItem="MX4-EK-LmH" secondAttribute="width" multiplier="0.903382" id="aoU-6Y-cos"/>
                             <constraint firstItem="gJy-xG-vQN" firstAttribute="centerX" secondItem="MX4-EK-LmH" secondAttribute="centerX" id="pZX-hO-c4a"/>
                             <constraint firstItem="gJy-xG-vQN" firstAttribute="centerY" secondItem="MX4-EK-LmH" secondAttribute="centerY" id="q4s-Yl-d8M"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Lab 2" image="chart.pie" catalog="system" id="Qxi-qx-btq"/>
+                    <connections>
+                        <outlet property="chartView" destination="gJy-xG-vQN" id="g3T-oy-ctP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FaN-hK-nTB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
