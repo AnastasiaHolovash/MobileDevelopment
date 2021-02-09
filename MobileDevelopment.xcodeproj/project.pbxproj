@@ -71,8 +71,8 @@
 		5D0CDB0B25D0A60B00932892 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				5D0CDB0825D0A5FE00932892 /* DrawingViewController.swift */,
 				5D0CDAF625CF480F00932892 /* ViewController.swift */,
+				5D0CDB0825D0A5FE00932892 /* DrawingViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

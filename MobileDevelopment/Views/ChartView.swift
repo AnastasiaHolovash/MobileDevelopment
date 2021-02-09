@@ -68,20 +68,20 @@ final class ChartView: UIView {
         line.lineWidth = 1.0
         UIColor.black.setStroke()
         
-        // Ox
-        let xEndPoint = CGPoint(x: width, y: chartHeight)
-        line.move(to: CGPoint(x: 0, y: chartHeight))
+        // Drawing Ox
+        let xEndPoint = CGPoint(x: width - 16, y: chartHeight)
+        line.move(to: CGPoint(x: 16, y: chartHeight))
         line.addLine(to: xEndPoint)
-        line.move(to: CGPoint(x: width - 10, y: chartHeight - 10))
+        line.move(to: CGPoint(x: width - 26, y: chartHeight - 10))
         line.addLine(to: xEndPoint)
-        line.move(to: CGPoint(x: width - 10, y: chartHeight + 10))
+        line.move(to: CGPoint(x: width - 26, y: chartHeight + 10))
         line.addLine(to: xEndPoint)
         line.move(to: CGPoint(x: equivalentStartPoint + width / 2, y: chartHeight + 5))
         line.addLine(to: CGPoint(x: equivalentStartPoint + width / 2, y: chartHeight - 5))
         line.move(to: CGPoint(x: equivalentEndPoint + width / 2, y: chartHeight + 5))
         line.addLine(to: CGPoint(x: equivalentEndPoint + width / 2, y: chartHeight - 5))
         
-        // Oy
+        // Drawing Oy
         let yEndPoint = CGPoint(x: width / 2, y: 0)
         line.move(to: CGPoint(x: width / 2, y: (height)))
         line.addLine(to: yEndPoint)

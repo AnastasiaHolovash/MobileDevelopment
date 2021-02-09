@@ -9,8 +9,8 @@ import UIKit
 
 class DrawingViewController: UIViewController {
     
+    @IBOutlet weak var label: UILabel!
     @IBOutlet weak var pageControl: UIPageControl!
-    
     @IBOutlet weak var scrollView: UIScrollView!
     
     var chartView: ChartView!
@@ -18,6 +18,12 @@ class DrawingViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scrollViewSetup()
+        setTextForLabel(currentPage: pageControl.currentPage)
+    }
+    
+    private func scrollViewSetup() {
         
         scrollView.delegate = self
         
@@ -34,10 +40,15 @@ class DrawingViewController: UIViewController {
         scrollView.addSubview(diagramView)
     }
     
-    @IBAction func didChangePageControl(_ sender: UIPageControl) {
-        scrollView.setContentOffset(CGPoint(x: view.frame.width * CGFloat(sender.currentPage), y: 0), animated: true)
+    private func setTextForLabel(currentPage: Int) {
+        label.text = currentPage == 0 ? "Графік" : "Діаграма"
     }
     
+    @IBAction func didChangePageControl(_ sender: UIPageControl) {
+        
+        scrollView.setContentOffset(CGPoint(x: view.frame.width * CGFloat(sender.currentPage), y: 0), animated: true)
+        setTextForLabel(currentPage: sender.currentPage)
+    }
 }
 
 extension DrawingViewController: UIScrollViewDelegate {
@@ -46,5 +57,6 @@ extension DrawingViewController: UIScrollViewDelegate {
         
         let pageIndex = round(Float(scrollView.contentOffset.x / view.frame.width))
         pageControl.currentPage = Int(pageIndex)
+        setTextForLabel(currentPage: Int(pageIndex))
     }
 }

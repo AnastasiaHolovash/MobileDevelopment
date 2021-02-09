@@ -20,34 +20,43 @@
                                 <rect key="frame" x="0.0" y="221.5" width="414" height="414"/>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="sqa-Ae-LZB">
-                                <rect key="frame" x="155.5" y="637.5" width="103.5" height="28"/>
+                                <rect key="frame" x="155.5" y="769" width="103.5" height="28"/>
                                 <color key="pageIndicatorTintColor" systemColor="secondaryLabelColor"/>
                                 <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
                                 <connections>
                                     <action selector="didChangePageControl:" destination="mWW-rE-coW" eventType="valueChanged" id="Zq0-14-M7N"/>
                                 </connections>
                             </pageControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKL-qU-13u">
+                                <rect key="frame" x="183" y="76" width="48" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MX4-EK-LmH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="gX5-Is-d2U" firstAttribute="height" secondItem="b4o-NU-QYX" secondAttribute="height" multiplier="0.417411" constant="40" id="5nn-Db-DuZ"/>
                             <constraint firstItem="gX5-Is-d2U" firstAttribute="centerY" secondItem="MX4-EK-LmH" secondAttribute="centerY" id="83q-c3-oiT"/>
-                            <constraint firstItem="sqa-Ae-LZB" firstAttribute="top" secondItem="gX5-Is-d2U" secondAttribute="bottom" constant="2" id="K7q-Xr-aHw"/>
+                            <constraint firstItem="MX4-EK-LmH" firstAttribute="bottom" secondItem="sqa-Ae-LZB" secondAttribute="bottom" constant="16" id="BeB-Ns-HBh"/>
+                            <constraint firstItem="BKL-qU-13u" firstAttribute="centerX" secondItem="MX4-EK-LmH" secondAttribute="centerX" id="Tff-cb-ALo"/>
                             <constraint firstItem="gX5-Is-d2U" firstAttribute="centerX" secondItem="MX4-EK-LmH" secondAttribute="centerX" id="UOl-cY-lgi"/>
+                            <constraint firstItem="BKL-qU-13u" firstAttribute="top" secondItem="MX4-EK-LmH" secondAttribute="top" constant="32" id="cJm-F4-o6N"/>
                             <constraint firstItem="sqa-Ae-LZB" firstAttribute="centerX" secondItem="MX4-EK-LmH" secondAttribute="centerX" id="mPQ-C5-bnT"/>
                             <constraint firstItem="gX5-Is-d2U" firstAttribute="width" secondItem="b4o-NU-QYX" secondAttribute="width" id="wVM-kj-Bfk"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Lab 2" image="chart.pie" catalog="system" id="Qxi-qx-btq"/>
                     <connections>
+                        <outlet property="label" destination="BKL-qU-13u" id="RLb-Vu-aYs"/>
                         <outlet property="pageControl" destination="sqa-Ae-LZB" id="lI0-f2-x5u"/>
                         <outlet property="scrollView" destination="gX5-Is-d2U" id="8gs-kC-sr6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FaN-hK-nTB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1769.5652173913045" y="395.75892857142856"/>
+            <point key="canvasLocation" x="1772" y="448"/>
         </scene>
         <!--Name-->
         <scene sceneID="ToJ-0N-asF">
