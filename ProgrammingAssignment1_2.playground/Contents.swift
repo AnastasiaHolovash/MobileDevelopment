@@ -198,14 +198,14 @@ final class TimeAH {
     
     // Properties
     
-    let hours: Int
-    let minutes: Int
-    let seconds: Int
+    let hours: UInt
+    let minutes: UInt
+    let seconds: UInt
     
     // Init
     
     /// Завдання 5.a & 5.b
-    init(hours: Int = 0, minutes: Int = 0, seconds: Int = 0) {
+    init(hours: UInt = 0, minutes: UInt = 0, seconds: UInt = 0) {
         
         self.hours = (0...23).contains(hours) ? hours : 0
         self.minutes = (0...59).contains(minutes) ? minutes : 0
@@ -216,9 +216,9 @@ final class TimeAH {
     init(date: Date) {
         
         let calendar = Calendar.current
-        self.hours = calendar.component(.hour, from: date)
-        self.minutes = calendar.component(.minute, from: date)
-        self.seconds = calendar.component(.second, from: date)
+        self.hours = UInt(calendar.component(.hour, from: date))
+        self.minutes = UInt(calendar.component(.minute, from: date))
+        self.seconds = UInt(calendar.component(.second, from: date))
     }
     
     // Private funcs
