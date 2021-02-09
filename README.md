@@ -28,7 +28,7 @@
 
 ## Лістинг коду
 
-```
+```swift
 import Foundation
 
 // Частина 1
