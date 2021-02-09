@@ -14,12 +14,13 @@ let studentsStr = "Дмитренко Олександр - ІП-84; Матвій
 
 var studentsGroups: [String: [String]] = [:]
 
-// Ваш код починається тут
+// MARK: - Ваш код починається тут
 
 // Створення масиву з елементами у форматі "Student1 - Group1"
 let studentsArray = studentsStr.components(separatedBy: ";")
 
 studentsArray.forEach { student in
+    
     // Масив типу ["Student1", "Group1"]
     let studentArray = student
         .replacingOccurrences(of: " - ", with: "v", options: .literal)
@@ -36,7 +37,7 @@ studentsArray.forEach { student in
     }
 }
 
-// Ваш код закінчується тут
+// MARK: - Ваш код закінчується тут
 
 print("Завдання 1")
 print(studentsGroups)
@@ -68,7 +69,7 @@ func randomValue(maxValue: Int) -> Int {
 
 var studentPoints: [String: [String: [Int]]] = [:]
 
-// Ваш код починається тут
+// MARK: - Ваш код починається тут
 
 studentsGroups.forEach { group, students in
     
@@ -85,7 +86,7 @@ studentsGroups.forEach { group, students in
     studentPoints[group] = studentsWithMarks
 }
 
-// Ваш код закінчується тут
+// MARK: - Ваш код закінчується тут
 
 print("Завдання 2")
 print(studentPoints)
@@ -100,7 +101,7 @@ print()
 
 var sumPoints: [String: [String: Int]] = [:]
 
-// Ваш код починається тут
+// MARK: - Ваш код починається тут
 
 studentPoints.forEach { group, students in
     
@@ -112,7 +113,7 @@ studentPoints.forEach { group, students in
     sumPoints[group] = studentsWithMarksSum
 }
 
-// Ваш код закінчується тут
+// MARK: - Ваш код закінчується тут
 
 print("Завдання 3")
 print(sumPoints)
@@ -134,7 +135,7 @@ sumPoints.forEach { group, students in
     groupAvg[group] = Float(sum) / Float(students.count)
 }
 
-// Ваш код закінчується тут
+// MARK: - Ваш код закінчується тут
 
 print("Завдання 4")
 print(groupAvg)
@@ -147,7 +148,7 @@ print()
 
 var passedPerGroup: [String: [String]] = [:]
 
-// Ваш код починається тут
+// MARK: - Ваш код починається тут
 
 sumPoints.forEach { group, students in
         
@@ -162,27 +163,10 @@ sumPoints.forEach { group, students in
     passedPerGroup[group] = groupstudents
 }
 
-// Ваш код закінчується тут
+// MARK: - Ваш код закінчується тут
 
 print("Завдання 5")
 print(passedPerGroup)
-
-// Приклад виведення. Ваш результат буде відрізнятися від прикладу через використання функції random для заповнення масиву оцінок та через інші вхідні дані.
-//
-//Завдання 1
-//["ІВ-73": ["Гончар Юрій", "Давиденко Костянтин", "Капінус Артем", "Науменко Павло", "Чередніченко Владислав"], "ІВ-72": ["Бортнік Василь", "Киба Олег", "Овчарова Юстіна", "Тимко Андрій"], "ІВ-71": ["Андрющенко Данило", "Гуменюк Олександр", "Корнійчук Ольга", "Музика Олександр", "Трудов Антон", "Феофанов Іван"]]
-//
-//Завдання 2
-//["ІВ-73": ["Давиденко Костянтин": [5, 8, 9, 12, 11, 12, 0, 0, 14], "Капінус Артем": [5, 8, 12, 12, 0, 12, 12, 12, 11], "Науменко Павло": [4, 8, 0, 12, 12, 11, 12, 12, 15], "Чередніченко Владислав": [5, 8, 12, 12, 11, 12, 12, 12, 15], "Гончар Юрій": [5, 6, 0, 12, 0, 11, 12, 11, 14]], "ІВ-71": ["Корнійчук Ольга": [0, 0, 12, 9, 11, 11, 9, 12, 15], "Музика Олександр": [5, 8, 12, 0, 11, 12, 0, 9, 15], "Гуменюк Олександр": [5, 8, 12, 9, 12, 12, 11, 12, 15], "Трудов Антон": [5, 0, 0, 11, 11, 0, 12, 12, 15], "Андрющенко Данило": [5, 6, 0, 12, 12, 12, 0, 9, 15], "Феофанов Іван": [5, 8, 12, 9, 12, 9, 11, 12, 14]], "ІВ-72": ["Киба Олег": [5, 8, 12, 12, 11, 12, 0, 0, 11], "Овчарова Юстіна": [5, 8, 12, 0, 11, 12, 12, 12, 15], "Бортнік Василь": [4, 8, 12, 12, 0, 12, 9, 12, 15], "Тимко Андрій": [0, 8, 11, 0, 12, 12, 9, 12, 15]]]
-//
-//Завдання 3
-//["ІВ-72": ["Бортнік Василь": 84, "Тимко Андрій": 79, "Овчарова Юстіна": 87, "Киба Олег": 71], "ІВ-73": ["Капінус Артем": 84, "Науменко Павло": 86, "Чередніченко Владислав": 99, "Гончар Юрій": 71, "Давиденко Костянтин": 71], "ІВ-71": ["Корнійчук Ольга": 79, "Трудов Антон": 66, "Андрющенко Данило": 71, "Гуменюк Олександр": 96, "Феофанов Іван": 92, "Музика Олександр": 72]]
-//
-//Завдання 4
-//["ІВ-71": 79.333336, "ІВ-72": 80.25, "ІВ-73": 82.2]
-//
-//Завдання 5
-//["ІВ-72": ["Бортнік Василь", "Киба Олег", "Овчарова Юстіна", "Тимко Андрій"], "ІВ-73": ["Давиденко Костянтин", "Капінус Артем", "Чередніченко Владислав", "Гончар Юрій", "Науменко Павло"], "ІВ-71": ["Музика Олександр", "Трудов Антон", "Гуменюк Олександр", "Феофанов Іван", "Андрющенко Данило", "Корнійчук Ольга"]]
 
 
 // MARK: -  Частина 2
@@ -198,12 +182,14 @@ final class TimeAH {
         return dateFormatter.date(from: "00:00:00")!
     }
     
+    /// Завдання 7.a
     class func sum(_ lhs: TimeAH, _ rhs: TimeAH) -> TimeAH {
         var newDate = lhs.date()
         newDate.addTimeInterval(rhs.date().timeIntervalSince(TimeAH.emptyTimeDate()))
         return TimeAH(date: newDate)
     }
     
+    /// Завдання 7.b
     class func difference(_ lhs: TimeAH, _ rhs: TimeAH) -> TimeAH {
         var newDate = lhs.date()
         newDate.addTimeInterval(-rhs.date().timeIntervalSince(TimeAH.emptyTimeDate()))
@@ -218,6 +204,7 @@ final class TimeAH {
     
     // Init
     
+    /// Завдання 5.a & 5.b
     init(hours: Int = 0, minutes: Int = 0, seconds: Int = 0) {
         
         self.hours = (0...23).contains(hours) ? hours : 0
@@ -225,9 +212,10 @@ final class TimeAH {
         self.seconds = (0...59).contains(seconds) ? seconds : 0
     }
     
+    /// Завдання 5.c
     init(date: Date) {
+        
         let calendar = Calendar.current
-//        calendar.locale = .current
         self.hours = calendar.component(.hour, from: date)
         self.minutes = calendar.component(.minute, from: date)
         self.seconds = calendar.component(.second, from: date)
@@ -243,6 +231,7 @@ final class TimeAH {
     
     // Public funcs
     
+    /// Завдання 6.a
     public func time() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:​​mm:​​ss ​a"
@@ -250,30 +239,16 @@ final class TimeAH {
         return dateFormatter.string(from: date())
     }
     
+    /// Завдання 6.b
     public func sum(with item: TimeAH) -> TimeAH {
-        
-//        let seconds = date().timeIntervalSinceReferenceDate + item.date().timeIntervalSinceReferenceDate
-        
-//        let newSeconds = Int(seconds) % 60
-//        let newMinutes = Int(seconds / 60) % 60
-//        let newHours = Int(seconds / 60 / 60) % 24
-        
-//        return TimeAH(hours: newHours, minutes: newMinutes, seconds: newSeconds)
-        
+
         var newDate = date()
         newDate.addTimeInterval(item.date().timeIntervalSince(TimeAH.emptyTimeDate()))
         return TimeAH(date: newDate)
     }
     
+    /// Завдання 6.c
     public func difference(with item: TimeAH) -> TimeAH {
-        
-//        let seconds = 86400 + date().timeIntervalSince(item.date())
-//
-//        let newSeconds = Int(seconds) % 60
-//        let newMinutes = Int(seconds / 60) % 60
-//        let newHours = Int(seconds / 60 / 60) % 24
-//
-//        return TimeAH(hours: newHours, minutes: newMinutes, seconds: newSeconds)
         
         var newDate = date()
         newDate.addTimeInterval(-item.date().timeIntervalSince(TimeAH.emptyTimeDate()))
@@ -295,6 +270,8 @@ let newTimeFromDif = midnight.difference(with: oneSecondAfterMidnight)
 let newTimeFromClassSum = TimeAH.sum(now, now)
 let newTimeFromClassDif = TimeAH.difference(midnight, now)
 
+// Вивід результатів
+
 print("\nЗавдання 6.a")
 print("midnight:                ", midnight.time())
 print("oneSecondAfterMidnight:  ", oneSecondAfterMidnight.time())
@@ -303,9 +280,12 @@ print("now:                     ", now.time())
 
 print("\nЗавдання 6.b. Сума 'oneSecondBeforeMidnight' та 'oneSecondAfterMidnight'")
 print(newTimeFromSum.time())
+
 print("\nЗавдання 6.c. Різниця 'midnight' та 'oneSecondAfterMidnight'")
 print(newTimeFromDif.time())
+
 print("\nЗавдання 7.a. Сума 'now' та 'now'")
 print(newTimeFromClassSum.time())
+
 print("\nЗавдання 7.b. Різниця 'midnight' та 'now'")
 print(newTimeFromClassDif.time())
