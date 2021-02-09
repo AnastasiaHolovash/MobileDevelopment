@@ -3,7 +3,7 @@
 ###### Факультет інформатики та обчислювальної техніки
 ###### Кафедра обчислювальної техніки
 
-### Лабораторна робота №2
+### Лабораторна робота №3
 #### з дисципліни
 ### “Програмування мобільних систем”
 
@@ -17,282 +17,131 @@
 
 Київ 2021
 
-## Варіант № 5
-(8206 mod 6) + 1 = 5
+## Варіант № 1
+(8206 mod 2) + 1 = 1
 
 ## Скріншоти роботи додатка
 
-<img src="https://github.com/AnastasiaHolovash/MobileDevelopment/blob/Lab2/ImagesLab2/1.png" width="300">
-<img src="https://github.com/AnastasiaHolovash/MobileDevelopment/blob/Lab2/ImagesLab2/2.png" width="300">
-<img src="https://github.com/AnastasiaHolovash/MobileDevelopment/blob/Lab2/ImagesLab2/3.png" height="300">
-<img src="https://github.com/AnastasiaHolovash/MobileDevelopment/blob/Lab2/ImagesLab2/4.png" height="300">
+<img src="https://github.com/AnastasiaHolovash/MobileDevelopment/blob/Lab3/ImagesLab3/1.png" width="300">
+<img src="https://github.com/AnastasiaHolovash/MobileDevelopment/blob/Lab3/ImagesLab3/2.png" width="300">
 
 ## Лістинг коду
 
-#### ChartView.swift
+#### Movie.swift
 ```swift
-import UIKit
+import Foundation
 
-final class ChartView: UIView {
-    
-    // MARK: - Variables
-    
-    // Initial values
-    var startPoint: Double = -5.0
-    var endPoint: Double = 5.0
-    
-    var width: Double {
-        return Double(frame.width)
+// MARK: - Search
+
+struct Search: Codable {
+    let search: [Movie]
+
+    enum CodingKeys: String, CodingKey {
+        case search = "Search"
     }
-    
-    var height: Double {
-        return Double(frame.height)
-    }
-    
-    // The equivalent value of the unit relative to the UIView size
-    var equivalentUnit: Double {
-        return height / (endPoint * endPoint + 1)
-    }
-    
-    var equivalentStartPoint: Double {
-        return startPoint * equivalentUnit
-    }
-    
-    var equivalentEndPoint: Double {
-        return endPoint * equivalentUnit
-    }
-    
-    var chartHeight: Double {
-        return endPoint * equivalentEndPoint
-    }
-    
-    // MARK: - Life cycle
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        setup()
-    }
-    
-    private func setup() {
-        backgroundColor = .clear
-    }
-    
-    override func draw(_ rect: CGRect) {
-        
-        drawChart()
-        
-        let line = UIBezierPath()
-        
-        // Stroke
-        line.lineWidth = 1.0
-        UIColor.black.setStroke()
-        
-        // Drawing Ox
-        let xEndPoint = CGPoint(x: width - 16, y: chartHeight)
-        line.move(to: CGPoint(x: 16, y: chartHeight))
-        line.addLine(to: xEndPoint)
-        line.move(to: CGPoint(x: width - 26, y: chartHeight - 10))
-        line.addLine(to: xEndPoint)
-        line.move(to: CGPoint(x: width - 26, y: chartHeight + 10))
-        line.addLine(to: xEndPoint)
-        line.move(to: CGPoint(x: equivalentStartPoint + width / 2, y: chartHeight + 5))
-        line.addLine(to: CGPoint(x: equivalentStartPoint + width / 2, y: chartHeight - 5))
-        line.move(to: CGPoint(x: equivalentEndPoint + width / 2, y: chartHeight + 5))
-        line.addLine(to: CGPoint(x: equivalentEndPoint + width / 2, y: chartHeight - 5))
-        
-        // Drawing Oy
-        let yEndPoint = CGPoint(x: width / 2, y: 0)
-        line.move(to: CGPoint(x: width / 2, y: (height)))
-        line.addLine(to: yEndPoint)
-        line.move(to: CGPoint(x: width / 2 - 10, y: 10))
-        line.addLine(to: yEndPoint)
-        line.move(to: CGPoint(x: width / 2 + 10, y: 10))
-        line.addLine(to: yEndPoint)
-        line.move(to: CGPoint(x: width / 2 - 5, y: chartHeight - equivalentEndPoint))
-        line.addLine(to: CGPoint(x: width / 2 + 5, y: chartHeight - equivalentEndPoint))
-        
-        line.stroke()
-    }
-    
-    // MARK: - Private funcs
-    
-    private func drawChart() {
-        
-        let chartPath = UIBezierPath()
-        
-        // Stroke
-        chartPath.lineWidth = 1.5
-        UIColor.blue.setStroke()
-        
-        chartPath.move(to: getPoint(for: startPoint))
-        
-        for x in stride(from: startPoint, through: endPoint + 0.01, by: 0.1) {
-            chartPath.addLine(to: getPoint(for: x))
-        }
-        chartPath.stroke()
-    }
-    
-    private func getPoint(for x: Double) -> CGPoint {
-        
-        let newX = x * equivalentUnit + (width / 2)
-        let newY = x * x * equivalentUnit - chartHeight
-        
-        return CGPoint(x: newX, y: -newY)
+}
+
+// MARK: - Movie
+
+struct Movie: Codable {
+    let title, year, imdbID: String
+    let type: String
+    let poster: String
+
+    enum CodingKeys: String, CodingKey {
+        case title = "Title"
+        case year = "Year"
+        case imdbID
+        case type = "Type"
+        case poster = "Poster"
     }
 }
 
 ```
 
-#### DiagramView.swift
+#### MoviesViewController.swift
 
 ```swift
 import UIKit
 
-final class DiagramView: UIView {
-    
-    // MARK: - Variables
-    
-    var units: [DiagramUnit] = [DiagramUnit(value: 0.35, color: .green),
-                                DiagramUnit(value: 0.4, color: .yellow),
-                                DiagramUnit(value: 0.25, color: .red)]
-    
-    // MARK: - Life cycle
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        setup()
-    }
-    
-    private func setup() {
-        backgroundColor = .clear
-    }
-    
-    override func draw(_ rect: CGRect) {
-        
-        var lastAngle: CGFloat = 0
-        
-        units.forEach { unit in
-            let path = UIBezierPath()
-            
-            let endAngle: CGFloat = lastAngle + CGFloat(unit.value * 2 * Double.pi)
-            let radius = frame.width / 3
-            
-            path.addArc(withCenter: CGPoint(x: frame.width / 2, y: frame.height / 2), radius: radius, startAngle: lastAngle, endAngle: endAngle, clockwise: true)
-            
-            path.lineWidth = radius / 1.5
-            unit.color.setStroke()
-            path.stroke()
-            
-            lastAngle = endAngle
-        }
-    }
-    
-    // MARK: - DiagramUnit
-    
-    struct DiagramUnit {
-        
-        let value: Double
-        let color: UIColor
-    }
-}
+final class MoviesViewController: UIViewController {
 
-```
-
-#### DrawingViewController.swift
-```swift
-import UIKit
-
-final class DrawingViewController: UIViewController {
-    
     // MARK: - IBOutlets
     
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var tableView: UITableView!
     
-    // MARK: - Variables
+    // MARK: - Private variables
     
-    private var chartView: ChartView!
-    private var diagramView: DiagramView!
+    private var moviesData: [Movie] = []
     
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        scrollViewSetup()
-        setTextForLabel(currentPage: pageControl.currentPage)
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
-        viewsSizesSetup()
+        tableViewSetup()
+        
+        fetchMovieData(from: "MoviesList")
+        tableView.reloadData()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        viewsSizesSetup()
+    private func tableViewSetup() {
+        
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: MovieTableViewCell.id, bundle: Bundle.main), forCellReuseIdentifier: MovieTableViewCell.id)
     }
     
     // MARK: - Private funcs
     
-    private func setTextForLabel(currentPage: Int) {
-        label.text = currentPage == 0 ? "Графік" : "Діаграма"
-    }
-    
-    private func scrollViewSetup() {
+    private func fetchMovieData(from file: String) {
         
-        scrollView.delegate = self
-        
-        chartView = ChartView()
-        diagramView = DiagramView()
-        
-        scrollView.isPagingEnabled = true
-        scrollView.addSubview(chartView)
-        scrollView.addSubview(diagramView)
-    }
-    
-    private func viewsSizesSetup() {
-        
-        scrollView.contentSize = CGSize(width: scrollView.frame.width * 2, height: scrollView.frame.height)
-        chartView.frame = CGRect(x: 0, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
-        diagramView.frame = CGRect(x: scrollView.frame.width, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
-        scrollView.setContentOffset(CGPoint(x: scrollView.frame.width * CGFloat(pageControl.currentPage), y: 0), animated: true)
-    }
-    
-    // MARK: - IBActions
-    
-    @IBAction func didChangePageControl(_ sender: UIPageControl) {
-        
-        scrollView.setContentOffset(CGPoint(x: scrollView.frame.width * CGFloat(sender.currentPage), y: 0), animated: true)
-        setTextForLabel(currentPage: sender.currentPage)
+        do {
+            if let path = Bundle.main.path(forResource: file, ofType: "txt"),
+               let jsonData = try String(contentsOfFile: path, encoding: String.Encoding.utf8).data(using: .utf8) {
+                
+                let decodedData = try JSONDecoder().decode(Search.self, from: jsonData)
+                moviesData = decodedData.search
+            }
+        } catch {
+            print(error)
+        }
     }
 }
 
-// MARK: - UIScrollViewDelegate
+// MARK: - UITableViewDataSource
 
-extension DrawingViewController: UIScrollViewDelegate {
+extension MoviesViewController: UITableViewDataSource {
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let pageIndex = round(Float(scrollView.contentOffset.x / scrollView.frame.width))
-        pageControl.currentPage = Int(pageIndex)
-        setTextForLabel(currentPage: Int(pageIndex))
+        return moviesData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.id, for: indexPath) as! MovieTableViewCell
+        
+        let movie = moviesData[indexPath.row]
+        
+        cell.nameLabel.text = movie.title
+        
+        if movie.year == "" {
+            cell.yearLabel.isHidden = true
+        } else {
+            cell.yearLabel.text = movie.year
+        }
+        
+        if movie.type == "" {
+            cell.typeLabel.isHidden = true
+        } else {
+            cell.typeLabel.text = movie.type
+        }
+        
+        if movie.poster != "" {
+            cell.posterImageView.image = UIImage(named: movie.poster)
+        }
+            
+        return cell
     }
 }
 
@@ -301,4 +150,4 @@ extension DrawingViewController: UIScrollViewDelegate {
 ## Висновок
 
 Під час виконання лабораторної роботи було покращено навички зі створення мобільних додатків для операційної системи iOS. 
-У даній роботі було створено UIView для відображення графіку та діаграми за допомогою методу draw(_:) та UIBezierPath.
+У даній роботі за допомогою UITableView, UITableViewDataSource, UILabel, UIImageView, Codable було створено таблицю,  що відображає сутності - Movie. Дані, представлені у форматі JSON, отримуються з текстового файла.
