@@ -34,9 +34,11 @@ import Foundation
 // MARK: - Search
 
 struct Search: Codable {
+    
     let search: [Movie]
 
     enum CodingKeys: String, CodingKey {
+        
         case search = "Search"
     }
 }
@@ -44,11 +46,15 @@ struct Search: Codable {
 // MARK: - Movie
 
 struct Movie: Codable {
-    let title, year, imdbID: String
+    
+    let title: String
+    let year: String
+    let imdbID: String
     let type: String
     let poster: String
 
     enum CodingKeys: String, CodingKey {
+        
         case title = "Title"
         case year = "Year"
         case imdbID
