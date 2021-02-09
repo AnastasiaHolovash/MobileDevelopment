@@ -19,14 +19,12 @@ final class DrawingViewController: UIViewController {
     
     private var chartView: ChartView!
     private var diagramView: DiagramView!
-        
+    
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(#function)
-        
+                
         scrollViewSetup()
         setTextForLabel(currentPage: pageControl.currentPage)
     }
@@ -37,8 +35,8 @@ final class DrawingViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
+        super.viewDidLayoutSubviews()
+
         viewsSizesSetup()
     }
     

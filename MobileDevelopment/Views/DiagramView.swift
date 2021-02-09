@@ -36,7 +36,7 @@ final class DiagramView: UIView {
     override func draw(_ rect: CGRect) {
         
         var lastAngle: CGFloat = 0
-
+        
         units.forEach { unit in
             let path = UIBezierPath()
             
@@ -44,11 +44,11 @@ final class DiagramView: UIView {
             let radius = frame.width / 3
             
             path.addArc(withCenter: CGPoint(x: frame.width / 2, y: frame.height / 2), radius: radius, startAngle: lastAngle, endAngle: endAngle, clockwise: true)
-
+            
             path.lineWidth = radius / 1.5
             unit.color.setStroke()
             path.stroke()
-
+            
             lastAngle = endAngle
         }
     }

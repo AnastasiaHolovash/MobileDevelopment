@@ -57,7 +57,7 @@ final class ChartView: UIView {
     private func setup() {
         backgroundColor = .clear
     }
-
+    
     override func draw(_ rect: CGRect) {
         
         drawChart()
@@ -98,7 +98,7 @@ final class ChartView: UIView {
     // MARK: - Private funcs
     
     private func drawChart() {
-
+        
         let chartPath = UIBezierPath()
         
         // Stroke
@@ -112,7 +112,7 @@ final class ChartView: UIView {
         }
         chartPath.stroke()
     }
-
+    
     private func getPoint(for x: Double) -> CGPoint {
         
         let newX = x * equivalentUnit + (width / 2)
