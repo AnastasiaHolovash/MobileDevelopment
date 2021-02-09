@@ -60,10 +60,10 @@ final class DrawingViewController: UIViewController {
     
     private func viewsSizesSetup() {
         
-        scrollView.contentSize = CGSize(width: scrollView.frame.width * 2, height: scrollView.frame.height)
-        chartView.frame = CGRect(x: 0, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
-        diagramView.frame = CGRect(x: scrollView.frame.width, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
-        scrollView.setContentOffset(CGPoint(x: scrollView.frame.width * CGFloat(pageControl.currentPage), y: 0), animated: true)
+        scrollView?.contentSize = CGSize(width: scrollView.frame.width * 2, height: scrollView.frame.height)
+        chartView?.frame = CGRect(x: 0, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
+        diagramView?.frame = CGRect(x: scrollView.frame.width, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
+        scrollView?.setContentOffset(CGPoint(x: scrollView.frame.width * CGFloat(pageControl.currentPage), y: 0), animated: true)
     }
     
     // MARK: - IBActions

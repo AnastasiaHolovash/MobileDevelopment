@@ -8,6 +8,36 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Lab 3-->
+        <scene sceneID="yt2-v0-tYd">
+            <objects>
+                <viewController id="KVw-Ex-JAc" customClass="MoviesViewController" customModule="MobileDevelopment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6M7-qb-KZW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Bdb-gD-Fmy">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="pFa-ai-5oj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Bdb-gD-Fmy" firstAttribute="top" secondItem="pFa-ai-5oj" secondAttribute="top" id="39S-m4-9tp"/>
+                            <constraint firstItem="Bdb-gD-Fmy" firstAttribute="leading" secondItem="pFa-ai-5oj" secondAttribute="leading" id="4vW-NJ-VwN"/>
+                            <constraint firstItem="pFa-ai-5oj" firstAttribute="trailing" secondItem="Bdb-gD-Fmy" secondAttribute="trailing" id="WcQ-tW-rTf"/>
+                            <constraint firstItem="pFa-ai-5oj" firstAttribute="bottom" secondItem="Bdb-gD-Fmy" secondAttribute="bottom" id="zaA-m2-slU"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Lab 3" image="tablecells" catalog="system" id="eRL-Xw-cY6"/>
+                    <connections>
+                        <outlet property="tableView" destination="Bdb-gD-Fmy" id="vbY-5K-7O2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bQm-h5-gyY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="870" y="475"/>
+        </scene>
         <!--Lab 2-->
         <scene sceneID="jIg-f1-sb2">
             <objects>
@@ -86,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FaN-hK-nTB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1771.0144927536232" y="447.99107142857139"/>
+            <point key="canvasLocation" x="1771" y="475"/>
         </scene>
         <!--Name-->
         <scene sceneID="ToJ-0N-asF">
@@ -131,16 +161,18 @@
                     <connections>
                         <segue destination="1yD-5d-ZbH" kind="relationship" relationship="viewControllers" id="jKf-a7-iWd"/>
                         <segue destination="mWW-rE-coW" kind="relationship" relationship="viewControllers" id="PWF-58-P4Z"/>
+                        <segue destination="KVw-Ex-JAc" kind="relationship" relationship="viewControllers" id="Ras-rt-qdW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fZ7-el-iZl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="884" y="48"/>
+            <point key="canvasLocation" x="871" y="-254"/>
         </scene>
     </scenes>
     <resources>
         <image name="chart.pie" catalog="system" width="128" height="121"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <image name="tablecells" catalog="system" width="128" height="93"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
