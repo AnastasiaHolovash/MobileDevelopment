@@ -9,12 +9,18 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
     
+    // MARK: - Static variables
+    
     static let id = "MovieTableViewCell"
 
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
+    
+    // MARK: - Life cycle
     
     override func prepareForReuse() {
         super.prepareForReuse()

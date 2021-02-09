@@ -7,11 +7,17 @@
 
 import UIKit
 
-class MoviesViewController: UIViewController {
+final class MoviesViewController: UIViewController {
 
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: - Private variables
+    
     private var moviesData: [Movie] = []
+    
+    // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +27,14 @@ class MoviesViewController: UIViewController {
         fetchMovieData(from: "MoviesList")
         tableView.reloadData()
     }
+    
+    private func tableViewSetup() {
+        
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: MovieTableViewCell.id, bundle: Bundle.main), forCellReuseIdentifier: MovieTableViewCell.id)
+    }
+    
+    // MARK: - Private funcs
     
     private func fetchMovieData(from file: String) {
         
@@ -35,13 +49,6 @@ class MoviesViewController: UIViewController {
             print(error)
         }
     }
-    
-    private func tableViewSetup() {
-        
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: MovieTableViewCell.id, bundle: Bundle.main), forCellReuseIdentifier: MovieTableViewCell.id)
-    }
-
 }
 
 // MARK: - UITableViewDataSource
@@ -49,10 +56,12 @@ class MoviesViewController: UIViewController {
 extension MoviesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return moviesData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.id, for: indexPath) as! MovieTableViewCell
         
         let movie = moviesData[indexPath.row]
