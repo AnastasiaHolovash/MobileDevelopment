@@ -23,7 +23,7 @@
 ## Скріншоти роботи додатка
 
 <img src="https://github.com/AnastasiaHolovash/MobileDevelopment/blob/Lab3/ImagesLab3/1.png" width="300">
-<img src="https://github.com/AnastasiaHolovash/MobileDevelopment/blob/Lab3/ImagesLab3/2.png" width="300">
+<img src="https://github.com/AnastasiaHolovash/MobileDevelopment/blob/Lab3/ImagesLab3/2.png" height="300">
 
 ## Лістинг коду
 
