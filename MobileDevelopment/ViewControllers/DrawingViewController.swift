@@ -7,20 +7,45 @@
 
 import UIKit
 
-class DrawingViewController: UIViewController {
+final class DrawingViewController: UIViewController {
+    
+    // MARK: - IBOutlets
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var chartView: ChartView!
-    var diagramView: DiagramView!
+    // MARK: - Variables
+    
+    private var chartView: ChartView!
+    private var diagramView: DiagramView!
         
+    // MARK: - Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(#function)
+        
         scrollViewSetup()
         setTextForLabel(currentPage: pageControl.currentPage)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        viewsSizesSetup()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        viewsSizesSetup()
+    }
+    
+    // MARK: - Private funcs
+    
+    private func setTextForLabel(currentPage: Int) {
+        label.text = currentPage == 0 ? "Графік" : "Діаграма"
     }
     
     private func scrollViewSetup() {
@@ -30,32 +55,35 @@ class DrawingViewController: UIViewController {
         chartView = ChartView()
         diagramView = DiagramView()
         
-        scrollView.contentSize = CGSize(width: view.frame.width * 2, height: view.frame.width)
         scrollView.isPagingEnabled = true
-        
-        chartView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width)
         scrollView.addSubview(chartView)
-        
-        diagramView.frame = CGRect(x: view.frame.width, y: 0, width: view.frame.width, height: view.frame.width)
         scrollView.addSubview(diagramView)
     }
     
-    private func setTextForLabel(currentPage: Int) {
-        label.text = currentPage == 0 ? "Графік" : "Діаграма"
+    private func viewsSizesSetup() {
+        
+        scrollView.contentSize = CGSize(width: scrollView.frame.width * 2, height: scrollView.frame.height)
+        chartView.frame = CGRect(x: 0, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
+        diagramView.frame = CGRect(x: scrollView.frame.width, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
+        scrollView.setContentOffset(CGPoint(x: scrollView.frame.width * CGFloat(pageControl.currentPage), y: 0), animated: false)
     }
+    
+    // MARK: - IBActions
     
     @IBAction func didChangePageControl(_ sender: UIPageControl) {
         
-        scrollView.setContentOffset(CGPoint(x: view.frame.width * CGFloat(sender.currentPage), y: 0), animated: true)
+        scrollView.setContentOffset(CGPoint(x: scrollView.frame.width * CGFloat(sender.currentPage), y: 0), animated: true)
         setTextForLabel(currentPage: sender.currentPage)
     }
 }
+
+// MARK: - UIScrollViewDelegate
 
 extension DrawingViewController: UIScrollViewDelegate {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
-        let pageIndex = round(Float(scrollView.contentOffset.x / view.frame.width))
+        let pageIndex = round(Float(scrollView.contentOffset.x / scrollView.frame.width))
         pageControl.currentPage = Int(pageIndex)
         setTextForLabel(currentPage: Int(pageIndex))
     }

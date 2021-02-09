@@ -39,13 +39,37 @@
                         <constraints>
                             <constraint firstItem="gX5-Is-d2U" firstAttribute="height" secondItem="b4o-NU-QYX" secondAttribute="height" multiplier="0.417411" constant="40" id="5nn-Db-DuZ"/>
                             <constraint firstItem="gX5-Is-d2U" firstAttribute="centerY" secondItem="MX4-EK-LmH" secondAttribute="centerY" id="83q-c3-oiT"/>
+                            <constraint firstItem="BKL-qU-13u" firstAttribute="top" secondItem="MX4-EK-LmH" secondAttribute="top" constant="8" id="8iU-hf-xPd"/>
                             <constraint firstItem="MX4-EK-LmH" firstAttribute="bottom" secondItem="sqa-Ae-LZB" secondAttribute="bottom" constant="16" id="BeB-Ns-HBh"/>
+                            <constraint firstItem="gX5-Is-d2U" firstAttribute="height" secondItem="b4o-NU-QYX" secondAttribute="height" multiplier="0.65" id="JrH-Os-ldD"/>
+                            <constraint firstItem="gX5-Is-d2U" firstAttribute="width" secondItem="b4o-NU-QYX" secondAttribute="width" multiplier="0.3" id="PZk-l0-4Ra"/>
                             <constraint firstItem="BKL-qU-13u" firstAttribute="centerX" secondItem="MX4-EK-LmH" secondAttribute="centerX" id="Tff-cb-ALo"/>
                             <constraint firstItem="gX5-Is-d2U" firstAttribute="centerX" secondItem="MX4-EK-LmH" secondAttribute="centerX" id="UOl-cY-lgi"/>
+                            <constraint firstItem="MX4-EK-LmH" firstAttribute="bottom" secondItem="sqa-Ae-LZB" secondAttribute="bottom" id="Zyg-ku-eHN"/>
                             <constraint firstItem="BKL-qU-13u" firstAttribute="top" secondItem="MX4-EK-LmH" secondAttribute="top" constant="32" id="cJm-F4-o6N"/>
                             <constraint firstItem="sqa-Ae-LZB" firstAttribute="centerX" secondItem="MX4-EK-LmH" secondAttribute="centerX" id="mPQ-C5-bnT"/>
                             <constraint firstItem="gX5-Is-d2U" firstAttribute="width" secondItem="b4o-NU-QYX" secondAttribute="width" id="wVM-kj-Bfk"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Zyg-ku-eHN"/>
+                                <exclude reference="JrH-Os-ldD"/>
+                                <exclude reference="PZk-l0-4Ra"/>
+                                <exclude reference="8iU-hf-xPd"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="BeB-Ns-HBh"/>
+                                <include reference="Zyg-ku-eHN"/>
+                                <exclude reference="5nn-Db-DuZ"/>
+                                <include reference="JrH-Os-ldD"/>
+                                <include reference="PZk-l0-4Ra"/>
+                                <exclude reference="wVM-kj-Bfk"/>
+                                <include reference="8iU-hf-xPd"/>
+                                <exclude reference="cJm-F4-o6N"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Lab 2" image="chart.pie" catalog="system" id="Qxi-qx-btq"/>
                     <connections>
