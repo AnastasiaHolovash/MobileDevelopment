@@ -33,7 +33,6 @@ struct Movie: Codable {
     let actors, plot, language, country: String?
     let awards, imdbRating, imdbVotes: String?
 
-    
     enum CodingKeys: String, CodingKey {
         
         case title = "Title"
@@ -54,4 +53,41 @@ struct Movie: Codable {
         case type = "Type"
         case production = "Production"
     }
+    
+    var notEmptyProperties: [(String, String)] {
+        
+        get {
+            let allProperties: [(String, String?)] = [
+                ("Year: ", year),
+                ("Type: ", type),
+                ("Rated: ", rated),
+                ("Released: ", released),
+                ("Runtime: ", runtime),
+                ("Genre: ", genre),
+                ("Production: ", production),
+                ("Director: ", director),
+                ("Writer: ", writer),
+                ("Actors: ", actors),
+                ("Plot: ", plot),
+                ("Language: ", language),
+                ("Country: ", country),
+                ("Awards: ", awards),
+                ("Poster: ", poster),
+                ("imdbRating: ", imdbRating),
+                ("imdbVotes: ", imdbVotes),]
+            
+            var result: [(String, String)] = []
+            
+//            result.append((Movie.CodingKeys.title.rawValue, title))
+            
+            allProperties.forEach { (name, item) in
+                if let item = item, !item.isEmpty {
+                    result.append((name, item))
+                }
+            }
+            
+            return result
+        }
+    }
 }
+

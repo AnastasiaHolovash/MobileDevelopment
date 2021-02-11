@@ -17,6 +17,8 @@ final class MoviesViewController: UIViewController {
     
     private var moviesData: [Movie] = []
     private let moviesDataManager = MoviesDataManager.shared
+    private var searchController: UISearchController!
+    
     
     // MARK: - Life cycle
     
@@ -24,6 +26,7 @@ final class MoviesViewController: UIViewController {
         super.viewDidLoad()
         
         tableViewSetup()
+        searchControllerSetup()
         
         moviesData = moviesDataManager.fetchMoviesList() ?? []
         tableView.reloadData()
@@ -32,7 +35,22 @@ final class MoviesViewController: UIViewController {
     private func tableViewSetup() {
         
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(UINib(nibName: MovieTableViewCell.id, bundle: Bundle.main), forCellReuseIdentifier: MovieTableViewCell.id)
+    }
+    
+    private func searchControllerSetup() {
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.compatibleSearchTextField.returnKeyType = .done
+        
+        navigationItem.searchController = searchController
+        
+        // Make the search bar always visible.
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
 }
@@ -69,5 +87,46 @@ extension MoviesViewController: UITableViewDataSource {
         cell.posterImageView.image = moviesDataManager.fetchMovieImage(for: movie.poster)
             
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension MoviesViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        guard let movie = moviesDataManager.fetchMovieData(for: moviesData[indexPath.row].imdbID) else {
+            return
+        }
+        
+        let detailsVC = DetailsViewController.create(movie: movie)
+        navigationController?.pushViewController(detailsVC, animated: true)
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+
+extension MoviesViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let enteredText = searchController.searchBar.text else {
+            return
+        }
+        print(enteredText)
+//        findBrewery(name: enteredText)
+    }
+}
+
+// MARK: - UISearchBarDelegate
+
+extension MoviesViewController: UISearchBarDelegate {
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchController.searchBar.isLoading = false
+//        breweries = coreDataManager?.fetchBreweries() ?? []
+//        breweriesTableView.reloadData()
     }
 }

@@ -36,6 +36,6 @@ class MovieTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        selectionStyle = .none
+        selectionStyle = .default
     }
 }

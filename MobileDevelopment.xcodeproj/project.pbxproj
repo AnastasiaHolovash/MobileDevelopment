@@ -39,6 +39,11 @@
 		5DA1965325D55E9C00962062 /* tt3748528.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5DA1964925D55E9C00962062 /* tt3748528.txt */; };
 		5DA1965425D55E9C00962062 /* tt0796366.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5DA1964A25D55E9C00962062 /* tt0796366.txt */; };
 		5DA1965825D562A600962062 /* MoviesDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1965725D562A600962062 /* MoviesDataManager.swift */; };
+		5DA1965E25D56F6F00962062 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1965D25D56F6F00962062 /* DetailsViewController.swift */; };
+		5DA1966225D579F500962062 /* UIStorybourdExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1966125D579F500962062 /* UIStorybourdExtension.swift */; };
+		5DA1966B25D58F4A00962062 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1966925D58F4A00962062 /* DetailsTableViewCell.swift */; };
+		5DA1966C25D58F4A00962062 /* DetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA1966A25D58F4A00962062 /* DetailsTableViewCell.xib */; };
+		5DA1966F25D5C94200962062 /* UISearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1966E25D5C94100962062 /* UISearchBarExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +81,11 @@
 		5DA1964925D55E9C00962062 /* tt3748528.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tt3748528.txt; sourceTree = "<group>"; };
 		5DA1964A25D55E9C00962062 /* tt0796366.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tt0796366.txt; sourceTree = "<group>"; };
 		5DA1965725D562A600962062 /* MoviesDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesDataManager.swift; sourceTree = "<group>"; };
+		5DA1965D25D56F6F00962062 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		5DA1966125D579F500962062 /* UIStorybourdExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStorybourdExtension.swift; sourceTree = "<group>"; };
+		5DA1966925D58F4A00962062 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
+		5DA1966A25D58F4A00962062 /* DetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsTableViewCell.xib; sourceTree = "<group>"; };
+		5DA1966E25D5C94100962062 /* UISearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBarExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,9 +120,10 @@
 			children = (
 				5DA1963E25D55AC700962062 /* App */,
 				5D0CDB0B25D0A60B00932892 /* ViewControllers */,
+				5DA1965B25D5699900962062 /* Managers */,
 				5DA1962725D3131000962062 /* Models */,
-				5DA1962B25D315A700962062 /* MovieCell */,
-				5DA195F225D1CA4900962062 /* Views */,
+				5DA1966025D579D800962062 /* Extensions */,
+				5DA1966725D58EDB00962062 /* UI */,
 				5DA1963F25D55DAB00962062 /* Storyboard */,
 				5D0CDB0D25D0A86100932892 /* Resources */,
 			);
@@ -125,7 +136,7 @@
 				5D0CDAF625CF480F00932892 /* ViewController.swift */,
 				5D0CDB0825D0A5FE00932892 /* DrawingViewController.swift */,
 				5DA1960F25D30F5400962062 /* MoviesViewController.swift */,
-				5DA1965725D562A600962062 /* MoviesDataManager.swift */,
+				5DA1965D25D56F6F00962062 /* DetailsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -225,6 +236,42 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
+		5DA1965B25D5699900962062 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5DA1965725D562A600962062 /* MoviesDataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		5DA1966025D579D800962062 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5DA1966125D579F500962062 /* UIStorybourdExtension.swift */,
+				5DA1966E25D5C94100962062 /* UISearchBarExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5DA1966625D58EC200962062 /* DetailsCell */ = {
+			isa = PBXGroup;
+			children = (
+				5DA1966925D58F4A00962062 /* DetailsTableViewCell.swift */,
+				5DA1966A25D58F4A00962062 /* DetailsTableViewCell.xib */,
+			);
+			path = DetailsCell;
+			sourceTree = "<group>";
+		};
+		5DA1966725D58EDB00962062 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5DA195F225D1CA4900962062 /* Views */,
+				5DA1962B25D315A700962062 /* MovieCell */,
+				5DA1966625D58EC200962062 /* DetailsCell */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -284,6 +331,7 @@
 			files = (
 				5D0CDAFF25CF481100932892 /* LaunchScreen.storyboard in Resources */,
 				5DA1964B25D55E9C00962062 /* tt0076759.txt in Resources */,
+				5DA1966C25D58F4A00962062 /* DetailsTableViewCell.xib in Resources */,
 				5DA1965325D55E9C00962062 /* tt3748528.txt in Resources */,
 				5DA1962225D3123600962062 /* Poster_10.jpg in Resources */,
 				5D0CDAFC25CF481100932892 /* Assets.xcassets in Resources */,
@@ -315,15 +363,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DA1966F25D5C94200962062 /* UISearchBarExtension.swift in Sources */,
 				5DA1962925D3138000962062 /* Movie.swift in Sources */,
 				5D0CDB1125D0AFA700932892 /* ChartView.swift in Sources */,
+				5DA1966225D579F500962062 /* UIStorybourdExtension.swift in Sources */,
 				5D0CDAF725CF480F00932892 /* ViewController.swift in Sources */,
 				5DA195F425D1CB6300962062 /* DiagramView.swift in Sources */,
 				5DA1965825D562A600962062 /* MoviesDataManager.swift in Sources */,
+				5DA1966B25D58F4A00962062 /* DetailsTableViewCell.swift in Sources */,
 				5D0CDB0925D0A5FE00932892 /* DrawingViewController.swift in Sources */,
 				5D0CDAF325CF480F00932892 /* AppDelegate.swift in Sources */,
 				5DA1963925D3161A00962062 /* MovieTableViewCell.swift in Sources */,
 				5DA1961025D30F5400962062 /* MoviesViewController.swift in Sources */,
+				5DA1965E25D56F6F00962062 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

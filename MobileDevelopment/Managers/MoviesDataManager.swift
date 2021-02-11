@@ -32,9 +32,10 @@ final class MoviesDataManager {
     
     public func fetchMovieImage(for imageName: String) -> UIImage? {
         
-        guard let image = UIImage(named: imageName) else {
+        guard imageName != "", let image = UIImage(named: imageName) else {
             return nil
         }
+
         return image
     }
     
