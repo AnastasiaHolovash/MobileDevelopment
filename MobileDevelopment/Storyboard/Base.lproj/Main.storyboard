@@ -33,6 +33,7 @@
                     <navigationItem key="navigationItem" title="Star Wars" id="bSq-kS-kjS"/>
                     <connections>
                         <outlet property="tableView" destination="Bdb-gD-Fmy" id="vbY-5K-7O2"/>
+                        <segue destination="MT8-gH-Cr1" kind="show" id="9gP-0A-xrv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQm-h5-gyY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -47,37 +48,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wPA-if-xf7">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wPA-if-xf7" customClass="DetailTableView" customModule="MobileDevelopment" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="pX0-tY-gre">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="556"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VPk-tQ-hPB">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="556"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EDU-Wh-Get">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="499"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbu-TT-1Qc">
-                                                    <rect key="frame" x="0.0" y="499" width="414" height="57"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ary-TZ-YFD"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </stackView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EDU-Wh-Get">
+                                            <rect key="frame" x="0.0" y="6" width="414" height="500"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="500" identifier="imageViewHeight" id="2tl-Wu-LEO"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbu-TT-1Qc">
+                                            <rect key="frame" x="16" y="506" width="382" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ary-TZ-YFD"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstItem="VPk-tQ-hPB" firstAttribute="top" secondItem="pX0-tY-gre" secondAttribute="top" id="ANm-tG-sPZ"/>
-                                        <constraint firstAttribute="trailing" secondItem="VPk-tQ-hPB" secondAttribute="trailing" id="HbO-YQ-g6R"/>
-                                        <constraint firstAttribute="bottom" secondItem="VPk-tQ-hPB" secondAttribute="bottom" id="PMD-hV-tVe"/>
-                                        <constraint firstItem="VPk-tQ-hPB" firstAttribute="leading" secondItem="pX0-tY-gre" secondAttribute="leading" id="sv9-KJ-eWz"/>
+                                        <constraint firstAttribute="bottom" secondItem="mbu-TT-1Qc" secondAttribute="bottom" id="3bl-1X-XH9"/>
+                                        <constraint firstAttribute="trailing" secondItem="EDU-Wh-Get" secondAttribute="trailing" id="anR-v7-YCc"/>
+                                        <constraint firstItem="EDU-Wh-Get" firstAttribute="leading" secondItem="pX0-tY-gre" secondAttribute="leading" id="c1R-gw-LzJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="mbu-TT-1Qc" secondAttribute="trailing" constant="16" id="hvR-95-KAf"/>
+                                        <constraint firstItem="mbu-TT-1Qc" firstAttribute="leading" secondItem="pX0-tY-gre" secondAttribute="leading" constant="16" id="kM9-ij-XxT"/>
+                                        <constraint firstItem="EDU-Wh-Get" firstAttribute="bottom" secondItem="mbu-TT-1Qc" secondAttribute="top" identifier="imageViewBottom" id="wSe-Xz-0Rv"/>
                                     </constraints>
                                 </view>
                             </tableView>
@@ -91,7 +92,7 @@
                             <constraint firstItem="wPA-if-xf7" firstAttribute="leading" secondItem="afn-aW-RbQ" secondAttribute="leading" id="x4Q-hC-yQ1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="M9S-2N-hc2"/>
+                    <navigationItem key="navigationItem" id="M9S-2N-hc2"/>
                     <connections>
                         <outlet property="imageView" destination="EDU-Wh-Get" id="yMS-cm-gKq"/>
                         <outlet property="nameLabel" destination="mbu-TT-1Qc" id="Vj3-kV-4ue"/>

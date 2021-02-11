@@ -45,6 +45,7 @@
 		5DA1966C25D58F4A00962062 /* DetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA1966A25D58F4A00962062 /* DetailsTableViewCell.xib */; };
 		5DA1966F25D5C94200962062 /* UISearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1966E25D5C94100962062 /* UISearchBarExtension.swift */; };
 		5DA1967225D5DDAF00962062 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1967125D5DDAF00962062 /* UITableViewExtensions.swift */; };
+		5DA1967625D5E5BB00962062 /* DetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1967525D5E5BB00962062 /* DetailTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		5DA1966A25D58F4A00962062 /* DetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsTableViewCell.xib; sourceTree = "<group>"; };
 		5DA1966E25D5C94100962062 /* UISearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBarExtension.swift; sourceTree = "<group>"; };
 		5DA1967125D5DDAF00962062 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
+		5DA1967525D5E5BB00962062 /* DetailTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			children = (
 				5D0CDB1025D0AFA700932892 /* ChartView.swift */,
 				5DA195F325D1CB6300962062 /* DiagramView.swift */,
+				5DA1967525D5E5BB00962062 /* DetailTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				5DA1966F25D5C94200962062 /* UISearchBarExtension.swift in Sources */,
 				5DA1962925D3138000962062 /* Movie.swift in Sources */,
 				5D0CDB1125D0AFA700932892 /* ChartView.swift in Sources */,
+				5DA1967625D5E5BB00962062 /* DetailTableView.swift in Sources */,
 				5DA1966225D579F500962062 /* UIStorybourdExtension.swift in Sources */,
 				5D0CDAF725CF480F00932892 /* ViewController.swift in Sources */,
 				5DA195F425D1CB6300962062 /* DiagramView.swift in Sources */,

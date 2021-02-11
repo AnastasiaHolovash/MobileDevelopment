@@ -38,6 +38,8 @@ final class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        
         tableViewData = movie.notEmptyProperties
         if let image = MoviesDataManager.shared.fetchMovieImage(for: movie.poster) {
             imageView.image = image
