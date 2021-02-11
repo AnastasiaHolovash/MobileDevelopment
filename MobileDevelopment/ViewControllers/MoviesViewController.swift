@@ -13,9 +13,10 @@ final class MoviesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    // MARK: - Private variables
+    // MARK: - Private variables and properties
     
     private var moviesData: [Movie] = []
+    private let moviesDataManager = MoviesDataManager.shared
     
     // MARK: - Life cycle
     
@@ -24,7 +25,7 @@ final class MoviesViewController: UIViewController {
         
         tableViewSetup()
         
-        fetchMovieData(from: "MoviesList")
+        moviesData = moviesDataManager.fetchMoviesList() ?? []
         tableView.reloadData()
     }
     
@@ -34,21 +35,6 @@ final class MoviesViewController: UIViewController {
         tableView.register(UINib(nibName: MovieTableViewCell.id, bundle: Bundle.main), forCellReuseIdentifier: MovieTableViewCell.id)
     }
     
-    // MARK: - Private funcs
-    
-    private func fetchMovieData(from file: String) {
-        
-        do {
-            if let path = Bundle.main.path(forResource: file, ofType: "txt"),
-               let jsonData = try String(contentsOfFile: path, encoding: String.Encoding.utf8).data(using: .utf8) {
-                
-                let decodedData = try JSONDecoder().decode(Search.self, from: jsonData)
-                moviesData = decodedData.search
-            }
-        } catch {
-            print(error)
-        }
-    }
 }
 
 // MARK: - UITableViewDataSource
@@ -80,9 +66,7 @@ extension MoviesViewController: UITableViewDataSource {
             cell.typeLabel.text = movie.type
         }
         
-        if movie.poster != "" {
-            cell.posterImageView.image = UIImage(named: movie.poster)
-        }
+        cell.posterImageView.image = moviesDataManager.fetchMovieImage(for: movie.poster)
             
         return cell
     }
