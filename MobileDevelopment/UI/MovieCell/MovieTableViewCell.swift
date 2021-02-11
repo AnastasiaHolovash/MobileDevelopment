@@ -25,7 +25,7 @@ class MovieTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        posterImageView.image = nil
+        posterImageView.image = UIImage(systemName: "list.and.film")
         nameLabel.text = ""
         yearLabel.text = ""
         typeLabel.text = ""

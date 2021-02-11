@@ -83,7 +83,9 @@ extension MoviesViewController: UITableViewDataSource {
             cell.typeLabel.text = movie.type
         }
         
-        cell.posterImageView.image = moviesDataManager.fetchMovieImage(for: movie.poster)
+        if let image = moviesDataManager.fetchMovieImage(for: movie.poster) {
+            cell.posterImageView.image = image
+        }
             
         return cell
     }

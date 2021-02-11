@@ -44,6 +44,7 @@
 		5DA1966B25D58F4A00962062 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1966925D58F4A00962062 /* DetailsTableViewCell.swift */; };
 		5DA1966C25D58F4A00962062 /* DetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA1966A25D58F4A00962062 /* DetailsTableViewCell.xib */; };
 		5DA1966F25D5C94200962062 /* UISearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1966E25D5C94100962062 /* UISearchBarExtension.swift */; };
+		5DA1967225D5DDAF00962062 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1967125D5DDAF00962062 /* UITableViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		5DA1966925D58F4A00962062 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		5DA1966A25D58F4A00962062 /* DetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsTableViewCell.xib; sourceTree = "<group>"; };
 		5DA1966E25D5C94100962062 /* UISearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBarExtension.swift; sourceTree = "<group>"; };
+		5DA1967125D5DDAF00962062 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +251,7 @@
 			children = (
 				5DA1966125D579F500962062 /* UIStorybourdExtension.swift */,
 				5DA1966E25D5C94100962062 /* UISearchBarExtension.swift */,
+				5DA1967125D5DDAF00962062 /* UITableViewExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				5D0CDAF725CF480F00932892 /* ViewController.swift in Sources */,
 				5DA195F425D1CB6300962062 /* DiagramView.swift in Sources */,
 				5DA1965825D562A600962062 /* MoviesDataManager.swift in Sources */,
+				5DA1967225D5DDAF00962062 /* UITableViewExtensions.swift in Sources */,
 				5DA1966B25D58F4A00962062 /* DetailsTableViewCell.swift in Sources */,
 				5D0CDB0925D0A5FE00932892 /* DrawingViewController.swift in Sources */,
 				5D0CDAF325CF480F00932892 /* AppDelegate.swift in Sources */,
