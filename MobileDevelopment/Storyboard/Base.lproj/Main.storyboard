@@ -33,7 +33,6 @@
                     <navigationItem key="navigationItem" title="Star Wars" id="bSq-kS-kjS"/>
                     <connections>
                         <outlet property="tableView" destination="Bdb-gD-Fmy" id="vbY-5K-7O2"/>
-                        <segue destination="MT8-gH-Cr1" kind="show" id="3jo-xu-Mjv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQm-h5-gyY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -81,16 +80,6 @@
                                         <constraint firstItem="VPk-tQ-hPB" firstAttribute="leading" secondItem="pX0-tY-gre" secondAttribute="leading" id="sv9-KJ-eWz"/>
                                     </constraints>
                                 </view>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="5Tu-FX-ke5">
-                                        <rect key="frame" x="0.0" y="584" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Tu-FX-ke5" id="dfT-pW-AA8">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="afn-aW-RbQ"/>

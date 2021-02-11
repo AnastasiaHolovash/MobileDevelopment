@@ -16,9 +16,9 @@ final class MoviesViewController: UIViewController {
     // MARK: - Private variables and properties
     
     private var moviesData: [Movie] = []
+    private var filteredMoviesData: [Movie] = []
     private let moviesDataManager = MoviesDataManager.shared
     private var searchController: UISearchController!
-    
     
     // MARK: - Life cycle
     
@@ -52,7 +52,6 @@ final class MoviesViewController: UIViewController {
         // Make the search bar always visible.
         navigationItem.hidesSearchBarWhenScrolling = false
     }
-    
 }
 
 // MARK: - UITableViewDataSource
@@ -61,14 +60,14 @@ extension MoviesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return moviesData.count
+        return searchController.isActive ? filteredMoviesData.count : moviesData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.id, for: indexPath) as! MovieTableViewCell
         
-        let movie = moviesData[indexPath.row]
+        let movie = searchController.isActive ? filteredMoviesData[indexPath.row] : moviesData[indexPath.row]
         
         cell.nameLabel.text = movie.title
         
@@ -98,7 +97,9 @@ extension MoviesViewController: UITableViewDelegate {
         
         tableView.deselectRow(at: indexPath, animated: false)
         
-        guard let movie = moviesDataManager.fetchMovieData(for: moviesData[indexPath.row].imdbID) else {
+        let id = searchController.isActive ? filteredMoviesData[indexPath.row].imdbID : moviesData[indexPath.row].imdbID
+        
+        guard let movie = moviesDataManager.fetchMovieData(for: id) else {
             return
         }
         
@@ -112,11 +113,13 @@ extension MoviesViewController: UITableViewDelegate {
 extension MoviesViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
+        searchController.searchBar.isLoading = true
         guard let enteredText = searchController.searchBar.text else {
             return
         }
-        print(enteredText)
-//        findBrewery(name: enteredText)
+        filteredMoviesData = moviesData.filter{ $0.title.contains(enteredText) }
+        tableView.reloadData()
+        searchController.searchBar.isLoading = false
     }
 }
 
@@ -126,7 +129,6 @@ extension MoviesViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchController.searchBar.isLoading = false
-//        breweries = coreDataManager?.fetchBreweries() ?? []
-//        breweriesTableView.reloadData()
+        tableView.reloadData()
     }
 }

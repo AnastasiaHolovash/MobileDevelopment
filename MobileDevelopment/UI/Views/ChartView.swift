@@ -66,7 +66,7 @@ final class ChartView: UIView {
         
         // Stroke
         line.lineWidth = 1.0
-        UIColor.black.setStroke()
+        UIColor.label.setStroke()
         
         // Drawing Ox
         let xEndPoint = CGPoint(x: width - 16, y: chartHeight)
