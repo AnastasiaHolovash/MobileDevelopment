@@ -28,6 +28,9 @@ final class MoviesViewController: UIViewController {
         tableViewSetup()
         searchControllerSetup()
         
+        let backBarButtton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backBarButtton
+        
         moviesData = moviesDataManager.fetchMoviesList() ?? []
         tableView.reloadData()
     }

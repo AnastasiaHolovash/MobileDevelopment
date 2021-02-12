@@ -50,6 +50,10 @@ class DetailTableView: UITableView {
     
         // Tells to detailTableViewDelegate whether a title is required
         
+//        tableHeaderView?.subviews.forEach{ item in
+//            <#code#>
+//        }
+        
         if (offsetY > -450.0) && isSetTitle {
             isSetTitle = false
             detailTableViewDelegate?.setTitle(false)
