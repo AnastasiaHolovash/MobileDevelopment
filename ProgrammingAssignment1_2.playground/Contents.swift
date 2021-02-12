@@ -17,15 +17,12 @@ var studentsGroups: [String: [String]] = [:]
 // MARK: - Ваш код починається тут
 
 // Створення масиву з елементами у форматі "Student1 - Group1"
-let studentsArray = studentsStr.components(separatedBy: ";")
+let studentsArray = studentsStr.components(separatedBy: "; ")
 
 studentsArray.forEach { student in
     
     // Масив типу ["Student1", "Group1"]
-    let studentArray = student
-        .replacingOccurrences(of: " - ", with: "v", options: .literal)
-        .trimmingCharacters(in: .whitespaces)
-        .components(separatedBy: "v")
+    let studentArray = student.components(separatedBy: " - ")
     
     // Якщо уже була додана така група до словника
     if var arrayForGroup = studentsGroups[studentArray[1]] {
