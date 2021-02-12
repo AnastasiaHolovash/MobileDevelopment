@@ -23,7 +23,7 @@ final class DetailsViewController: UIViewController {
     
     // MARK: - IBOutlets
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: DetailTableView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -37,23 +37,23 @@ final class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         
         tableViewData = movie.notEmptyProperties
+        nameLabel.text = movie.title
+        
         if let image = MoviesDataManager.shared.fetchMovieImage(for: movie.poster) {
             imageView.image = image
         } else {
             imageView.isHidden = true
-            tableView.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 150)
+            tableView.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: nameLabel.frame.height)
         }
         tableViewSetup()
-        nameLabel.text = movie.title
     }
     
     private func tableViewSetup() {
         
         tableView.dataSource = self
+        tableView.detailTableViewDelegate = self
         tableView.register(UINib(nibName: DetailsTableViewCell.id, bundle: Bundle.main), forCellReuseIdentifier: DetailsTableViewCell.id)
     }
 
@@ -75,5 +75,15 @@ extension DetailsViewController: UITableViewDataSource {
         cell.infoLabel.text = tableViewData[indexPath.row].1
         
         return cell
+    }
+}
+
+// MARK: - DetailTableViewDelegate
+
+extension DetailsViewController: DetailTableViewDelegate {
+    
+    func setTitle(_ needSetTitle: Bool) {
+        
+        title = needSetTitle ? movie.title : ""
     }
 }

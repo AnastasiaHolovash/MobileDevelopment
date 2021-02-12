@@ -7,7 +7,16 @@
 
 import UIKit
 
+protocol DetailTableViewDelegate {
+    
+    func setTitle(_ needSetTitle: Bool)
+}
+
 class DetailTableView: UITableView {
+    
+    // MARK: - Delegate
+    
+    var detailTableViewDelegate: DetailTableViewDelegate?
     
     // MARK: -  Variables
     
@@ -22,8 +31,12 @@ class DetailTableView: UITableView {
         super.layoutSubviews()
         
         // Sets variables values
-        guard let header = tableHeaderView else { return }
+        guard let header = tableHeaderView else {
+            return
+            
+        }
         if let catImageView = header.subviews.first as? UIImageView {
+            
             imageViewHeight = catImageView.constraints.filter{ $0.identifier == "imageViewHeight" }.first
             imageViewBottom = constraints.filter{ $0.identifier == "imageViewBottom" }.first
         }
@@ -36,14 +49,13 @@ class DetailTableView: UITableView {
         header.clipsToBounds = offsetY <= 0
     
         // Tells to detailTableViewDelegate whether a title is required
-//        if (offsetY > -263.0) && isSetTitle {
-//            isSetTitle = false
-//            detailTableViewDelegate?.setTitle(false)
-//        } else if (offsetY < -263.0) && !isSetTitle {
-//            isSetTitle = true
-//            detailTableViewDelegate?.setTitle(true)
-//        }
+        
+        if (offsetY > -450.0) && isSetTitle {
+            isSetTitle = false
+            detailTableViewDelegate?.setTitle(false)
+        } else if (offsetY < -450.0) && !isSetTitle {
+            isSetTitle = true
+            detailTableViewDelegate?.setTitle(true)
+        }
     }
-
 }
-

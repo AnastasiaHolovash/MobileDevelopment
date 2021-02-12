@@ -33,7 +33,6 @@
                     <navigationItem key="navigationItem" title="Star Wars" id="bSq-kS-kjS"/>
                     <connections>
                         <outlet property="tableView" destination="Bdb-gD-Fmy" id="vbY-5K-7O2"/>
-                        <segue destination="MT8-gH-Cr1" kind="show" id="9gP-0A-xrv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQm-h5-gyY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -52,17 +51,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="pX0-tY-gre">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="556"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="545"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EDU-Wh-Get">
-                                            <rect key="frame" x="0.0" y="6" width="414" height="500"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Poster_05.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="EDU-Wh-Get">
+                                            <rect key="frame" x="0.0" y="-45" width="414" height="540"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="500" identifier="imageViewHeight" id="2tl-Wu-LEO"/>
+                                                <constraint firstAttribute="height" constant="540" identifier="imageViewHeight" id="2tl-Wu-LEO"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbu-TT-1Qc">
-                                            <rect key="frame" x="16" y="506" width="382" height="50"/>
+                                            <rect key="frame" x="16" y="495" width="382" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ary-TZ-YFD"/>
                                             </constraints>
@@ -253,6 +252,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Poster_05.jpg" width="300" height="450"/>
         <image name="chart.pie" catalog="system" width="128" height="121"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="tablecells" catalog="system" width="128" height="93"/>
