@@ -90,8 +90,9 @@ extension DetailsViewController: UITableViewDataSource {
 extension DetailsViewController: DetailTableViewDelegate {
     
     func setTitle(_ needSetTitle: Bool) {
-
-        let view = navigationController?.navigationBar.subviews[2].subviews[1]
+        
+        let view = UIWindow.isLandscape ? navigationController?.navigationBar.subviews[1].subviews[1] : navigationController?.navigationBar.subviews[2].subviews[1]
+            
         title = needSetTitle ? movie.title : "\u{02} \u{1A}"
         view?.fadeTransition(0.35, isFromLeftToRight: true)
     }

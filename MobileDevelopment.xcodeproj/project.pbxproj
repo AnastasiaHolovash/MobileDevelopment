@@ -47,6 +47,7 @@
 		5DA1967625D5E5BB00962062 /* DetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1967525D5E5BB00962062 /* DetailTableView.swift */; };
 		5DA1968325D6C16F00962062 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1968225D6C16F00962062 /* UIViewExtension.swift */; };
 		5DA1968725D9C11400962062 /* UITableviewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1968625D9C11400962062 /* UITableviewExtension.swift */; };
+		5DA1968D25D9DB2000962062 /* UIWindowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1968C25D9DB1F00962062 /* UIWindowExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		5DA1967525D5E5BB00962062 /* DetailTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableView.swift; sourceTree = "<group>"; };
 		5DA1968225D6C16F00962062 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		5DA1968625D9C11400962062 /* UITableviewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableviewExtension.swift; sourceTree = "<group>"; };
+		5DA1968C25D9DB1F00962062 /* UIWindowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +260,7 @@
 				5DA1966E25D5C94100962062 /* UISearchBarExtension.swift */,
 				5DA1968225D6C16F00962062 /* UIViewExtension.swift */,
 				5DA1968625D9C11400962062 /* UITableviewExtension.swift */,
+				5DA1968C25D9DB1F00962062 /* UIWindowExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				5DA1966B25D58F4A00962062 /* DetailsTableViewCell.swift in Sources */,
 				5D0CDB0925D0A5FE00932892 /* DrawingViewController.swift in Sources */,
 				5D0CDAF325CF480F00932892 /* AppDelegate.swift in Sources */,
+				5DA1968D25D9DB2000962062 /* UIWindowExtension.swift in Sources */,
 				5DA1963925D3161A00962062 /* MovieTableViewCell.swift in Sources */,
 				5DA1961025D30F5400962062 /* MoviesViewController.swift in Sources */,
 				5DA1965E25D56F6F00962062 /* DetailsViewController.swift in Sources */,
