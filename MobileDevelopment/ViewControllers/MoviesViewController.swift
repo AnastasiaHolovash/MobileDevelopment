@@ -17,8 +17,11 @@ final class MoviesViewController: UIViewController {
     
     private var moviesData: [Movie] = []
     private var filteredMoviesData: [Movie] = []
-    private let moviesDataManager = MoviesDataManager.shared
+    
     private var searchController: UISearchController!
+    
+    private let moviesDataManager = MoviesDataManager.shared
+    private let tableViewPlaceholder = UIImage(named: "Placeholder")!
     
     // MARK: - Life cycle
     
@@ -119,10 +122,16 @@ extension MoviesViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         searchController.searchBar.isLoading = true
+        
         guard let enteredText = searchController.searchBar.text else {
             return
         }
         filteredMoviesData = moviesData.filter{ $0.title.contains(enteredText) }
+        if filteredMoviesData.isEmpty {
+            tableView.addPlaceholder(image: tableViewPlaceholder)
+        } else {
+            tableView.removePlaceholder()
+        }
         tableView.reloadData()
         searchController.searchBar.isLoading = false
     }

@@ -44,9 +44,9 @@
 		5DA1966B25D58F4A00962062 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1966925D58F4A00962062 /* DetailsTableViewCell.swift */; };
 		5DA1966C25D58F4A00962062 /* DetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA1966A25D58F4A00962062 /* DetailsTableViewCell.xib */; };
 		5DA1966F25D5C94200962062 /* UISearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1966E25D5C94100962062 /* UISearchBarExtension.swift */; };
-		5DA1967225D5DDAF00962062 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1967125D5DDAF00962062 /* UITableViewExtensions.swift */; };
 		5DA1967625D5E5BB00962062 /* DetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1967525D5E5BB00962062 /* DetailTableView.swift */; };
 		5DA1968325D6C16F00962062 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1968225D6C16F00962062 /* UIViewExtension.swift */; };
+		5DA1968725D9C11400962062 /* UITableviewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1968625D9C11400962062 /* UITableviewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,9 +89,9 @@
 		5DA1966925D58F4A00962062 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		5DA1966A25D58F4A00962062 /* DetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsTableViewCell.xib; sourceTree = "<group>"; };
 		5DA1966E25D5C94100962062 /* UISearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBarExtension.swift; sourceTree = "<group>"; };
-		5DA1967125D5DDAF00962062 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
 		5DA1967525D5E5BB00962062 /* DetailTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableView.swift; sourceTree = "<group>"; };
 		5DA1968225D6C16F00962062 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		5DA1968625D9C11400962062 /* UITableviewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableviewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,8 +256,8 @@
 			children = (
 				5DA1966125D579F500962062 /* UIStorybourdExtension.swift */,
 				5DA1966E25D5C94100962062 /* UISearchBarExtension.swift */,
-				5DA1967125D5DDAF00962062 /* UITableViewExtensions.swift */,
 				5DA1968225D6C16F00962062 /* UIViewExtension.swift */,
+				5DA1968625D9C11400962062 /* UITableviewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -381,7 +381,7 @@
 				5DA1968325D6C16F00962062 /* UIViewExtension.swift in Sources */,
 				5DA195F425D1CB6300962062 /* DiagramView.swift in Sources */,
 				5DA1965825D562A600962062 /* MoviesDataManager.swift in Sources */,
-				5DA1967225D5DDAF00962062 /* UITableViewExtensions.swift in Sources */,
+				5DA1968725D9C11400962062 /* UITableviewExtension.swift in Sources */,
 				5DA1966B25D58F4A00962062 /* DetailsTableViewCell.swift in Sources */,
 				5D0CDB0925D0A5FE00932892 /* DrawingViewController.swift in Sources */,
 				5D0CDAF325CF480F00932892 /* AppDelegate.swift in Sources */,
