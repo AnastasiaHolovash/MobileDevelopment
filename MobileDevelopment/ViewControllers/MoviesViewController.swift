@@ -114,6 +114,17 @@ extension MoviesViewController: UITableViewDelegate {
         let detailsVC = DetailsViewController.create(movie: movie)
         navigationController?.pushViewController(detailsVC, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            guard let itemToRemoveIndex = searchController.isActive ?  moviesData.firstIndex(of: filteredMoviesData[indexPath.row]) : indexPath.row else {
+                return
+            }
+            moviesData.remove(at: itemToRemoveIndex)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 }
 
 // MARK: - UISearchResultsUpdating

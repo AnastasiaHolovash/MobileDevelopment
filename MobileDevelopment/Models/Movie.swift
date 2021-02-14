@@ -21,7 +21,7 @@ struct Search: Codable {
 
 // MARK: - Movie
 
-struct Movie: Codable {
+struct Movie: Codable, Equatable {
     
     let title: String
     let year: String
@@ -77,8 +77,6 @@ struct Movie: Codable {
                 ("imdbVotes: ", imdbVotes),]
             
             var result: [(String, String)] = []
-            
-//            result.append((Movie.CodingKeys.title.rawValue, title))
             
             allProperties.forEach { (name, item) in
                 if let item = item, !item.isEmpty {
