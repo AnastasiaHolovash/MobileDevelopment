@@ -49,15 +49,13 @@ class DetailTableView: UITableView {
         header.clipsToBounds = offsetY <= 0
     
         // Tells to detailTableViewDelegate whether a title is required
+
+        let titleAppearingOffset = header.subviews[1].frame.maxY - safeAreaInsets.top
         
-//        tableHeaderView?.subviews.forEach{ item in
-//            <#code#>
-//        }
-        
-        if (offsetY > -450.0) && isSetTitle {
+        if (offsetY > -titleAppearingOffset) && isSetTitle {
             isSetTitle = false
             detailTableViewDelegate?.setTitle(false)
-        } else if (offsetY < -450.0) && !isSetTitle {
+        } else if (offsetY < -titleAppearingOffset) && !isSetTitle {
             isSetTitle = true
             detailTableViewDelegate?.setTitle(true)
         }

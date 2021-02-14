@@ -43,9 +43,6 @@ final class DetailsViewController: UIViewController {
         tableViewData = movie.notEmptyProperties
         
         tableViewSetup()
-        
-        Swift.debugPrint(tableView.tableHeaderView)
-        Swift.debugPrint(tableView.tableHeaderView?.superview)
     }
     
     override func viewDidAppear(_ animated: Bool) {
