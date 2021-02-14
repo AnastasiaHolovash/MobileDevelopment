@@ -48,6 +48,7 @@
 		5DA1968325D6C16F00962062 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1968225D6C16F00962062 /* UIViewExtension.swift */; };
 		5DA1968725D9C11400962062 /* UITableviewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1968625D9C11400962062 /* UITableviewExtension.swift */; };
 		5DA1968D25D9DB2000962062 /* UIWindowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1968C25D9DB1F00962062 /* UIWindowExtension.swift */; };
+		5DA1969025D9E50A00962062 /* AddNewMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1968F25D9E50900962062 /* AddNewMovieViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		5DA1968225D6C16F00962062 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		5DA1968625D9C11400962062 /* UITableviewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableviewExtension.swift; sourceTree = "<group>"; };
 		5DA1968C25D9DB1F00962062 /* UIWindowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtension.swift; sourceTree = "<group>"; };
+		5DA1968F25D9E50900962062 /* AddNewMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewMovieViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				5D0CDB0825D0A5FE00932892 /* DrawingViewController.swift */,
 				5DA1960F25D30F5400962062 /* MoviesViewController.swift */,
 				5DA1965D25D56F6F00962062 /* DetailsViewController.swift */,
+				5DA1968F25D9E50900962062 /* AddNewMovieViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				5DA1968D25D9DB2000962062 /* UIWindowExtension.swift in Sources */,
 				5DA1963925D3161A00962062 /* MovieTableViewCell.swift in Sources */,
 				5DA1961025D30F5400962062 /* MoviesViewController.swift in Sources */,
+				5DA1969025D9E50A00962062 /* AddNewMovieViewController.swift in Sources */,
 				5DA1965E25D56F6F00962062 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

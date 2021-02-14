@@ -31,6 +31,7 @@ final class MoviesViewController: UIViewController {
         tableViewSetup()
         searchControllerSetup()
         
+        
         let backBarButtton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backBarButtton
         
@@ -154,6 +155,15 @@ extension MoviesViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchController.searchBar.isLoading = false
+        tableView.reloadData()
+    }
+}
+
+extension MoviesViewController: AddNewMovieViewControllerDelegate {
+    
+    func saveNewMovie(_ movie: Movie) {
+        
+        moviesData.append(movie)
         tableView.reloadData()
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol DetailTableViewDelegate {
+protocol DetailTableViewDelegate: class {
     
     func setTitle(_ needSetTitle: Bool)
 }
@@ -16,7 +16,7 @@ class DetailTableView: UITableView {
     
     // MARK: - Delegate
     
-    var detailTableViewDelegate: DetailTableViewDelegate?
+    weak var detailTableViewDelegate: DetailTableViewDelegate?
     
     // MARK: -  Variables
     
