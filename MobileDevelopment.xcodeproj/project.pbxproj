@@ -49,6 +49,7 @@
 		5DA1968725D9C11400962062 /* UITableviewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1968625D9C11400962062 /* UITableviewExtension.swift */; };
 		5DA1968D25D9DB2000962062 /* UIWindowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1968C25D9DB1F00962062 /* UIWindowExtension.swift */; };
 		5DA1969025D9E50A00962062 /* AddNewMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1968F25D9E50900962062 /* AddNewMovieViewController.swift */; };
+		5DA1969325DA873400962062 /* ValidationCriterion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1969225DA873400962062 /* ValidationCriterion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		5DA1968625D9C11400962062 /* UITableviewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableviewExtension.swift; sourceTree = "<group>"; };
 		5DA1968C25D9DB1F00962062 /* UIWindowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtension.swift; sourceTree = "<group>"; };
 		5DA1968F25D9E50900962062 /* AddNewMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewMovieViewController.swift; sourceTree = "<group>"; };
+		5DA1969225DA873400962062 /* ValidationCriterion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationCriterion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				5DA1962825D3138000962062 /* Movie.swift */,
+				5DA1969225DA873400962062 /* ValidationCriterion.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				5D0CDB0925D0A5FE00932892 /* DrawingViewController.swift in Sources */,
 				5D0CDAF325CF480F00932892 /* AppDelegate.swift in Sources */,
 				5DA1968D25D9DB2000962062 /* UIWindowExtension.swift in Sources */,
+				5DA1969325DA873400962062 /* ValidationCriterion.swift in Sources */,
 				5DA1963925D3161A00962062 /* MovieTableViewCell.swift in Sources */,
 				5DA1961025D30F5400962062 /* MoviesViewController.swift in Sources */,
 				5DA1969025D9E50A00962062 /* AddNewMovieViewController.swift in Sources */,
