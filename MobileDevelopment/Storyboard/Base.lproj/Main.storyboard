@@ -158,7 +158,9 @@
                     <navigationItem key="navigationItem" title="New movie" id="VwB-tC-uIC"/>
                     <connections>
                         <outlet property="nameTextField" destination="NbE-a0-BWL" id="55M-ZW-fhf"/>
+                        <outlet property="saveButton" destination="vTf-rM-x0M" id="MKU-W5-KoJ"/>
                         <outlet property="typeTextField" destination="CV8-c0-BBU" id="lJd-1i-81R"/>
+                        <outlet property="yearLabel" destination="r1b-0M-tTc" id="KbU-va-Cxq"/>
                         <outlet property="yearTextField" destination="4jW-zo-y1X" id="WAc-2r-Lu8"/>
                     </connections>
                 </viewController>
@@ -203,7 +205,7 @@
                                     <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Njx-dW-Dl2" kind="show" id="pti-Ji-Qxr"/>
+                                    <segue destination="Njx-dW-Dl2" kind="show" identifier="AddNewMovie" id="pMF-mk-TJ7"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -386,7 +388,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UxC-Gc-4Rn">
-                                <rect key="frame" x="110.33333333333331" y="375.66666666666669" width="154.66666666666669" height="61"/>
+                                <rect key="frame" x="110.33333333333333" y="375.66666666666669" width="154.66666666666669" height="61"/>
                                 <string key="text">Головаш Анастасія 
 Група ІВ-82 
 ЗК ІВ-8206</string>

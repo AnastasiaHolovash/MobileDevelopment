@@ -14,7 +14,6 @@ final class MoviesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Private variables and properties
-    
     private var moviesData: [Movie] = []
     private var filteredMoviesData: [Movie] = []
     
@@ -58,6 +57,14 @@ final class MoviesViewController: UIViewController {
         
         // Make the search bar always visible.
         navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "AddNewMovie" {
+            let vc = segue.destination as! AddNewMovieViewController
+            vc.delegate = self
+        }
     }
 }
 
@@ -159,10 +166,11 @@ extension MoviesViewController: UISearchBarDelegate {
     }
 }
 
+// MARK: - AddNewMovieViewControllerDelegate
+
 extension MoviesViewController: AddNewMovieViewControllerDelegate {
     
     func saveNewMovie(_ movie: Movie) {
-        
         moviesData.append(movie)
         tableView.reloadData()
     }

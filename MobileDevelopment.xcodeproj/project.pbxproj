@@ -147,9 +147,7 @@
 			children = (
 				5D0CDAF625CF480F00932892 /* ViewController.swift */,
 				5D0CDB0825D0A5FE00932892 /* DrawingViewController.swift */,
-				5DA1960F25D30F5400962062 /* MoviesViewController.swift */,
-				5DA1965D25D56F6F00962062 /* DetailsViewController.swift */,
-				5DA1968F25D9E50900962062 /* AddNewMovieViewController.swift */,
+				5DA1969625DADB6B00962062 /* Movies */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -203,7 +201,6 @@
 			isa = PBXGroup;
 			children = (
 				5DA1962825D3138000962062 /* Movie.swift */,
-				5DA1969225DA873400962062 /* Validator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -255,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				5DA1965725D562A600962062 /* MoviesDataManager.swift */,
+				5DA1969225DA873400962062 /* Validator.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -288,6 +286,16 @@
 				5DA1966625D58EC200962062 /* DetailsCell */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		5DA1969625DADB6B00962062 /* Movies */ = {
+			isa = PBXGroup;
+			children = (
+				5DA1960F25D30F5400962062 /* MoviesViewController.swift */,
+				5DA1965D25D56F6F00962062 /* DetailsViewController.swift */,
+				5DA1968F25D9E50900962062 /* AddNewMovieViewController.swift */,
+			);
+			path = Movies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
