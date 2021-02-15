@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - ValidationCriterion Protocol
+
 public protocol ValidationCriterion {
     
     /// string for description of criterion
@@ -18,6 +20,8 @@ public protocol ValidationCriterion {
     /// - Returns: return true if conform
     func isConform(to value:String) -> Bool
 }
+
+// MARK: - Validator
 
 class Validator  {
     
@@ -74,6 +78,8 @@ class Validator  {
     }
 }
 
+// MARK: - IsIntNumberCriteria
+
 public struct IsIntNumberCriteria : ValidationCriterion {
     
     public var errorDescription: String = "Not an integer entered."
@@ -83,6 +89,8 @@ public struct IsIntNumberCriteria : ValidationCriterion {
         return Int(value) != nil ? true : false
     }
 }
+
+// MARK: - IsRealYearCriteria
 
 public struct IsRealYearCriteria : ValidationCriterion {
     
