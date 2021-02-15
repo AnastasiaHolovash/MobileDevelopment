@@ -1,5 +1,5 @@
 //
-//  ValidationCriterion.swift
+//  Validator.swift
 //  MobileDevelopment
 //
 //  Created by Anastasia Holovash on 15.02.2021.
@@ -43,9 +43,13 @@ class Validator  {
         
         var notPassedCriterions: [ValidationCriterion] = []
         
-        criterions.forEach {
-            if !$0.isConform(to: value) {
-                forceExit ? result(.notValid(criteria: $0)) : notPassedCriterions.append($0)
+        for criteria in criterions {
+            if !criteria.isConform(to: value) {
+                if forceExit {
+                    result(.notValid(criteria: criteria))
+                    return ()
+                }
+                notPassedCriterions.append(criteria)
             }
         }
         

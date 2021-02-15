@@ -20,6 +20,8 @@ class AddNewMovieViewController: UIViewController {
     
     weak var delegate: AddNewMovieViewControllerDelegate?
     
+    private let yearValidator = Validator(of: .year)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,7 +30,17 @@ class AddNewMovieViewController: UIViewController {
     
     @IBAction func didPressSaveButton(_ sender: UIButton) {
         
-        // TODO: - Add validation for year
+        yearValidator.isValide(yearTextField.text ?? yearTextField.placeholder ?? "", forceExit: true) { result in
+            
+            switch result {
+            case .valid:
+                print("OK")
+            case .notValid(criteria: let criteria):
+                print(criteria.errorDescription)
+            case .notValides(criterias: let criterias):
+                print(criterias.reduce("") { $0 + $1.errorDescription})
+            }
+        }
         
         let movie = Movie(title: nameTextField.text ?? "", year: yearTextField.text ?? "", imdbID: "", type: typeTextField.text ?? "", poster: "", rated: nil, released: nil, production: nil, runtime: nil, genre: nil, director: nil, writer: nil, actors: nil, plot: nil, language: nil, country: nil, awards: nil, imdbRating: nil, imdbVotes: nil)
         
