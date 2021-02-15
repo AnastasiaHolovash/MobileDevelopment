@@ -35,9 +35,11 @@ class AddNewMovieViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        saveButton.isUserInteractionEnabled = false
         yearTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
                                   for: .editingChanged)
+        nameTextField.delegate = self
+        yearTextField.delegate = self
+        typeTextField.delegate = self
     }
     
     deinit {
@@ -87,5 +89,21 @@ class AddNewMovieViewController: UIViewController {
         
         delegate?.saveNewMovie(movie)
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension AddNewMovieViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == nameTextField {
+            yearTextField.becomeFirstResponder()
+            
+        } else if textField == yearTextField {
+            typeTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
     }
 }
