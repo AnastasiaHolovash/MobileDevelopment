@@ -130,6 +130,9 @@ extension MoviesViewController: UITableViewDelegate {
                 return
             }
             moviesData.remove(at: itemToRemoveIndex)
+            if searchController.isActive {
+                filteredMoviesData.remove(at: indexPath.row)
+            }
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
