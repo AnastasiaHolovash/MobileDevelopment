@@ -8,7 +8,7 @@
 import UIKit
 
 final class MoviesViewController: UIViewController {
-
+    
     // MARK: - IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
@@ -100,7 +100,7 @@ extension MoviesViewController: UITableViewDataSource {
         if let image = moviesDataManager.fetchMovieImage(for: movie.poster) {
             cell.posterImageView.image = image
         }
-            
+        
         return cell
     }
 }

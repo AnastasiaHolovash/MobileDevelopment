@@ -34,42 +34,43 @@ class AddNewMovieViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         yearTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
-                                  for: .editingChanged)
+                                for: .editingChanged)
         nameTextField.delegate = self
         yearTextField.delegate = self
         typeTextField.delegate = self
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    // MARK: - IBActions
+    // MARK: - objc
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         
-        yearValidator.isValide(textField.text ?? textField.placeholder ?? "", forceExit: true) { [weak self] result in
+        yearValidator.isValid(textField.text ?? textField.placeholder ?? "", forceExit: true) { [weak self] result in
             
             switch result {
             case .valid:
                 self?.yearLabel.text = "year"
                 self?.yearLabel.textColor = .placeholderText
                 self?.saveButton.isUserInteractionEnabled = true
+                self?.saveButton.tintColor = .systemBlue
                 
             case .notValid(criteria: let criteria):
                 self?.yearLabel.text = criteria.errorDescription
                 self?.yearLabel.textColor = .systemRed
                 self?.saveButton.isUserInteractionEnabled = false
+                self?.saveButton.tintColor = .placeholderText
                 
             case .notValides(criterias: let criterias):
-                self?.yearLabel.text = criterias.reduce("") { $0 + $1.errorDescription}
+                self?.yearLabel.text = criterias.reduce("") { $0 + $1.errorDescription }
                 self?.yearLabel.textColor = .systemRed
                 self?.saveButton.isUserInteractionEnabled = false
+                self?.saveButton.tintColor = .placeholderText
             }
         }
     }
+    
+    // MARK: - IBActions
     
     @IBAction func didTapOnScreen(_ sender: UITapGestureRecognizer) {
         
@@ -78,9 +79,8 @@ class AddNewMovieViewController: UIViewController {
         typeTextField.resignFirstResponder()
     }
     
-    
     @IBAction func didPressSaveButton(_ sender: UIButton) {
-                
+        
         let name = !nameTextField.text!.isEmpty ? nameTextField.text! : nameTextField.placeholder!
         let year = !yearTextField.text!.isEmpty ? yearTextField.text! : yearTextField.placeholder!
         let type = !typeTextField.text!.isEmpty ? typeTextField.text! : typeTextField.placeholder!

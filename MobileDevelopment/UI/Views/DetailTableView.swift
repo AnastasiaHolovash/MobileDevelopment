@@ -47,9 +47,9 @@ class DetailTableView: UITableView {
         imageViewBottom?.constant = offsetY >= 0 ? 0 : offsetY / 2
         imageViewHeight?.constant = max(header.bounds.height, header.bounds.height + offsetY)
         header.clipsToBounds = offsetY <= 0
-    
+        
         // Tells to detailTableViewDelegate whether a title is required
-
+        
         let titleAppearingOffset = header.subviews[1].frame.maxY - safeAreaInsets.top
         
         if (offsetY > -titleAppearingOffset) && isSetTitle {

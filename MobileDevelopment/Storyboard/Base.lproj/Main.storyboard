@@ -44,7 +44,7 @@
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hz1-by-j5v">
                                                         <rect key="frame" x="0.0" y="30" width="343" height="1"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" systemColor="labelColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="6W9-1J-NHJ"/>
                                                         </constraints>
@@ -73,7 +73,7 @@
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWK-Q2-14D">
                                                         <rect key="frame" x="0.0" y="30" width="343" height="1"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" systemColor="labelColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="107-bX-Ccf"/>
                                                         </constraints>
@@ -125,7 +125,7 @@
                                         <rect key="frame" x="0.0" y="153" width="343" height="404"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTf-rM-x0M">
-                                                <rect key="frame" x="150" y="184" width="43" height="36"/>
+                                                <rect key="frame" x="150" y="224.33333333333337" width="43" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <state key="normal" title="Save"/>
                                                 <connections>
@@ -135,7 +135,7 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="vTf-rM-x0M" firstAttribute="centerY" secondItem="z0a-kY-Z0r" secondAttribute="centerY" id="22i-C3-nfK"/>
+                                            <constraint firstItem="vTf-rM-x0M" firstAttribute="centerY" secondItem="z0a-kY-Z0r" secondAttribute="centerY" multiplier="1.2" id="22i-C3-nfK"/>
                                             <constraint firstItem="vTf-rM-x0M" firstAttribute="centerX" secondItem="z0a-kY-Z0r" secondAttribute="centerX" id="sRL-E9-Uaz"/>
                                         </constraints>
                                     </view>

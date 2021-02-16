@@ -27,9 +27,11 @@ final class DetailsViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
-    // MARK: - Variables
+    // MARK: - Public Variables
     
     public var movie: Movie!
+    
+    // MARK: - Private Variables
     
     private var tableViewData: [(String, String)] = []
     
@@ -37,20 +39,16 @@ final class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = "\u{02} \u{1A}"
-    
+        
         tableViewData = movie.notEmptyProperties
         
         tableViewSetup()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-    
     private func tableViewSetup() {
-
+        
         tableView.dataSource = self
         tableView.detailTableViewDelegate = self
         tableView.register(UINib(nibName: DetailsTableViewCell.id, bundle: Bundle.main), forCellReuseIdentifier: DetailsTableViewCell.id)
@@ -92,7 +90,7 @@ extension DetailsViewController: DetailTableViewDelegate {
     func setTitle(_ needSetTitle: Bool) {
         
         let view = UIWindow.isLandscape ? navigationController?.navigationBar.subviews[1].subviews[1] : navigationController?.navigationBar.subviews[2].subviews[1]
-            
+        
         title = needSetTitle ? movie.title : "\u{02} \u{1A}"
         view?.fadeTransition(0.35, isFromLeftToRight: true)
     }

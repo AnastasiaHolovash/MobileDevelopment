@@ -12,13 +12,13 @@ import Foundation
 public protocol ValidationCriterion {
     
     /// string for description of criterion
-    var errorDescription : String {get}
+    var errorDescription: String { get }
     
     /// Check if value conform to criteria
     ///
     /// - Parameter value: value to be checked
     /// - Returns: return true if conform
-    func isConform(to value:String) -> Bool
+    func isConform(to value: String) -> Bool
 }
 
 // MARK: - Validator
@@ -43,7 +43,7 @@ class Validator  {
     ///   - value: string than must be validate
     ///   - forceExit: if true -> stop process when first validation fail. else create array of fail criterias
     ///   - result: result of validating
-    public func isValide(_ value:String, forceExit:Bool, result:@escaping  (ValidatorResult) -> ()) {
+    public func isValid(_ value: String, forceExit: Bool, result: @escaping (ValidatorResult) -> ()) {
         
         var notPassedCriterions: [ValidationCriterion] = []
         
@@ -51,7 +51,7 @@ class Validator  {
             if !criteria.isConform(to: value) {
                 if forceExit {
                     result(.notValid(criteria: criteria))
-                    return ()
+                    return
                 }
                 notPassedCriterions.append(criteria)
             }
@@ -73,14 +73,14 @@ class Validator  {
     public enum ValidatorResult {
         
         case valid
-        case notValid(criteria:ValidationCriterion)
-        case notValides(criterias:[ValidationCriterion])
+        case notValid(criteria: ValidationCriterion)
+        case notValides(criterias: [ValidationCriterion])
     }
 }
 
 // MARK: - IsIntNumberCriteria
 
-public struct IsIntNumberCriteria : ValidationCriterion {
+public struct IsIntNumberCriteria: ValidationCriterion {
     
     public var errorDescription: String = "Not an integer entered."
     
@@ -92,7 +92,7 @@ public struct IsIntNumberCriteria : ValidationCriterion {
 
 // MARK: - IsRealYearCriteria
 
-public struct IsRealYearCriteria : ValidationCriterion {
+public struct IsRealYearCriteria: ValidationCriterion {
     
     public var errorDescription: String = "Not a real year entered."
     
