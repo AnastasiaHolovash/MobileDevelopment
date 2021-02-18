@@ -12,12 +12,15 @@ final class MoviesViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
     
     // MARK: - Private variables and properties
+    
     private var moviesData: [Movie] = []
     private var filteredMoviesData: [Movie] = []
     
     private var searchController: UISearchController!
+    private var keyboardHandler: KeyboardEventsHandler!
     
     private let moviesDataManager = MoviesDataManager.shared
     private let tableViewPlaceholder = UIImage(named: "Placeholder")!
@@ -30,7 +33,7 @@ final class MoviesViewController: UIViewController {
         tableViewSetup()
         searchControllerSetup()
         
-        
+        keyboardHandler = KeyboardEventsHandler(forView: view, scroll: tableView)
         let backBarButtton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backBarButtton
         

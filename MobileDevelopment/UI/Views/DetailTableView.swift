@@ -35,21 +35,20 @@ class DetailTableView: UITableView {
             return
             
         }
-        if let catImageView = header.subviews.first as? UIImageView {
+        if let posterImageView = header.subviews.first as? UIImageView {
             
-            imageViewHeight = catImageView.constraints.filter{ $0.identifier == "imageViewHeight" }.first
+            imageViewHeight = posterImageView.constraints.filter{ $0.identifier == "imageViewHeight" }.first
             imageViewBottom = constraints.filter{ $0.identifier == "imageViewBottom" }.first
         }
         
         let offsetY = -contentOffset.y
         
-        // Parallax effect
+        // Header image effect
         imageViewBottom?.constant = offsetY >= 0 ? 0 : offsetY / 2
         imageViewHeight?.constant = max(header.bounds.height, header.bounds.height + offsetY)
         header.clipsToBounds = offsetY <= 0
         
         // Tells to detailTableViewDelegate whether a title is required
-        
         let titleAppearingOffset = header.subviews[1].frame.maxY - safeAreaInsets.top
         
         if (offsetY > -titleAppearingOffset) && isSetTitle {

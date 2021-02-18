@@ -14,6 +14,7 @@
 		5D0CDAFF25CF481100932892 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D0CDAFD25CF481100932892 /* LaunchScreen.storyboard */; };
 		5D0CDB0925D0A5FE00932892 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CDB0825D0A5FE00932892 /* DrawingViewController.swift */; };
 		5D0CDB1125D0AFA700932892 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CDB1025D0AFA700932892 /* ChartView.swift */; };
+		5D716BCB25DD73AF0007A460 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D716BCA25DD73AF0007A460 /* UIApplicationExtension.swift */; };
 		5DA195F425D1CB6300962062 /* DiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA195F325D1CB6300962062 /* DiagramView.swift */; };
 		5DA1961025D30F5400962062 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1960F25D30F5400962062 /* MoviesViewController.swift */; };
 		5DA1961D25D3123600962062 /* MoviesList.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5DA1961325D3123600962062 /* MoviesList.txt */; };
@@ -50,6 +51,7 @@
 		5DA1968D25D9DB2000962062 /* UIWindowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1968C25D9DB1F00962062 /* UIWindowExtension.swift */; };
 		5DA1969025D9E50A00962062 /* AddNewMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1968F25D9E50900962062 /* AddNewMovieViewController.swift */; };
 		5DA1969325DA873400962062 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1969225DA873400962062 /* Validator.swift */; };
+		5DA1969A25DD6EA600962062 /* KeyboardEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1969925DD6EA600962062 /* KeyboardEventsHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,7 @@
 		5D0CDB0025CF481100932892 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D0CDB0825D0A5FE00932892 /* DrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		5D0CDB1025D0AFA700932892 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		5D716BCA25DD73AF0007A460 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		5DA195F325D1CB6300962062 /* DiagramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagramView.swift; sourceTree = "<group>"; };
 		5DA1960F25D30F5400962062 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		5DA1961325D3123600962062 /* MoviesList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MoviesList.txt; sourceTree = "<group>"; };
@@ -98,6 +101,7 @@
 		5DA1968C25D9DB1F00962062 /* UIWindowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtension.swift; sourceTree = "<group>"; };
 		5DA1968F25D9E50900962062 /* AddNewMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewMovieViewController.swift; sourceTree = "<group>"; };
 		5DA1969225DA873400962062 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		5DA1969925DD6EA600962062 /* KeyboardEventsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardEventsHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				5DA1965725D562A600962062 /* MoviesDataManager.swift */,
+				5DA1969925DD6EA600962062 /* KeyboardEventsHandler.swift */,
 				5DA1969225DA873400962062 /* Validator.swift */,
 			);
 			path = Managers;
@@ -265,6 +270,7 @@
 				5DA1968225D6C16F00962062 /* UIViewExtension.swift */,
 				5DA1968625D9C11400962062 /* UITableviewExtension.swift */,
 				5DA1968C25D9DB1F00962062 /* UIWindowExtension.swift */,
+				5D716BCA25DD73AF0007A460 /* UIApplicationExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -391,6 +397,7 @@
 			files = (
 				5DA1966F25D5C94200962062 /* UISearchBarExtension.swift in Sources */,
 				5DA1962925D3138000962062 /* Movie.swift in Sources */,
+				5DA1969A25DD6EA600962062 /* KeyboardEventsHandler.swift in Sources */,
 				5D0CDB1125D0AFA700932892 /* ChartView.swift in Sources */,
 				5DA1967625D5E5BB00962062 /* DetailTableView.swift in Sources */,
 				5DA1966225D579F500962062 /* UIStorybourdExtension.swift in Sources */,
@@ -400,6 +407,7 @@
 				5DA1965825D562A600962062 /* MoviesDataManager.swift in Sources */,
 				5DA1968725D9C11400962062 /* UITableviewExtension.swift in Sources */,
 				5DA1966B25D58F4A00962062 /* DetailsTableViewCell.swift in Sources */,
+				5D716BCB25DD73AF0007A460 /* UIApplicationExtension.swift in Sources */,
 				5D0CDB0925D0A5FE00932892 /* DrawingViewController.swift in Sources */,
 				5D0CDAF325CF480F00932892 /* AppDelegate.swift in Sources */,
 				5DA1968D25D9DB2000962062 /* UIWindowExtension.swift in Sources */,

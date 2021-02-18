@@ -12,7 +12,7 @@ protocol AddNewMovieViewControllerDelegate: class {
     func saveNewMovie(_ movie: Movie)
 }
 
-class AddNewMovieViewController: UIViewController {
+final class AddNewMovieViewController: UIViewController {
     
     // MARK: - IBOutlets
     
@@ -21,6 +21,7 @@ class AddNewMovieViewController: UIViewController {
     @IBOutlet weak var typeTextField: UITextField!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     // MARK: - AddNewMovieViewControllerDelegate
     
@@ -29,11 +30,14 @@ class AddNewMovieViewController: UIViewController {
     // MARK: - Variables and properties
     
     private let yearValidator = Validator(of: .year)
+    private var keyboardHandler: KeyboardEventsHandler!
     
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        keyboardHandler = KeyboardEventsHandler(forView: view, scroll: scrollView)
         
         yearTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
                                 for: .editingChanged)
@@ -42,9 +46,21 @@ class AddNewMovieViewController: UIViewController {
         typeTextField.delegate = self
     }
     
-    // MARK: - objc
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        scrollView.setContentOffset(.zero, animated: true)
+
+        navigationItem.largeTitleDisplayMode = .always
+        coordinator.animate(alongsideTransition: { (_) in
+            self.navigationController?.navigationBar.sizeToFit()
+        }, completion: nil)
+    }
     
-    @objc func textFieldDidChange(_ textField: UITextField) {
+    // MARK: - @objc
+    
+    @objc
+    func textFieldDidChange(_ textField: UITextField) {
         
         yearValidator.isValid(textField.text ?? textField.placeholder ?? "", forceExit: true) { [weak self] result in
             
