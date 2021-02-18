@@ -88,4 +88,3 @@ struct Movie: Codable, Equatable {
         }
     }
 }
-

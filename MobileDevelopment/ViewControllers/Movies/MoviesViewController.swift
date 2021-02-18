@@ -53,6 +53,7 @@ final class MoviesViewController: UIViewController {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
+        searchController.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.compatibleSearchTextField.returnKeyType = .done
         
@@ -141,6 +142,14 @@ extension MoviesViewController: UITableViewDelegate {
     }
 }
 
+extension MoviesViewController: UISearchControllerDelegate {
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+
+        tableView.removePlaceholder()
+    }
+}
+
 // MARK: - UISearchResultsUpdating
 
 extension MoviesViewController: UISearchResultsUpdating {
@@ -169,6 +178,7 @@ extension MoviesViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchController.searchBar.isLoading = false
         tableView.reloadData()
+        tableView.removePlaceholder()
     }
 }
 

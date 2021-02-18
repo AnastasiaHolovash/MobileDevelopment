@@ -13,7 +13,6 @@ extension UITableView {
         
         let image = UIImageView(image: image)
         image.contentMode = .scaleAspectFit
-        
         backgroundView = image
     }
     
