@@ -6,6 +6,7 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -185,7 +186,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1768.8" y="1209.6059113300494"/>
+            <point key="canvasLocation" x="1769" y="1931"/>
         </scene>
         <!--Star Wars-->
         <scene sceneID="yt2-v0-tYd">
@@ -231,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQm-h5-gyY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="870" y="1212"/>
+            <point key="canvasLocation" x="1769" y="1210"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="RZZ-2e-7pd">
@@ -294,7 +295,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t9O-sl-bbw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2629" y="1211"/>
+            <point key="canvasLocation" x="2628" y="1931"/>
         </scene>
         <!--Lab 2-->
         <scene sceneID="jIg-f1-sb2">
@@ -374,7 +375,42 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FaN-hK-nTB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1771" y="475"/>
+            <point key="canvasLocation" x="870" y="474"/>
+        </scene>
+        <!--Lab 5-->
+        <scene sceneID="jZ4-fe-aIZ">
+            <objects>
+                <collectionViewController id="YVq-Ws-Tea" customClass="PhotoCollectionViewController" customModule="MobileDevelopment" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="iXv-b5-zxj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cKm-a5-uhV">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="f8X-O4-xvV">
+                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7a7-6Z-wBc">
+                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionViewCellContentView>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="YVq-Ws-Tea" id="pKo-gz-ocM"/>
+                            <outlet property="delegate" destination="YVq-Ws-Tea" id="bhu-gm-io7"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="Lab 5" image="mosaic" catalog="system" id="ShS-wb-zLU"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="he1-1b-C5I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2628" y="474"/>
         </scene>
         <!--Item-->
         <scene sceneID="SJW-hJ-XZh">
@@ -392,7 +428,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gP0-4v-uia" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="870" y="475"/>
+            <point key="canvasLocation" x="1769" y="474"/>
         </scene>
         <!--Name-->
         <scene sceneID="ToJ-0N-asF">
@@ -423,7 +459,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jxC-Ty-Nkb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1772" y="-254"/>
+            <point key="canvasLocation" x="-12" y="474"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Et3-0A-dU4">
@@ -438,16 +474,18 @@
                         <segue destination="1yD-5d-ZbH" kind="relationship" relationship="viewControllers" id="jKf-a7-iWd"/>
                         <segue destination="mWW-rE-coW" kind="relationship" relationship="viewControllers" id="PWF-58-P4Z"/>
                         <segue destination="c7f-cE-CVj" kind="relationship" relationship="viewControllers" id="oF7-by-teh"/>
+                        <segue destination="YVq-Ws-Tea" kind="relationship" relationship="viewControllers" id="K6X-WN-5oj"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fZ7-el-iZl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="871" y="-254"/>
+            <point key="canvasLocation" x="1295" y="-364"/>
         </scene>
     </scenes>
     <resources>
         <image name="Poster_05.jpg" width="300" height="450"/>
         <image name="chart.pie" catalog="system" width="128" height="121"/>
+        <image name="mosaic" catalog="system" width="128" height="114"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="tablecells" catalog="system" width="128" height="93"/>
