@@ -1,9 +1,8 @@
 //
 //  KeyboardEventsHandler.swift
-//  Influencer
+//  MobileDevelopment
 //
-//  Created by Denys Danyliuk on 13.01.2021.
-//  Copyright © 2021 Requestum. All rights reserved.
+//  Created by Anastasia Holovash on 11.02.2021.
 //
 
 import UIKit
