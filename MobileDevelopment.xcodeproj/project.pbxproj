@@ -56,6 +56,7 @@
 		5DDBCA2425DFEE6C00FC76B0 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBCA2325DFEE6C00FC76B0 /* PhotoCell.swift */; };
 		5DDBCA2B25DFEED500FC76B0 /* MosaicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBCA2A25DFEED500FC76B0 /* MosaicLayout.swift */; };
 		5DDBCA2F25DFEF0200FC76B0 /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBCA2E25DFEF0200FC76B0 /* CGRectExtension.swift */; };
+		5DDBCA3225E044C400FC76B0 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBCA3125E044C400FC76B0 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		5DDBCA2325DFEE6C00FC76B0 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		5DDBCA2A25DFEED500FC76B0 /* MosaicLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicLayout.swift; sourceTree = "<group>"; };
 		5DDBCA2E25DFEF0200FC76B0 /* CGRectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
+		5DDBCA3125E044C400FC76B0 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +269,7 @@
 				5DA1965725D562A600962062 /* MoviesDataManager.swift */,
 				5DA1969925DD6EA600962062 /* KeyboardEventsHandler.swift */,
 				5DA1969225DA873400962062 /* Validator.swift */,
+				5DDBCA3125E044C400FC76B0 /* ImagePicker.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				5DA1968725D9C11400962062 /* UITableviewExtension.swift in Sources */,
 				5DA1966B25D58F4A00962062 /* DetailsTableViewCell.swift in Sources */,
 				5DDBCA2425DFEE6C00FC76B0 /* PhotoCell.swift in Sources */,
+				5DDBCA3225E044C400FC76B0 /* ImagePicker.swift in Sources */,
 				5D716BCB25DD73AF0007A460 /* UIApplicationExtension.swift in Sources */,
 				5D0CDB0925D0A5FE00932892 /* DrawingViewController.swift in Sources */,
 				5DDBCA2B25DFEED500FC76B0 /* MosaicLayout.swift in Sources */,

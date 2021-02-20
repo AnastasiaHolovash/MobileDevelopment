@@ -11,7 +11,7 @@ class MosaicCell: UICollectionViewCell {
     static let identifer = "kMosaicCollectionViewCell"
 
     var imageView = UIImageView()
-    var assetIdentifier: String?
+//    var assetIdentifier: String?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,6 +34,6 @@ class MosaicCell: UICollectionViewCell {
         super.prepareForReuse()
         
         imageView.image = nil
-        assetIdentifier = nil
+//        assetIdentifier = nil
     }
 }

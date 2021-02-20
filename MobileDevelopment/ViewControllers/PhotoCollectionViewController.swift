@@ -10,7 +10,11 @@ import Photos
 
 class PhotoCollectionViewController: UICollectionViewController {
 
-    var assets = [PHAsset]()
+    // MARK: - Private properties
+    
+    private let imagePicker = ImagePicker(type: .image)
+    private var photos: [UIImage] = []
+    private var plusImage = UIImage(systemName: "plus.circle", withConfiguration: UIImage.SymbolConfiguration(weight: UIImage.SymbolWeight.light))!
     
     // MARK: - Life cycle
     
@@ -21,21 +25,12 @@ class PhotoCollectionViewController: UICollectionViewController {
 
         // Request authorization to access the Photo Library.
         PHPhotoLibrary.requestAuthorization { (status: PHAuthorizationStatus) in
-            if status == .authorized {
-                let results = PHAsset.fetchAssets(with: .image, options: nil)
-                results.enumerateObjects({asset, index, stop in
-                    self.assets.append(asset)
-                })
-
-                DispatchQueue.main.async {
-                    // Reload collection view once we've determined our Photos permissions.
-                    self.collectionView.reloadData()
-                }
-            } else {
+            if status != .authorized {
                 self.displayPhotoAccessDeniedAlert()
             }
         }
     }
+    
     
     private func setupMosaicCollectionView() {
         
@@ -53,6 +48,26 @@ class PhotoCollectionViewController: UICollectionViewController {
     }
     
     // MARK: - Private Funcs
+    
+    private func selectImage() {
+        
+        view.isUserInteractionEnabled = false
+        
+        imagePicker.setType(type: .image, from: .all).show(in: self) { [weak self] result in
+            switch result {
+            case let .success(image: image):
+                
+                self?.photos.append(image)
+                self?.collectionView.reloadData()
+//                self?.view.isUserInteractionEnabled = true
+//                Loader.hide()
+                
+            default:
+                self?.view.isUserInteractionEnabled = true
+//                Loader.hide()
+            }
+        }
+    }
     
     private func displayPhotoAccessDeniedAlert() {
         let message = "Access to photos has been previously denied by the user. Please enable photo access for this app in Settings -> Privacy."
@@ -79,7 +94,8 @@ extension PhotoCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 20
+//        return 10
+        return photos.count + 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -88,24 +104,26 @@ extension PhotoCollectionViewController {
             preconditionFailure("Failed to load collection view cell")
         }
 
-        if !assets.isEmpty {
-            let assetIndex = indexPath.item % assets.count
-            let asset = assets[assetIndex]
-            let assetIdentifier = asset.localIdentifier
-
-            cell.assetIdentifier = assetIdentifier
-
-            PHImageManager.default().requestImage(for: asset, targetSize: cell.frame.size, contentMode: .aspectFill, options: nil) { (image, hashable)  in
-                if let loadedImage = image, let cellIdentifier = cell.assetIdentifier {
-
-                    // Verify that the cell still has the same asset identifier,
-                    // so the image in a reused cell is not overwritten.
-                    if cellIdentifier == assetIdentifier {
-                        cell.imageView.image = loadedImage
-                    }
-                }
-            }
+        if indexPath.item < photos.count {
+            cell.imageView.image = photos[indexPath.item]
+        } else {
+            cell.imageView.image = plusImage
+            cell.imageView.tintColor = .placeholderText
         }
+        
         return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension PhotoCollectionViewController {
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if indexPath.item == photos.count {
+            Swift.debugPrint("plusImage")
+            selectImage()
+        }
     }
 }
