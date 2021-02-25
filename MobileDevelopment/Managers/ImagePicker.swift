@@ -66,7 +66,7 @@ final class ImagePicker: NSObject {
         self.completion = completion
         self.allowsEditing = allowsEditing
         
-        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             
@@ -90,10 +90,8 @@ final class ImagePicker: NSObject {
             }
         }
         
-        let fromDeviceAction = UIAlertAction(title: "From the device", style: .default) { [weak self] _ in
+        let fromDeviceAction = UIAlertAction(title: "Choose from the device", style: .default) { [weak self] _ in
             
-//            Loader.show()
-
             let status = PHPhotoLibrary.authorizationStatus()
             
             guard status != .restricted && status != .denied  else {

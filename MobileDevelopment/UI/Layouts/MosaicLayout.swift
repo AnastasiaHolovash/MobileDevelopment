@@ -25,7 +25,7 @@ class MosaicLayout: UICollectionViewLayout {
         guard let collectionView = collectionView else {
             return
         }
-
+        
         // Reset cached information.
         cachedAttributes.removeAll()
         contentBounds = CGRect(origin: .zero, size: collectionView.bounds.size)
