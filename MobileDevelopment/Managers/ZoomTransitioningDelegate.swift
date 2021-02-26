@@ -19,10 +19,11 @@ enum TransitionState {
 }
 
 class ZoomTransitioningDelegate: NSObject {
+    
     var transitionDuration = 0.5
     var operation: UINavigationController.Operation = .none
     private let zoomScale = CGFloat(15)
-    private let backgroundScale = CGFloat(0.7)
+    private let backgroundScale = CGFloat(1.2)
     
     typealias ZoomingViews = (otherView: UIView, imageView: UIView)
     
@@ -118,7 +119,9 @@ extension ZoomTransitioningDelegate : UIViewControllerAnimatedTransitioning {
 }
 
 extension ZoomTransitioningDelegate : UINavigationControllerDelegate {
+    
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
         if fromVC is ZoomingViewController && toVC is ZoomingViewController {
             self.operation = operation
             return self
