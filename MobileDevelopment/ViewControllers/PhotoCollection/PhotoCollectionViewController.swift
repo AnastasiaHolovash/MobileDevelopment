@@ -16,6 +16,7 @@ class PhotoCollectionViewController: UICollectionViewController {
     private var photos: [UIImage] = []
     private var plusImage = UIImage(systemName: "plus.circle", withConfiguration: UIImage.SymbolConfiguration(weight: UIImage.SymbolWeight.light))!
     private var loader = UIActivityIndicatorView(style: .large)
+    private var selectedIndexPath: IndexPath!
     
     // MARK: - Life cycle
     
@@ -43,7 +44,7 @@ class PhotoCollectionViewController: UICollectionViewController {
         collectionView.indicatorStyle = .white
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(MosaicCell.self, forCellWithReuseIdentifier: MosaicCell.identifer)
+        collectionView.register(MosaicCell.self, forCellWithReuseIdentifier: MosaicCell.identifier)
         
         view.addSubview(collectionView)
     }
@@ -106,7 +107,7 @@ extension PhotoCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MosaicCell.identifer, for: indexPath) as? MosaicCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MosaicCell.identifier, for: indexPath) as? MosaicCell else {
             preconditionFailure("Failed to load collection view cell")
         }
         if indexPath.item < photos.count {
@@ -135,8 +136,31 @@ extension PhotoCollectionViewController {
         
         if indexPath.item == photos.count {
             selectImage()
+        
         } else {
-            // TODO: Open images
+            selectedIndexPath = indexPath
+            
+            let photoVC = PhotoViewController.create(image: photos[indexPath.item])
+            navigationController?.pushViewController(photoVC, animated: true)
         }
+    }
+}
+
+// MARK: - ZoomingViewController
+
+extension PhotoCollectionViewController: ZoomingViewController {
+    
+    func zoomingBackgroundView(for transition: ZoomTransitioningDelegate) -> UIView? {
+        
+        return nil
+    }
+    
+    func zoomingImageView(for transition: ZoomTransitioningDelegate) -> UIImageView? {
+        
+        if let indexPath = selectedIndexPath {
+            let cell = collectionView?.cellForItem(at: indexPath) as! MosaicCell
+            return cell.imageView
+        }
+        return nil
     }
 }

@@ -234,6 +234,37 @@
             </objects>
             <point key="canvasLocation" x="1769" y="1210"/>
         </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="zGJ-u7-I4B">
+            <objects>
+                <viewController storyboardIdentifier="PhotoViewController" id="gKu-7N-riV" customClass="PhotoViewController" customModule="MobileDevelopment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ueo-De-PYl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u0f-QL-Nlk">
+                                <rect key="frame" x="0.0" y="223.66666666666663" width="375" height="375"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="u0f-QL-Nlk" secondAttribute="height" multiplier="1:1" id="gAR-EN-epa"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="a6W-Zh-LcA"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="u0f-QL-Nlk" firstAttribute="leading" secondItem="a6W-Zh-LcA" secondAttribute="leading" id="S8z-6n-fP0"/>
+                            <constraint firstItem="u0f-QL-Nlk" firstAttribute="centerY" secondItem="a6W-Zh-LcA" secondAttribute="centerY" id="cPe-Ar-SRI"/>
+                            <constraint firstItem="u0f-QL-Nlk" firstAttribute="trailing" secondItem="a6W-Zh-LcA" secondAttribute="trailing" id="jcr-95-pg4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="u0f-QL-Nlk" id="AjB-Oa-etE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MOo-2b-ZV1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3600.8000000000002" y="1209.6059113300494"/>
+        </scene>
         <!--Details View Controller-->
         <scene sceneID="RZZ-2e-7pd">
             <objects>
@@ -295,7 +326,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t9O-sl-bbw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2628" y="1931"/>
+            <point key="canvasLocation" x="1769" y="2649"/>
         </scene>
         <!--Lab 2-->
         <scene sceneID="jIg-f1-sb2">
@@ -407,10 +438,30 @@
                         </connections>
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Lab 5" image="mosaic" catalog="system" id="ShS-wb-zLU"/>
+                    <navigationItem key="navigationItem" id="wwd-QN-hFJ"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="he1-1b-C5I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2628" y="474"/>
+            <point key="canvasLocation" x="2657" y="1210"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="dRb-Ex-nx4">
+            <objects>
+                <navigationController id="cLB-F3-qHb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="tcr-n2-Spb"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UhL-VE-Fc8">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <outlet property="delegate" destination="R4Z-pJ-z2N" id="swy-EU-2ZT"/>
+                        <segue destination="YVq-Ws-Tea" kind="relationship" relationship="rootViewController" id="Yoi-TF-RCt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xE1-h4-iSr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <customObject id="R4Z-pJ-z2N" customClass="ZoomTransitioningDelegate" customModule="MobileDevelopment" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="2658" y="474"/>
         </scene>
         <!--Item-->
         <scene sceneID="SJW-hJ-XZh">
@@ -474,7 +525,7 @@
                         <segue destination="1yD-5d-ZbH" kind="relationship" relationship="viewControllers" id="jKf-a7-iWd"/>
                         <segue destination="mWW-rE-coW" kind="relationship" relationship="viewControllers" id="PWF-58-P4Z"/>
                         <segue destination="c7f-cE-CVj" kind="relationship" relationship="viewControllers" id="oF7-by-teh"/>
-                        <segue destination="YVq-Ws-Tea" kind="relationship" relationship="viewControllers" id="K6X-WN-5oj"/>
+                        <segue destination="cLB-F3-qHb" kind="relationship" relationship="viewControllers" id="Rsy-h4-j7m"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fZ7-el-iZl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -500,6 +551,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

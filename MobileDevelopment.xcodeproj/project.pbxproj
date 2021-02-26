@@ -52,6 +52,8 @@
 		5DA1969025D9E50A00962062 /* AddNewMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1968F25D9E50900962062 /* AddNewMovieViewController.swift */; };
 		5DA1969325DA873400962062 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1969225DA873400962062 /* Validator.swift */; };
 		5DA1969A25DD6EA600962062 /* KeyboardEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1969925DD6EA600962062 /* KeyboardEventsHandler.swift */; };
+		5DB82FFD25E924CF00D1DA5D /* ZoomTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB82FFC25E924CF00D1DA5D /* ZoomTransitioningDelegate.swift */; };
+		5DB8300225E929F600D1DA5D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8300125E929F600D1DA5D /* PhotoViewController.swift */; };
 		5DDBCA2025DFEE0500FC76B0 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBCA1F25DFEE0500FC76B0 /* PhotoCollectionViewController.swift */; };
 		5DDBCA2425DFEE6C00FC76B0 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBCA2325DFEE6C00FC76B0 /* PhotoCell.swift */; };
 		5DDBCA2B25DFEED500FC76B0 /* MosaicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBCA2A25DFEED500FC76B0 /* MosaicLayout.swift */; };
@@ -107,6 +109,8 @@
 		5DA1968F25D9E50900962062 /* AddNewMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewMovieViewController.swift; sourceTree = "<group>"; };
 		5DA1969225DA873400962062 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		5DA1969925DD6EA600962062 /* KeyboardEventsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardEventsHandler.swift; sourceTree = "<group>"; };
+		5DB82FFC25E924CF00D1DA5D /* ZoomTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomTransitioningDelegate.swift; sourceTree = "<group>"; };
+		5DB8300125E929F600D1DA5D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		5DDBCA1F25DFEE0500FC76B0 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		5DDBCA2325DFEE6C00FC76B0 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		5DDBCA2A25DFEED500FC76B0 /* MosaicLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicLayout.swift; sourceTree = "<group>"; };
@@ -162,7 +166,7 @@
 				5D0CDAF625CF480F00932892 /* ViewController.swift */,
 				5D0CDB0825D0A5FE00932892 /* DrawingViewController.swift */,
 				5DA1969625DADB6B00962062 /* Movies */,
-				5DDBCA1F25DFEE0500FC76B0 /* PhotoCollectionViewController.swift */,
+				5DB8300025E929C500D1DA5D /* PhotoCollection */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -270,6 +274,7 @@
 				5DA1969925DD6EA600962062 /* KeyboardEventsHandler.swift */,
 				5DA1969225DA873400962062 /* Validator.swift */,
 				5DDBCA3125E044C400FC76B0 /* ImagePicker.swift */,
+				5DB82FFC25E924CF00D1DA5D /* ZoomTransitioningDelegate.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -317,6 +322,15 @@
 				5DA1968F25D9E50900962062 /* AddNewMovieViewController.swift */,
 			);
 			path = Movies;
+			sourceTree = "<group>";
+		};
+		5DB8300025E929C500D1DA5D /* PhotoCollection */ = {
+			isa = PBXGroup;
+			children = (
+				5DDBCA1F25DFEE0500FC76B0 /* PhotoCollectionViewController.swift */,
+				5DB8300125E929F600D1DA5D /* PhotoViewController.swift */,
+			);
+			path = PhotoCollection;
 			sourceTree = "<group>";
 		};
 		5DDBCA2725DFEE6F00FC76B0 /* PhotoCell */ = {
@@ -431,6 +445,7 @@
 				5DA1969A25DD6EA600962062 /* KeyboardEventsHandler.swift in Sources */,
 				5D0CDB1125D0AFA700932892 /* ChartView.swift in Sources */,
 				5DA1967625D5E5BB00962062 /* DetailTableView.swift in Sources */,
+				5DB82FFD25E924CF00D1DA5D /* ZoomTransitioningDelegate.swift in Sources */,
 				5DA1966225D579F500962062 /* UIStorybourdExtension.swift in Sources */,
 				5D0CDAF725CF480F00932892 /* ViewController.swift in Sources */,
 				5DA1968325D6C16F00962062 /* UIViewExtension.swift in Sources */,
@@ -450,6 +465,7 @@
 				5DDBCA2F25DFEF0200FC76B0 /* CGRectExtension.swift in Sources */,
 				5DA1961025D30F5400962062 /* MoviesViewController.swift in Sources */,
 				5DDBCA2025DFEE0500FC76B0 /* PhotoCollectionViewController.swift in Sources */,
+				5DB8300225E929F600D1DA5D /* PhotoViewController.swift in Sources */,
 				5DA1969025D9E50A00962062 /* AddNewMovieViewController.swift in Sources */,
 				5DA1965E25D56F6F00962062 /* DetailsViewController.swift in Sources */,
 			);
