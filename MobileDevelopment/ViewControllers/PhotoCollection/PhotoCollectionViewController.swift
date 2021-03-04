@@ -14,7 +14,7 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     private let imagePicker = ImagePicker(type: .image)
     private var photos: [UIImage] = []
-    private var plusImage = UIImage(systemName: "plus.circle", withConfiguration: UIImage.SymbolConfiguration(weight: UIImage.SymbolWeight.light))!
+    private var plusImage = UIImage(systemName: "plus.circle", withConfiguration: UIImage.SymbolConfiguration(weight: UIImage.SymbolWeight.thin))!
     private var loader = UIActivityIndicatorView(style: .large)
     private var selectedIndexPath: IndexPath!
     
@@ -26,7 +26,7 @@ class PhotoCollectionViewController: UICollectionViewController {
         setupMosaicCollectionView()
         loaderSetup()
         
-        // Request authorization to access the Photo Library.
+        // Request authorisation to access the Photo Library.
         PHPhotoLibrary.requestAuthorization { (status: PHAuthorizationStatus) in
             if status != .authorized {
                 self.displayPhotoAccessDeniedAlert()
@@ -74,7 +74,6 @@ class PhotoCollectionViewController: UICollectionViewController {
             default:
                 self?.view.isUserInteractionEnabled = true
                 self?.loader.stopAnimating()
-                print("Failed to load image")
             }
         }
     }
@@ -101,8 +100,8 @@ class PhotoCollectionViewController: UICollectionViewController {
 extension PhotoCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return photos.count + 1
+        let additionalN = 5 - (photos.count + 1) % 5
+        return photos.count + 1 + additionalN
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -114,18 +113,16 @@ extension PhotoCollectionViewController {
             let image = photos[indexPath.item]
             image.accessibilityFrame = cell.frame
             cell.imageView.image = image
-        } else {
+            
+        } else if indexPath.item == photos.count {
             cell.imageView.image = plusImage
             cell.imageView.tintColor = .placeholderText
+            
+        } else {
+            cell.imageView.image = UIImage()
         }
         return cell
     }
-    
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //
-    //      let itemSize = (collectionView.frame.width) / 3
-    //      return CGSize(width: itemSize, height: itemSize)
-    //    }
 }
 
 // MARK: - UICollectionViewDelegate
@@ -137,9 +134,8 @@ extension PhotoCollectionViewController {
         if indexPath.item == photos.count {
             selectImage()
         
-        } else {
+        } else if indexPath.item < photos.count {
             selectedIndexPath = indexPath
-            
             let photoVC = PhotoViewController.create(image: photos[indexPath.item])
             navigationController?.pushViewController(photoVC, animated: true)
         }
