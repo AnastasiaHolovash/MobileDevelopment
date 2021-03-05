@@ -133,7 +133,7 @@ extension PhotoCollectionViewController {
         
         if indexPath.item == photos.count {
             selectImage()
-        
+            
         } else if indexPath.item < photos.count {
             selectedIndexPath = indexPath
             let photoVC = PhotoViewController.create(image: photos[indexPath.item])
