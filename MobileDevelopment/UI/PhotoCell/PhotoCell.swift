@@ -8,10 +8,10 @@
 import UIKit
 
 class MosaicCell: UICollectionViewCell {
+    
     static let identifier = "kMosaicCollectionViewCell"
 
     var imageView = UIImageView()
-//    var assetIdentifier: String?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,6 +23,7 @@ class MosaicCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        imageView.tintColor = .placeholderText
         addSubview(imageView)
     }
     
@@ -34,6 +35,5 @@ class MosaicCell: UICollectionViewCell {
         super.prepareForReuse()
         
         imageView.image = nil
-//        assetIdentifier = nil
     }
 }

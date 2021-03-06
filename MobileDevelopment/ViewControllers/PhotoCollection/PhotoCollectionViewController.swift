@@ -18,6 +18,11 @@ class PhotoCollectionViewController: UICollectionViewController {
     private var loader = UIActivityIndicatorView(style: .large)
     private var selectedIndexPath: IndexPath!
     
+    enum Section {
+        case main
+    }
+    var dataSource: UICollectionViewDiffableDataSource<Section, UIImage>!
+    
     // MARK: - Life cycle
     
     override func viewDidLoad() {
@@ -25,6 +30,7 @@ class PhotoCollectionViewController: UICollectionViewController {
         
         setupMosaicCollectionView()
         loaderSetup()
+        configureDataSource()
         
         // Request authorisation to access the Photo Library.
         PHPhotoLibrary.requestAuthorization { (status: PHAuthorizationStatus) in
@@ -43,7 +49,7 @@ class PhotoCollectionViewController: UICollectionViewController {
         collectionView.alwaysBounceVertical = true
         collectionView.indicatorStyle = .white
         collectionView.delegate = self
-        collectionView.dataSource = self
+//        collectionView.dataSource = self
         collectionView.register(MosaicCell.self, forCellWithReuseIdentifier: MosaicCell.identifier)
         
         view.addSubview(collectionView)
@@ -68,7 +74,16 @@ class PhotoCollectionViewController: UICollectionViewController {
             switch result {
             case let .success(image: image):
                 self?.photos.append(image)
-                self?.collectionView.reloadData()
+//                self?.collectionView.reloadData()
+                
+                var newSnapshot = NSDiffableDataSourceSnapshot<Section, UIImage>()
+                newSnapshot.appendSections([.main])
+                var itemsArray = self?.photos
+                if let plusImage = self?.plusImage {
+                    itemsArray?.append(plusImage)
+                    newSnapshot.appendItems(itemsArray!)
+                    self?.dataSource.apply(newSnapshot, animatingDifferences: true)
+                }
                 self?.view.isUserInteractionEnabled = true
                 self?.loader.stopAnimating()
             default:
@@ -99,29 +114,51 @@ class PhotoCollectionViewController: UICollectionViewController {
 
 extension PhotoCollectionViewController {
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let additionalN = 5 - (photos.count + 1) % 5
-        return photos.count + 1 + additionalN
-    }
+//    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        let additionalN = 5 - (photos.count + 1) % 5
+//        return photos.count + 1 + additionalN
+//    }
+//
+//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MosaicCell.identifier, for: indexPath) as? MosaicCell else {
+//            preconditionFailure("Failed to load collection view cell")
+//        }
+//        if indexPath.item < photos.count {
+//            let image = photos[indexPath.item]
+//            image.accessibilityFrame = cell.frame
+//            cell.imageView.image = image
+//
+//        } else if indexPath.item == photos.count {
+//            cell.imageView.image = plusImage
+//            cell.imageView.tintColor = .placeholderText
+//
+//        } else {
+//            cell.imageView.image = UIImage()
+//        }
+//        return cell
+//    }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func configureDataSource() {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MosaicCell.identifier, for: indexPath) as? MosaicCell else {
-            preconditionFailure("Failed to load collection view cell")
-        }
-        if indexPath.item < photos.count {
-            let image = photos[indexPath.item]
-            image.accessibilityFrame = cell.frame
-            cell.imageView.image = image
+        let cellRegistration = UICollectionView.CellRegistration<MosaicCell, UIImage> { (cell, indexPath, item) in
             
-        } else if indexPath.item == photos.count {
-            cell.imageView.image = plusImage
-            cell.imageView.tintColor = .placeholderText
-            
-        } else {
-            cell.imageView.image = UIImage()
+            // Populate the cell with our item description.
+            cell.imageView.image = item
         }
-        return cell
+        
+        dataSource = UICollectionViewDiffableDataSource<Section, UIImage>(collectionView: collectionView) { collectionView, indexPath, identifier in
+
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: identifier)
+        }
+
+        // initial data
+        var snapshot = NSDiffableDataSourceSnapshot<Section, UIImage>()
+        snapshot.appendSections([.main])
+        var itemsArray = photos
+        itemsArray.append(plusImage)
+        snapshot.appendItems(itemsArray)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
 
