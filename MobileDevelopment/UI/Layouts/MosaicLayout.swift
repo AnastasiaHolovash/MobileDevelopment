@@ -18,7 +18,6 @@ class MosaicLayout: UICollectionViewLayout {
     var contentBounds = CGRect.zero
     var cachedAttributes = [UICollectionViewLayoutAttributes]()
     
-    /// - Tag: PrepareMosaicLayout
     override func prepare() {
         super.prepare()
         

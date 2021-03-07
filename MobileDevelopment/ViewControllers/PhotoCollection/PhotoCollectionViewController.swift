@@ -74,15 +74,8 @@ class PhotoCollectionViewController: UICollectionViewController {
             switch result {
             case let .success(image: image):
                 self?.photos.append(image)
-//                self?.collectionView.reloadData()
-                
-                var newSnapshot = NSDiffableDataSourceSnapshot<Section, UIImage>()
-                newSnapshot.appendSections([.main])
-                var itemsArray = self?.photos
-                if let plusImage = self?.plusImage {
-                    itemsArray?.append(plusImage)
-                    newSnapshot.appendItems(itemsArray!)
-                    self?.dataSource.apply(newSnapshot, animatingDifferences: true)
+                if let snapshot = self?.newSnapshot() {
+                    self?.dataSource.apply(snapshot, animatingDifferences: true)
                 }
                 self?.view.isUserInteractionEnabled = true
                 self?.loader.stopAnimating()
@@ -107,6 +100,20 @@ class PhotoCollectionViewController: UICollectionViewController {
         alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
         
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func newSnapshot() -> NSDiffableDataSourceSnapshot<Section, UIImage> {
+        
+        var newSnapshot = NSDiffableDataSourceSnapshot<Section, UIImage>()
+        newSnapshot.appendSections([.main])
+        var itemsArray = photos
+        itemsArray.append(plusImage)
+        
+//        let additionalN = 5 - (photos.count + 1) % 5
+//        itemsArray.append(contentsOf: Array(repeating: UIImage(), count: additionalN))
+        
+        newSnapshot.appendItems(itemsArray)
+        return newSnapshot
     }
 }
 
@@ -152,12 +159,7 @@ extension PhotoCollectionViewController {
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: identifier)
         }
 
-        // initial data
-        var snapshot = NSDiffableDataSourceSnapshot<Section, UIImage>()
-        snapshot.appendSections([.main])
-        var itemsArray = photos
-        itemsArray.append(plusImage)
-        snapshot.appendItems(itemsArray)
+        let snapshot = newSnapshot()
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
