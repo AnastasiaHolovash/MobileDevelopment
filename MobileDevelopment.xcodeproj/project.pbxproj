@@ -16,7 +16,6 @@
 		5D0CDB1125D0AFA700932892 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CDB1025D0AFA700932892 /* ChartView.swift */; };
 		5D5A5F6F25F4FEE200053029 /* MosaicCompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5A5F6E25F4FEE200053029 /* MosaicCompositionalLayout.swift */; };
 		5D5A5F7225F5039900053029 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5A5F7125F5039900053029 /* UIImageExtension.swift */; };
-		5D6DA5DC25F27F390012A62D /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6DA5DB25F27F390012A62D /* PhotosViewController.swift */; };
 		5D716BCB25DD73AF0007A460 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D716BCA25DD73AF0007A460 /* UIApplicationExtension.swift */; };
 		5DA195F425D1CB6300962062 /* DiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA195F325D1CB6300962062 /* DiagramView.swift */; };
 		5DA1961025D30F5400962062 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1960F25D30F5400962062 /* MoviesViewController.swift */; };
@@ -76,7 +75,6 @@
 		5D0CDB1025D0AFA700932892 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		5D5A5F6E25F4FEE200053029 /* MosaicCompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicCompositionalLayout.swift; sourceTree = "<group>"; };
 		5D5A5F7125F5039900053029 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
-		5D6DA5DB25F27F390012A62D /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		5D716BCA25DD73AF0007A460 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		5DA195F325D1CB6300962062 /* DiagramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagramView.swift; sourceTree = "<group>"; };
 		5DA1960F25D30F5400962062 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
@@ -336,7 +334,6 @@
 			children = (
 				5DDBCA1F25DFEE0500FC76B0 /* PhotoCollectionViewController.swift */,
 				5DB8300125E929F600D1DA5D /* PhotoViewController.swift */,
-				5D6DA5DB25F27F390012A62D /* PhotosViewController.swift */,
 			);
 			path = PhotoCollection;
 			sourceTree = "<group>";
@@ -463,7 +460,6 @@
 				5DA1968725D9C11400962062 /* UITableviewExtension.swift in Sources */,
 				5DA1966B25D58F4A00962062 /* DetailsTableViewCell.swift in Sources */,
 				5DDBCA2425DFEE6C00FC76B0 /* PhotoCell.swift in Sources */,
-				5D6DA5DC25F27F390012A62D /* PhotosViewController.swift in Sources */,
 				5DDBCA3225E044C400FC76B0 /* ImagePicker.swift in Sources */,
 				5D716BCB25DD73AF0007A460 /* UIApplicationExtension.swift in Sources */,
 				5D0CDB0925D0A5FE00932892 /* DrawingViewController.swift in Sources */,

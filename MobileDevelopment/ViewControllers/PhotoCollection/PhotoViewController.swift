@@ -42,11 +42,6 @@ class PhotoViewController: UIViewController {
 
 extension PhotoViewController: ZoomingViewController {
     
-    func zoomingBackgroundView(for transition: ZoomTransitioningDelegate) -> UIView? {
-        
-        return nil
-    }
-    
     func zoomingImageView(for transition: ZoomTransitioningDelegate) -> UIImageView? {
         
         return imageView

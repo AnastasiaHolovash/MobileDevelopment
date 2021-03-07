@@ -30,7 +30,7 @@ class PhotoCollectionViewController: UICollectionViewController {
         case flow
         case compositional
     }
-
+    
     // MARK: - Life cycle
     
     override func viewDidLoad() {
@@ -72,7 +72,7 @@ class PhotoCollectionViewController: UICollectionViewController {
         loader.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         loader.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
-
+    
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?){
         
         if motion == .motionShake {
@@ -138,7 +138,7 @@ extension PhotoCollectionViewController {
             cell.imageView.image = item
         }
         dataSource = UICollectionViewDiffableDataSource<Section, UIImage>(collectionView: collectionView) { collectionView, indexPath, identifier in
-
+            
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: identifier)
         }
         let snapshot = newSnapshot()
@@ -166,11 +166,6 @@ extension PhotoCollectionViewController {
 // MARK: - ZoomingViewController
 
 extension PhotoCollectionViewController: ZoomingViewController {
-    
-    func zoomingBackgroundView(for transition: ZoomTransitioningDelegate) -> UIView? {
-        
-        return nil
-    }
     
     func zoomingImageView(for transition: ZoomTransitioningDelegate) -> UIImageView? {
         
