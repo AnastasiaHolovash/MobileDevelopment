@@ -9,11 +9,11 @@ import UIKit
 
 enum MosaicSegmentStyle {
     
-    case bigItemCenter
-    case bigItemLeft
+    case bigItemCenter(Int)
+    case bigItemLeft(Int)
 }
 
-class MosaicLayout: UICollectionViewLayout {
+final class MosaicFlowLayout: UICollectionViewLayout {
 
     var contentBounds = CGRect.zero
     var cachedAttributes = [UICollectionViewLayoutAttributes]()
@@ -36,7 +36,7 @@ class MosaicLayout: UICollectionViewLayout {
         let count = collectionView.numberOfItems(inSection: 0)
         
         var currentIndex = 0
-        var segment: MosaicSegmentStyle = .bigItemCenter
+        var segment: MosaicSegmentStyle = .bigItemCenter(0)
         var lastFrame: CGRect = .zero
         
         let cvWidth = collectionView.bounds.size.width
@@ -44,34 +44,37 @@ class MosaicLayout: UICollectionViewLayout {
         while currentIndex < count {
             let segmentFrame = CGRect(x: 0, y: lastFrame.maxY + 1.0, width: cvWidth, height: cvWidth / 2)
             
-            var segmentRects = [CGRect]()
+            var segmentRect = CGRect()
             
             switch segment {
-            case .bigItemCenter:
-                segmentRects = bigItemCenterSegment(for: segmentFrame)
+            case let .bigItemCenter(n):
+                segmentRect = bigItemCenterSegment(for: segmentFrame, itemN: n)
                 
-            case .bigItemLeft:
-                segmentRects = bigItemLeftSegment(for: segmentFrame)
+            case let .bigItemLeft(n):
+                segmentRect = bigItemLeftSegment(for: segmentFrame, itemN: n)
             }
             
             // Create and cache layout attributes for calculated frames.
-            for rect in segmentRects {
-                let attributes = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: currentIndex, section: 0))
-                attributes.frame = rect
-                
-                cachedAttributes.append(attributes)
-                contentBounds = contentBounds.union(lastFrame)
-                
-                currentIndex += 1
-                lastFrame = rect
-            }
+            let attributes = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: currentIndex, section: 0))
+            attributes.frame = segmentRect
+            
+            cachedAttributes.append(attributes)
+            contentBounds = contentBounds.union(lastFrame)
+            
+            currentIndex += 1
 
             // Determine the next segment style.
             switch segment {
-            case .bigItemCenter:
-                segment = .bigItemLeft
-            case .bigItemLeft:
-                segment = .bigItemCenter
+            case let .bigItemCenter(n):
+                segment = n < 4 ? .bigItemCenter(n + 1) : .bigItemLeft(0)
+                if n == 4 {
+                    lastFrame = segmentRect
+                }
+            case let .bigItemLeft(n):
+                segment = n < 4 ? .bigItemLeft(n + 1) : .bigItemCenter(0)
+                if n == 4 {
+                    lastFrame = segmentRect
+                }
             }
         }
     }
@@ -133,22 +136,41 @@ class MosaicLayout: UICollectionViewLayout {
         }
     }
     
-    private func bigItemCenterSegment(for frame: CGRect) -> [CGRect] {
+    private func bigItemCenterSegment(for frame: CGRect, itemN: Int) -> CGRect {
         
         let oneFourthHorizontalSlice = frame.dividedIntegral(fraction: 1.0 / 4.0, from: .minXEdge)
         let twoThirdHorizontalSlice = oneFourthHorizontalSlice.second.dividedIntegral(fraction: 2.0 / 3.0, from: .minXEdge)
+        
+        if itemN == 2 {
+            return twoThirdHorizontalSlice.first
+        }
+        
         let oneSecondVerticalSlice1 = oneFourthHorizontalSlice.first.dividedIntegral(fraction: 0.5, from: .minYEdge)
+        
+        if itemN <= 1 {
+            return itemN == 0 ? oneSecondVerticalSlice1.first : oneSecondVerticalSlice1.second
+        }
+        
         let oneSecondVerticalSlice2 = twoThirdHorizontalSlice.second.dividedIntegral(fraction: 0.5, from: .minYEdge)
-        return [oneSecondVerticalSlice1.first, oneSecondVerticalSlice1.second, twoThirdHorizontalSlice.first, oneSecondVerticalSlice2.first, oneSecondVerticalSlice2.second]
+        
+        return itemN == 3 ? oneSecondVerticalSlice2.first : oneSecondVerticalSlice2.second
     }
     
-    private func bigItemLeftSegment(for frame: CGRect) -> [CGRect] {
+    private func bigItemLeftSegment(for frame: CGRect, itemN: Int) -> CGRect {
         
         let halfHorizontalSlice = frame.dividedIntegral(fraction: 0.5, from: .minXEdge)
+        
+        if itemN == 0 {
+            return halfHorizontalSlice.first
+        }
         let oneThirdHorizontalSlice = halfHorizontalSlice.second.dividedIntegral(fraction: 0.5, from: .minXEdge)
         let oneSecondVerticalSlice1 = oneThirdHorizontalSlice.first.dividedIntegral(fraction: 0.5, from: .minYEdge)
+
+        if itemN <= 2 {
+            return itemN == 1 ? oneSecondVerticalSlice1.first : oneSecondVerticalSlice1.second
+        }
+
         let oneSecondVerticalSlice2 = oneThirdHorizontalSlice.second.dividedIntegral(fraction: 0.5, from: .minYEdge)
-        return [halfHorizontalSlice.first, oneSecondVerticalSlice1.first, oneSecondVerticalSlice1.second, oneSecondVerticalSlice2.first, oneSecondVerticalSlice2.second]
+        return itemN == 3 ? oneSecondVerticalSlice2.first : oneSecondVerticalSlice2.second
     }
 }
-

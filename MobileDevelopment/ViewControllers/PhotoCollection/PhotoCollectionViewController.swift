@@ -14,20 +14,29 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     private let imagePicker = ImagePicker(type: .image)
     private var photos: [UIImage] = []
-    private var plusImage = UIImage(systemName: "plus.circle", withConfiguration: UIImage.SymbolConfiguration(weight: UIImage.SymbolWeight.thin))!
     private var loader = UIActivityIndicatorView(style: .large)
     private var selectedIndexPath: IndexPath!
+    private var layoutType: LayoutType = .compositional
+    private var dataSource: UICollectionViewDiffableDataSource<Section, UIImage>!
+    private var mosaicLayout: UICollectionViewLayout!
+    
+    // MARK: - Nested Types
     
     enum Section {
         case main
     }
-    var dataSource: UICollectionViewDiffableDataSource<Section, UIImage>!
     
+    enum LayoutType: String {
+        case flow
+        case compositional
+    }
+
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupMosaicLayout()
         setupMosaicCollectionView()
         loaderSetup()
         configureDataSource()
@@ -35,22 +44,23 @@ class PhotoCollectionViewController: UICollectionViewController {
         // Request authorisation to access the Photo Library.
         PHPhotoLibrary.requestAuthorization { (status: PHAuthorizationStatus) in
             if status != .authorized {
-                self.displayPhotoAccessDeniedAlert()
+                self.imagePicker.displayPhotoAccessDeniedAlert(in: self)
             }
         }
     }
     
+    private func setupMosaicLayout() {
+        let mosaicLayout = layoutType == .compositional ? MosaicCompositionalLayout.createLayout() : MosaicFlowLayout()
+        collectionView.setCollectionViewLayout(mosaicLayout, animated: true)
+    }
+    
     private func setupMosaicCollectionView() {
         
-        let mosaicLayout = MosaicLayout()
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: mosaicLayout)
         collectionView.backgroundColor = .systemGroupedBackground
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.alwaysBounceVertical = true
         collectionView.indicatorStyle = .white
         collectionView.delegate = self
-//        collectionView.dataSource = self
-        collectionView.register(MosaicCell.self, forCellWithReuseIdentifier: MosaicCell.identifier)
         
         view.addSubview(collectionView)
     }
@@ -61,6 +71,24 @@ class PhotoCollectionViewController: UICollectionViewController {
         view.addSubview(loader)
         loader.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         loader.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?){
+        
+        if motion == .motionShake {
+            
+            layoutType = layoutType == .compositional ? .flow : .compositional
+            setupMosaicLayout()
+            
+            let alertController = UIAlertController(title: "Layout changed to \(layoutType.rawValue)", message: "", preferredStyle: .alert)
+            self.present(alertController, animated: true) {
+                UIView.animate(withDuration: 1.5) {
+                    alertController.view.alpha = 0
+                } completion: { _ in
+                    alertController.dismiss(animated: true)
+                }
+            }
+        }
     }
     
     // MARK: - Private Functions
@@ -86,31 +114,12 @@ class PhotoCollectionViewController: UICollectionViewController {
         }
     }
     
-    private func displayPhotoAccessDeniedAlert() {
-        let message = "Access to photos has been previously denied by the user. Please enable photo access for this app in Settings -> Privacy."
-        let alertController = UIAlertController(title: "Photo Access", message: message, preferredStyle: .alert)
-        let openSettingsAction = UIAlertAction(title: "Settings", style: .default) { (_) in
-            if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-                
-                // Take the user to the Settings app to change permissions.
-                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
-            }
-        }
-        alertController.addAction(openSettingsAction)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
-        
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
     private func newSnapshot() -> NSDiffableDataSourceSnapshot<Section, UIImage> {
         
         var newSnapshot = NSDiffableDataSourceSnapshot<Section, UIImage>()
         newSnapshot.appendSections([.main])
         var itemsArray = photos
-        itemsArray.append(plusImage)
-        
-//        let additionalN = 5 - (photos.count + 1) % 5
-//        itemsArray.append(contentsOf: Array(repeating: UIImage(), count: additionalN))
+        itemsArray.append(.plusCircle)
         
         newSnapshot.appendItems(itemsArray)
         return newSnapshot
@@ -121,31 +130,6 @@ class PhotoCollectionViewController: UICollectionViewController {
 
 extension PhotoCollectionViewController {
     
-//    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        let additionalN = 5 - (photos.count + 1) % 5
-//        return photos.count + 1 + additionalN
-//    }
-//
-//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MosaicCell.identifier, for: indexPath) as? MosaicCell else {
-//            preconditionFailure("Failed to load collection view cell")
-//        }
-//        if indexPath.item < photos.count {
-//            let image = photos[indexPath.item]
-//            image.accessibilityFrame = cell.frame
-//            cell.imageView.image = image
-//
-//        } else if indexPath.item == photos.count {
-//            cell.imageView.image = plusImage
-//            cell.imageView.tintColor = .placeholderText
-//
-//        } else {
-//            cell.imageView.image = UIImage()
-//        }
-//        return cell
-//    }
-    
     func configureDataSource() {
         
         let cellRegistration = UICollectionView.CellRegistration<MosaicCell, UIImage> { (cell, indexPath, item) in
@@ -153,12 +137,10 @@ extension PhotoCollectionViewController {
             // Populate the cell with our item description.
             cell.imageView.image = item
         }
-        
         dataSource = UICollectionViewDiffableDataSource<Section, UIImage>(collectionView: collectionView) { collectionView, indexPath, identifier in
 
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: identifier)
         }
-
         let snapshot = newSnapshot()
         dataSource.apply(snapshot, animatingDifferences: false)
     }

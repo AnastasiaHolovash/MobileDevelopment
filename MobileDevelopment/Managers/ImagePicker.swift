@@ -130,6 +130,22 @@ final class ImagePicker: NSObject {
         
         controller.present(imagePicker, animated: true, completion: nil)
     }
+    
+    func displayPhotoAccessDeniedAlert(in controller: UIViewController) {
+        let message = "Access to photos has been previously denied by the user. Please enable photo access for this app in Settings -> Privacy."
+        let alertController = UIAlertController(title: "Photo Access", message: message, preferredStyle: .alert)
+        let openSettingsAction = UIAlertAction(title: "Settings", style: .default) { (_) in
+            if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                
+                // Take the user to the Settings app to change permissions.
+                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+            }
+        }
+        alertController.addAction(openSettingsAction)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
+        
+        controller.present(alertController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate

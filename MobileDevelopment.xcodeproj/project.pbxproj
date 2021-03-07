@@ -14,6 +14,8 @@
 		5D0CDAFF25CF481100932892 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D0CDAFD25CF481100932892 /* LaunchScreen.storyboard */; };
 		5D0CDB0925D0A5FE00932892 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CDB0825D0A5FE00932892 /* DrawingViewController.swift */; };
 		5D0CDB1125D0AFA700932892 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CDB1025D0AFA700932892 /* ChartView.swift */; };
+		5D5A5F6F25F4FEE200053029 /* MosaicCompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5A5F6E25F4FEE200053029 /* MosaicCompositionalLayout.swift */; };
+		5D5A5F7225F5039900053029 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5A5F7125F5039900053029 /* UIImageExtension.swift */; };
 		5D6DA5DC25F27F390012A62D /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6DA5DB25F27F390012A62D /* PhotosViewController.swift */; };
 		5D716BCB25DD73AF0007A460 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D716BCA25DD73AF0007A460 /* UIApplicationExtension.swift */; };
 		5DA195F425D1CB6300962062 /* DiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA195F325D1CB6300962062 /* DiagramView.swift */; };
@@ -57,7 +59,7 @@
 		5DB8300225E929F600D1DA5D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8300125E929F600D1DA5D /* PhotoViewController.swift */; };
 		5DDBCA2025DFEE0500FC76B0 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBCA1F25DFEE0500FC76B0 /* PhotoCollectionViewController.swift */; };
 		5DDBCA2425DFEE6C00FC76B0 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBCA2325DFEE6C00FC76B0 /* PhotoCell.swift */; };
-		5DDBCA2B25DFEED500FC76B0 /* MosaicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBCA2A25DFEED500FC76B0 /* MosaicLayout.swift */; };
+		5DDBCA2B25DFEED500FC76B0 /* MosaicFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBCA2A25DFEED500FC76B0 /* MosaicFlowLayout.swift */; };
 		5DDBCA2F25DFEF0200FC76B0 /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBCA2E25DFEF0200FC76B0 /* CGRectExtension.swift */; };
 		5DDBCA3225E044C400FC76B0 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBCA3125E044C400FC76B0 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
@@ -72,6 +74,8 @@
 		5D0CDB0025CF481100932892 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D0CDB0825D0A5FE00932892 /* DrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		5D0CDB1025D0AFA700932892 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		5D5A5F6E25F4FEE200053029 /* MosaicCompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicCompositionalLayout.swift; sourceTree = "<group>"; };
+		5D5A5F7125F5039900053029 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		5D6DA5DB25F27F390012A62D /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		5D716BCA25DD73AF0007A460 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		5DA195F325D1CB6300962062 /* DiagramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagramView.swift; sourceTree = "<group>"; };
@@ -115,7 +119,7 @@
 		5DB8300125E929F600D1DA5D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		5DDBCA1F25DFEE0500FC76B0 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		5DDBCA2325DFEE6C00FC76B0 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
-		5DDBCA2A25DFEED500FC76B0 /* MosaicLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicLayout.swift; sourceTree = "<group>"; };
+		5DDBCA2A25DFEED500FC76B0 /* MosaicFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicFlowLayout.swift; sourceTree = "<group>"; };
 		5DDBCA2E25DFEF0200FC76B0 /* CGRectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
 		5DDBCA3125E044C400FC76B0 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -291,6 +295,7 @@
 				5DA1968C25D9DB1F00962062 /* UIWindowExtension.swift */,
 				5D716BCA25DD73AF0007A460 /* UIApplicationExtension.swift */,
 				5DDBCA2E25DFEF0200FC76B0 /* CGRectExtension.swift */,
+				5D5A5F7125F5039900053029 /* UIImageExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -347,7 +352,8 @@
 		5DDBCA2825DFEEB600FC76B0 /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				5DDBCA2A25DFEED500FC76B0 /* MosaicLayout.swift */,
+				5DDBCA2A25DFEED500FC76B0 /* MosaicFlowLayout.swift */,
+				5D5A5F6E25F4FEE200053029 /* MosaicCompositionalLayout.swift */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -461,9 +467,10 @@
 				5DDBCA3225E044C400FC76B0 /* ImagePicker.swift in Sources */,
 				5D716BCB25DD73AF0007A460 /* UIApplicationExtension.swift in Sources */,
 				5D0CDB0925D0A5FE00932892 /* DrawingViewController.swift in Sources */,
-				5DDBCA2B25DFEED500FC76B0 /* MosaicLayout.swift in Sources */,
+				5DDBCA2B25DFEED500FC76B0 /* MosaicFlowLayout.swift in Sources */,
 				5D0CDAF325CF480F00932892 /* AppDelegate.swift in Sources */,
 				5DA1968D25D9DB2000962062 /* UIWindowExtension.swift in Sources */,
+				5D5A5F6F25F4FEE200053029 /* MosaicCompositionalLayout.swift in Sources */,
 				5DA1969325DA873400962062 /* Validator.swift in Sources */,
 				5DA1963925D3161A00962062 /* MovieTableViewCell.swift in Sources */,
 				5DDBCA2F25DFEF0200FC76B0 /* CGRectExtension.swift in Sources */,
@@ -472,6 +479,7 @@
 				5DB8300225E929F600D1DA5D /* PhotoViewController.swift in Sources */,
 				5DA1969025D9E50A00962062 /* AddNewMovieViewController.swift in Sources */,
 				5DA1965E25D56F6F00962062 /* DetailsViewController.swift in Sources */,
+				5D5A5F7225F5039900053029 /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
