@@ -36,6 +36,9 @@ class PhotoCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // MARK: Test
+        
+        
         setupMosaicLayout()
         setupMosaicCollectionView()
         loaderSetup()
@@ -157,7 +160,12 @@ extension PhotoCollectionViewController {
             
         } else if indexPath.item < photos.count {
             selectedIndexPath = indexPath
-            let photoVC = PhotoViewController.create(image: photos[indexPath.item])
+//            let photoVC = PhotoViewController.create(image: photos[indexPath.item])
+//            let photoVC = PhotoViewController.create(images: photos, initialIndex: indexPath.item)
+//            photoVC.delegate = self
+//            navigationController?.pushViewController(photoVC, animated: true)
+            
+            let photoVC = PhotoPageViewController.create(images: photos, initialIndex: indexPath.item)
             navigationController?.pushViewController(photoVC, animated: true)
         }
     }
@@ -165,14 +173,21 @@ extension PhotoCollectionViewController {
 
 // MARK: - ZoomingViewController
 
-extension PhotoCollectionViewController: ZoomingViewController {
+extension PhotoCollectionViewController: ZoomingViewDelegate {
     
-    func zoomingImageView(for transition: ZoomTransitioningDelegate) -> UIImageView? {
+    func zoomingImageView(for transition: ZoomTransitioningManager) -> UIImageView? {
         
         if let indexPath = selectedIndexPath {
             let cell = collectionView?.cellForItem(at: indexPath) as! MosaicCell
             return cell.imageView
         }
         return nil
+    }
+}
+
+extension PhotoCollectionViewController: PhotoViewControllerDelegate {
+    
+    func sourceImage(index: Int) {
+        selectedIndexPath = IndexPath(item: index, section: 0)
     }
 }
