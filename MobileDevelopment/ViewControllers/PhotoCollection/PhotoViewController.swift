@@ -7,10 +7,10 @@
 
 import UIKit
 
-protocol PhotoViewControllerDelegate: class {
-    
-    func sourceImage(index: Int)
-}
+//protocol PhotoViewControllerDelegate: class {
+//
+//    func sourceImage(index: Int)
+//}
 
 class PhotoViewController: UIViewController {
     
@@ -46,7 +46,7 @@ class PhotoViewController: UIViewController {
     
 //    var newView: UIImage!
 //    var newIndex: Int!
-    weak var delegate: PhotoViewControllerDelegate?
+//    weak var delegate: PhotoViewControllerDelegate?
         
     // MARK: - Life cycle
     
@@ -64,10 +64,10 @@ class PhotoViewController: UIViewController {
 
 // MARK: - ZoomingViewController
 
-extension PhotoViewController: ZoomingViewDelegate {
-    
-    func zoomingImageView(for transition: ZoomTransitioningManager) -> UIImageView? {
-        
-        return imageView
-    }
-}
+//extension PhotoViewController: ZoomingViewDelegate {
+//
+//    func zoomingImageView(for transition: ZoomTransitioningManager) -> UIImageView? {
+//
+//        return imageView
+//    }
+//}

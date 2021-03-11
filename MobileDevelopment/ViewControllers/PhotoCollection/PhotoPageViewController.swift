@@ -7,22 +7,29 @@
 
 import UIKit
 
+protocol PhotoViewControllerDelegate: class {
+    
+    func sourceImage(index: Int)
+}
+
 class PhotoPageViewController: UIPageViewController {
     
     static func create(images: [UIImage], initialIndex: Int) -> PhotoPageViewController {
         
         let vc = PhotoPageViewController()
         vc.images = images
-        vc.initialIndex = initialIndex
+        vc.curentIndex = initialIndex
         
         return vc
     }
+    
+    weak var goBackToImageDelegate: PhotoViewControllerDelegate?
     
     var pageController: UIPageViewController!
     var controllers = [UIViewController]()
     
     var images: [UIImage]!
-    var initialIndex: Int!
+    var curentIndex: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +50,13 @@ class PhotoPageViewController: UIPageViewController {
             controllers.append(vc)
         }
         
-        pageController.setViewControllers([controllers[initialIndex]], direction: .forward, animated: false)
+        pageController.setViewControllers([controllers[curentIndex]], direction: .forward, animated: false)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        goBackToImageDelegate?.sourceImage(index: curentIndex)
+    }
     
 }
 
@@ -57,6 +68,7 @@ extension PhotoPageViewController: UIPageViewControllerDataSource, UIPageViewCon
         
         if let index = controllers.firstIndex(of: viewController) {
             if index > 0 {
+                curentIndex = index - 1
                 return controllers[index - 1]
             } else {
                 return nil
@@ -69,11 +81,23 @@ extension PhotoPageViewController: UIPageViewControllerDataSource, UIPageViewCon
         
         if let index = controllers.firstIndex(of: viewController) {
             if index < controllers.count - 1 {
+                curentIndex = index + 1
                 return controllers[index + 1]
             } else {
                 return nil
             }
         }
         return nil
+    }
+}
+
+// MARK: - ZoomingViewController
+
+extension PhotoPageViewController: ZoomingViewDelegate {
+    
+    func zoomingImageView(for transition: ZoomTransitioningManager) -> UIImageView? {
+                
+        let imageView = (controllers[curentIndex] as? PhotoViewController)?.imageView
+        return imageView
     }
 }

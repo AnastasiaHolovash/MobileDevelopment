@@ -8,7 +8,7 @@
 import UIKit
 import Photos
 
-class PhotoCollectionViewController: UICollectionViewController {
+class PhotoCollectionViewController: UICollectionViewController, UIPageViewControllerDelegate {
     
     // MARK: - Private properties
     
@@ -166,6 +166,7 @@ extension PhotoCollectionViewController {
 //            navigationController?.pushViewController(photoVC, animated: true)
             
             let photoVC = PhotoPageViewController.create(images: photos, initialIndex: indexPath.item)
+            photoVC.goBackToImageDelegate = self
             navigationController?.pushViewController(photoVC, animated: true)
         }
     }
