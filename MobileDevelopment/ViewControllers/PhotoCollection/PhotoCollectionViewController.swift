@@ -105,7 +105,6 @@ class PhotoCollectionViewController: UICollectionViewController {
         view.layoutIfNeeded()
     }
     
-    
     // MARK: - Private Functions
     
     private func selectImage() {
@@ -201,33 +200,7 @@ extension PhotoCollectionViewController: ZoomingViewDelegate {
 extension PhotoCollectionViewController: PhotoViewControllerDelegate {
     
     func sourceImage(index: Int) {
+        
         selectedIndexPath = IndexPath(item: index, section: 0)
-        
-        
-//        let rect = self.collectionView.layoutAttributesForItem(at: IndexPath(row: index, section: 0))?.frame
-//        self.collectionView.scrollRectToVisible(rect!, animated: true)
-        
-        
-        //        collectionView.isPagingEnabled = false
-//        collectionView.scrollToItem(at: selectedIndexPath, at: .centeredVertically, animated: false)
-        //        collectionView.isPagingEnabled = true
-        //        self.collectionView.setNeedsLayout()
-        
-//        collectionView.isPagingEnabled = false
-//        collectionView.scrollToItem(at: selectedIndexPath, at: .centeredVertically, animated: false)
-//
-//
-//        let temp = collectionView.contentOffset.y + view.safeAreaInsets.top - view.frame.height / 2
-//
-//        if collectionView.contentOffset.y + view.safeAreaInsets.top < view.frame.height / 2 {
-//            print("Top !!!!!!!!!!!")
-//            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-//        } else if temp.truncatingRemainder(dividingBy: view.frame.height) < view.frame.height / 2 {
-//            print("Bottom !!!!!!!!!!!")
-//            collectionView.scrollToItem(at: IndexPath(item: photos.count - 1, section: 0), at: .bottom, animated: false)
-//        }
-//
-//        collectionView.isPagingEnabled = true
-//        collectionView.setNeedsLayout()
     }
 }
