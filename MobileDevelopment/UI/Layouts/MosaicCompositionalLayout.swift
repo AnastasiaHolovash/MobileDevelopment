@@ -13,20 +13,20 @@ final class MosaicCompositionalLayout: UICollectionViewLayout {
         
         let layout = UICollectionViewCompositionalLayout {
             (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            
+
             let bigItem = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
-                                                   heightDimension: .fractionalWidth(0.5)))
+                                                  heightDimension: .fractionalWidth(0.5)))
             
             let trailingItem = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .fractionalWidth(0.25)))
-            
+                                                  heightDimension: .fractionalWidth(0.25)))
+
             let trailingVerticalGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25),
-                                                   heightDimension: .fractionalHeight(1.0)),
+                                                  heightDimension: .fractionalHeight(1.0)),
                 subitem: trailingItem, count: 2)
-            
+
             let topHorizontalGroup = NSCollectionLayoutGroup.horizontal(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                    heightDimension: .fractionalWidth(0.5)),
@@ -48,7 +48,7 @@ final class MosaicCompositionalLayout: UICollectionViewLayout {
             
             let section = NSCollectionLayoutSection(group: nestedGroup)
             return section
-            
+
         }
         return layout
     }
