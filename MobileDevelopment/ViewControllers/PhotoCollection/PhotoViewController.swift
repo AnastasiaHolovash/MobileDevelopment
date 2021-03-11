@@ -14,10 +14,10 @@ class PhotoViewController: UIViewController {
     static let id = "PhotoViewController"
     
     static func create(image: UIImage) -> PhotoViewController {
-
+        
         let vc = UIStoryboard.main.instantiateViewController(identifier: id) as! PhotoViewController
         vc.image = image
-
+        
         return vc
     }
     
@@ -28,7 +28,7 @@ class PhotoViewController: UIViewController {
     // MARK: - Public Variables
     
     public var image: UIImage!
-        
+    
     // MARK: - Life cycle
     
     override func viewDidLoad() {

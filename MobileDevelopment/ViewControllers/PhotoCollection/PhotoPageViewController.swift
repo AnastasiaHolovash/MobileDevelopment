@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - PhotoViewControllerDelegate
+
 protocol PhotoViewControllerDelegate: class {
     
     func sourceImage(index: Int)
@@ -14,43 +16,41 @@ protocol PhotoViewControllerDelegate: class {
 
 class PhotoPageViewController: UIPageViewController {
     
-    static func create(images: [UIImage], initialIndex: Int) -> PhotoPageViewController {
-        
-        let vc = PhotoPageViewController()
-        vc.images = images
-        vc.curentIndex = initialIndex
-        
-        return vc
-    }
+    // MARK: - Delegate
     
     weak var goBackToImageDelegate: PhotoViewControllerDelegate?
     
-    var pageController: UIPageViewController!
-    var controllers = [UIViewController]()
+    // MARK: - Private Variables
     
-    var images: [UIImage]!
-    var curentIndex: Int!
+    private var controllers = [UIViewController]()
+    private var images: [UIImage]!
+    private var curentIndex: Int!
+    
+    // MARK: - Life cycle
+    
+    init(images: [UIImage], initialIndex: Int) {
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        
+        self.images = images
+        self.curentIndex = initialIndex
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        pageController.dataSource = self
-        pageController.delegate = self
-        
-        addChild(pageController)
-        view.addSubview(pageController.view)
-        
-        let views = ["pageController": pageController.view] as [String: AnyObject]
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[pageController]|", options: [], metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[pageController]|", options: [], metrics: nil, views: views))
+        dataSource = self
+        delegate = self
         
         images.forEach { image in
             let vc = PhotoViewController.create(image: image)
             controllers.append(vc)
         }
         
-        pageController.setViewControllers([controllers[curentIndex]], direction: .forward, animated: false)
+        setViewControllers([controllers[curentIndex]], direction: .forward, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -105,7 +105,7 @@ extension PhotoPageViewController: UIPageViewControllerDataSource, UIPageViewCon
 extension PhotoPageViewController: ZoomingViewDelegate {
     
     func zoomingImageView(for transition: ZoomTransitioningManager) -> UIImageView? {
-                
+        
         let imageView = (controllers[curentIndex] as? PhotoViewController)?.imageView
         return imageView
     }

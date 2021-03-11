@@ -8,7 +8,7 @@
 import UIKit
 import Photos
 
-class PhotoCollectionViewController: UICollectionViewController, UIPageViewControllerDelegate {
+class PhotoCollectionViewController: UICollectionViewController {
     
     // MARK: - Private properties
     
@@ -36,8 +36,9 @@ class PhotoCollectionViewController: UICollectionViewController, UIPageViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // MARK: Test
-        
+        for i in 1...37 {
+            photos.append(UIImage(named: "\(i)")!)
+        }
         
         setupMosaicLayout()
         setupMosaicCollectionView()
@@ -53,6 +54,7 @@ class PhotoCollectionViewController: UICollectionViewController, UIPageViewContr
     }
     
     private func setupMosaicLayout() {
+        
         let mosaicLayout = layoutType == .compositional ? MosaicCompositionalLayout.createLayout() : MosaicFlowLayout()
         collectionView.setCollectionViewLayout(mosaicLayout, animated: true)
     }
@@ -93,6 +95,16 @@ class PhotoCollectionViewController: UICollectionViewController, UIPageViewContr
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let selectedIndexPath = selectedIndexPath {
+            collectionView.scrollToItem(at: selectedIndexPath, at: .centeredVertically, animated: false)
+        }
+        view.layoutIfNeeded()
+    }
+    
     
     // MARK: - Private Functions
     
@@ -160,12 +172,8 @@ extension PhotoCollectionViewController {
             
         } else if indexPath.item < photos.count {
             selectedIndexPath = indexPath
-//            let photoVC = PhotoViewController.create(image: photos[indexPath.item])
-//            let photoVC = PhotoViewController.create(images: photos, initialIndex: indexPath.item)
-//            photoVC.delegate = self
-//            navigationController?.pushViewController(photoVC, animated: true)
             
-            let photoVC = PhotoPageViewController.create(images: photos, initialIndex: indexPath.item)
+            let photoVC = PhotoPageViewController(images: photos, initialIndex: indexPath.item)
             photoVC.goBackToImageDelegate = self
             navigationController?.pushViewController(photoVC, animated: true)
         }
@@ -179,16 +187,47 @@ extension PhotoCollectionViewController: ZoomingViewDelegate {
     func zoomingImageView(for transition: ZoomTransitioningManager) -> UIImageView? {
         
         if let indexPath = selectedIndexPath {
+            
             let cell = collectionView?.cellForItem(at: indexPath) as! MosaicCell
             return cell.imageView
         }
+        print("ERROR")
         return nil
     }
 }
+
+// MARK: - PhotoViewControllerDelegate
 
 extension PhotoCollectionViewController: PhotoViewControllerDelegate {
     
     func sourceImage(index: Int) {
         selectedIndexPath = IndexPath(item: index, section: 0)
+        
+        
+//        let rect = self.collectionView.layoutAttributesForItem(at: IndexPath(row: index, section: 0))?.frame
+//        self.collectionView.scrollRectToVisible(rect!, animated: true)
+        
+        
+        //        collectionView.isPagingEnabled = false
+//        collectionView.scrollToItem(at: selectedIndexPath, at: .centeredVertically, animated: false)
+        //        collectionView.isPagingEnabled = true
+        //        self.collectionView.setNeedsLayout()
+        
+//        collectionView.isPagingEnabled = false
+//        collectionView.scrollToItem(at: selectedIndexPath, at: .centeredVertically, animated: false)
+//
+//
+//        let temp = collectionView.contentOffset.y + view.safeAreaInsets.top - view.frame.height / 2
+//
+//        if collectionView.contentOffset.y + view.safeAreaInsets.top < view.frame.height / 2 {
+//            print("Top !!!!!!!!!!!")
+//            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+//        } else if temp.truncatingRemainder(dividingBy: view.frame.height) < view.frame.height / 2 {
+//            print("Bottom !!!!!!!!!!!")
+//            collectionView.scrollToItem(at: IndexPath(item: photos.count - 1, section: 0), at: .bottom, animated: false)
+//        }
+//
+//        collectionView.isPagingEnabled = true
+//        collectionView.setNeedsLayout()
     }
 }
