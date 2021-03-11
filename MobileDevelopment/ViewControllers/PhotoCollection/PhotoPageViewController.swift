@@ -68,7 +68,6 @@ extension PhotoPageViewController: UIPageViewControllerDataSource, UIPageViewCon
         
         if let index = controllers.firstIndex(of: viewController) {
             if index > 0 {
-                curentIndex = index - 1
                 return controllers[index - 1]
             } else {
                 return nil
@@ -81,13 +80,23 @@ extension PhotoPageViewController: UIPageViewControllerDataSource, UIPageViewCon
         
         if let index = controllers.firstIndex(of: viewController) {
             if index < controllers.count - 1 {
-                curentIndex = index + 1
                 return controllers[index + 1]
             } else {
                 return nil
             }
         }
         return nil
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        
+        guard let viewController = pageViewController.viewControllers?[0] else {
+            return
+        }
+        guard let index = controllers.firstIndex(of: viewController) else {
+            return
+        }
+        curentIndex = index
     }
 }
 

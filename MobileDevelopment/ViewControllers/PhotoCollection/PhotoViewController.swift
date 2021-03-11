@@ -7,11 +7,6 @@
 
 import UIKit
 
-//protocol PhotoViewControllerDelegate: class {
-//
-//    func sourceImage(index: Int)
-//}
-
 class PhotoViewController: UIViewController {
     
     // MARK: - Statics
@@ -26,16 +21,6 @@ class PhotoViewController: UIViewController {
         return vc
     }
     
-//    static func create(images: [UIImage], initialIndex: Int) -> PhotoViewController {
-//        
-//        let vc = UIStoryboard.main.instantiateViewController(identifier: id) as! PhotoViewController
-//        vc.image = images[initialIndex]
-//        vc.newView = images[initialIndex + 1]
-//        vc.newIndex = initialIndex + 1
-//        
-//        return vc
-//    }
-    
     // MARK: - IBOutlets
     
     @IBOutlet weak var imageView: UIImageView!
@@ -43,31 +28,13 @@ class PhotoViewController: UIViewController {
     // MARK: - Public Variables
     
     public var image: UIImage!
-    
-//    var newView: UIImage!
-//    var newIndex: Int!
-//    weak var delegate: PhotoViewControllerDelegate?
         
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .clear
         imageView.image = image
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        imageView.image = newView
-//        delegate?.sourceImage(index: newIndex)
-//    }
 }
-
-// MARK: - ZoomingViewController
-
-//extension PhotoViewController: ZoomingViewDelegate {
-//
-//    func zoomingImageView(for transition: ZoomTransitioningManager) -> UIImageView? {
-//
-//        return imageView
-//    }
-//}
