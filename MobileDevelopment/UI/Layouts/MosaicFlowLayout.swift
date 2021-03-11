@@ -14,7 +14,7 @@ enum MosaicSegmentStyle {
 }
 
 final class MosaicFlowLayout: UICollectionViewLayout {
-
+    
     var contentBounds = CGRect.zero
     var cachedAttributes = [UICollectionViewLayoutAttributes]()
     
@@ -62,7 +62,7 @@ final class MosaicFlowLayout: UICollectionViewLayout {
             contentBounds = contentBounds.union(segmentRect)
             
             currentIndex += 1
-
+            
             // Determine the next segment style.
             switch segment {
             case let .bigItemCenter(n):
@@ -78,24 +78,20 @@ final class MosaicFlowLayout: UICollectionViewLayout {
             }
         }
     }
-
-    /// - Tag: CollectionViewContentSize
+    
     override var collectionViewContentSize: CGSize {
         return contentBounds.size
     }
     
-    /// - Tag: ShouldInvalidateLayout
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         guard let collectionView = collectionView else { return false }
         return !newBounds.size.equalTo(collectionView.bounds.size)
     }
     
-    /// - Tag: LayoutAttributesForItem
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return cachedAttributes[indexPath.item]
     }
     
-    /// - Tag: LayoutAttributesForElements
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var attributesArray = [UICollectionViewLayoutAttributes]()
         
@@ -165,11 +161,11 @@ final class MosaicFlowLayout: UICollectionViewLayout {
         }
         let oneThirdHorizontalSlice = halfHorizontalSlice.second.dividedIntegral(fraction: 0.5, from: .minXEdge)
         let oneSecondVerticalSlice1 = oneThirdHorizontalSlice.first.dividedIntegral(fraction: 0.5, from: .minYEdge)
-
+        
         if itemN <= 2 {
             return itemN == 1 ? oneSecondVerticalSlice1.first : oneSecondVerticalSlice1.second
         }
-
+        
         let oneSecondVerticalSlice2 = oneThirdHorizontalSlice.second.dividedIntegral(fraction: 0.5, from: .minYEdge)
         return itemN == 3 ? oneSecondVerticalSlice2.first : oneSecondVerticalSlice2.second
     }

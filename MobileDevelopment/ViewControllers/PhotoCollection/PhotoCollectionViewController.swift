@@ -36,12 +36,13 @@ class PhotoCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for i in 1...37 {
+        #if DEBUG
+        for i in 1...30 {
             if let image = UIImage(named: "\(i)") {
                 photos.append(image)
             }
-            
         }
+        #endif
         
         setupMosaicLayout()
         setupMosaicCollectionView()
@@ -194,7 +195,6 @@ extension PhotoCollectionViewController: ZoomingViewDelegate {
             let cell = collectionView?.cellForItem(at: indexPath) as! MosaicCell
             return cell.imageView
         }
-        print("ERROR")
         return nil
     }
 }
