@@ -46,8 +46,8 @@
 
 ## Результати роботи додатка
 
-<img src="https://github.com/AnastasiaHolovash/MobileDevelopment/blob/Lab4/GifLab5/1.gif" width="300">
-<img src="https://github.com/AnastasiaHolovash/MobileDevelopment/blob/Lab4/GifLab5/2.gif" height="300">
+<img src="https://github.com/AnastasiaHolovash/MobileDevelopment/blob/Lab5/GifLab5/1.gif" width="300">
+<img src="https://github.com/AnastasiaHolovash/MobileDevelopment/blob/Lab5/GifLab5/2.gif" height="300">
 
 ## Лістинг коду
 
