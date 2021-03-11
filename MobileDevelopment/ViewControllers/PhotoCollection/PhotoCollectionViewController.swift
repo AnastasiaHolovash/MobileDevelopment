@@ -37,7 +37,10 @@ class PhotoCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         for i in 1...37 {
-            photos.append(UIImage(named: "\(i)")!)
+            if let image = UIImage(named: "\(i)") {
+                photos.append(image)
+            }
+            
         }
         
         setupMosaicLayout()
@@ -84,6 +87,7 @@ class PhotoCollectionViewController: UICollectionViewController {
             
             layoutType = layoutType == .compositional ? .flow : .compositional
             setupMosaicLayout()
+            view.layoutIfNeeded()
             
             let alertController = UIAlertController(title: "Layout changed to \(layoutType.rawValue)", message: "", preferredStyle: .alert)
             self.present(alertController, animated: true) {

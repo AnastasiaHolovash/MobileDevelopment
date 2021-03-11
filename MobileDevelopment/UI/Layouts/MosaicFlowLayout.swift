@@ -59,7 +59,7 @@ final class MosaicFlowLayout: UICollectionViewLayout {
             attributes.frame = segmentRect
             
             cachedAttributes.append(attributes)
-            contentBounds = contentBounds.union(lastFrame)
+            contentBounds = contentBounds.union(segmentRect)
             
             currentIndex += 1
 
