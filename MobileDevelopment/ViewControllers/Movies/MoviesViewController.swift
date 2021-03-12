@@ -29,7 +29,7 @@ final class MoviesViewController: UIViewController {
     
     private var searchController: UISearchController!
     private var keyboardHandler: KeyboardEventsHandler!
-    
+    private var footerActivityIndicator: UIActivityIndicatorView!
     private let moviesDataManager = MoviesDataManager.shared
     
     // MARK: - Life cycle
@@ -43,9 +43,7 @@ final class MoviesViewController: UIViewController {
         keyboardHandler = KeyboardEventsHandler(forView: view, scroll: tableView)
         let backBarButtton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backBarButtton
-        
         tableView.addPlaceholder(image: .tableViewPlaceholder)
-
         tableView.reloadData()
     }
     
@@ -54,6 +52,13 @@ final class MoviesViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: MovieTableViewCell.id, bundle: Bundle.main), forCellReuseIdentifier: MovieTableViewCell.id)
+        
+        // Activity Indicator
+        footerActivityIndicator = UIActivityIndicatorView(style: .medium)
+        footerActivityIndicator.hidesWhenStopped = true
+        footerActivityIndicator.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+        
+        tableView.tableFooterView = footerActivityIndicator
     }
     
     private func searchControllerSetup() {
@@ -136,7 +141,30 @@ extension MoviesViewController: UITableViewDelegate {
         }
     }
     
-    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        guard indexPath.row >= tableView.numberOfRows(inSection: 0) - 1,
+              let next = filteredMoviesData?.nextPage else {
+            return
+        }
+        tableView.tableFooterView?.isHidden = false
+        guard let enteredText = searchController.searchBar.text else {
+            return
+        }
+        moviesDataManager.fetchMoviesList(for: enteredText, page: next) { [weak self] data in
+            guard let data = data else {
+                self?.filteredMoviesData?.items = []
+                tableView.tableFooterView?.isHidden = true
+
+                return
+            }
+            self?.filteredMoviesData?.merge(with: data)
+            print(self?.filteredMoviesData?.items.count)
+            tableView.tableFooterView?.isHidden = true
+            self?.tableView.reloadData()
+        }
+        
+    }
 }
 
 // MARK: - UISearchResultsUpdating
@@ -151,7 +179,7 @@ extension MoviesViewController: UISearchResultsUpdating {
         }
         searchController.searchBar.isLoading = true
         
-        MoviesDataManager.shared.fetchMoviesList(for: enteredText, page: 1) { [weak self] data in
+        moviesDataManager.fetchMoviesList(for: enteredText, page: 1) { [weak self] data in
             guard let data = data else {
                 searchController.searchBar.isLoading = false
                 self?.filteredMoviesData?.items = []
@@ -168,7 +196,9 @@ extension MoviesViewController: UISearchResultsUpdating {
 extension MoviesViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
         searchController.searchBar.isLoading = false
+        tableView.tableFooterView?.isHidden = true
         filteredMoviesData?.items = []
         tableView.reloadData()
     }

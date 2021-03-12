@@ -30,7 +30,7 @@ final class MoviesDataManager {
         let parameters = [
             "s" : "\(searchText)",
             "page" : "\(page)",
-            "count" : "20",
+            "count" : "10",
         ]
         printJson(parameters: parameters)
         
@@ -66,7 +66,8 @@ final class MoviesDataManager {
     }
     
     func loadImage(url: String, completion: @escaping (UIImage?) -> Void) {
-        guard let url = URL(string: url) else {
+        guard url != "N/A" , let url = URL(string: url) else {
+            completion(nil)
             return
         }
         AF.request(url)

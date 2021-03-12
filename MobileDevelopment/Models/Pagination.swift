@@ -25,7 +25,7 @@ extension Pagination {
     
     var perPage: Int {
         
-        return 20
+        return 10
     }
     
     var nextPage: Int? {
