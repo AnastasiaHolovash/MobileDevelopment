@@ -16,14 +16,21 @@ final class MoviesViewController: UIViewController {
     
     // MARK: - Private variables and properties
     
-    private var moviesData: [Movie] = []
-    private var filteredMoviesData: [Movie] = []
+    private var filteredMoviesData: Pagination<Movie>? {
+        didSet {
+            if filteredMoviesData?.items.isEmpty ?? true {
+                tableView.addPlaceholder(image: .tableViewPlaceholder)
+            } else {
+                tableView.removePlaceholder()
+            }
+            tableView.reloadData()
+        }
+    }
     
     private var searchController: UISearchController!
     private var keyboardHandler: KeyboardEventsHandler!
     
     private let moviesDataManager = MoviesDataManager.shared
-    private let tableViewPlaceholder = UIImage(named: "Placeholder")!
     
     // MARK: - Life cycle
     
@@ -37,7 +44,8 @@ final class MoviesViewController: UIViewController {
         let backBarButtton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backBarButtton
         
-        moviesData = moviesDataManager.fetchMoviesList() ?? []
+        tableView.addPlaceholder(image: .tableViewPlaceholder)
+
         tableView.reloadData()
     }
     
@@ -53,7 +61,6 @@ final class MoviesViewController: UIViewController {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
-        searchController.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.compatibleSearchTextField.returnKeyType = .done
         
@@ -78,14 +85,16 @@ extension MoviesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return searchController.isActive ? filteredMoviesData.count : moviesData.count
+        return filteredMoviesData?.items.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.id, for: indexPath) as! MovieTableViewCell
         
-        let movie = searchController.isActive ? filteredMoviesData[indexPath.row] : moviesData[indexPath.row]
+        guard let movie = filteredMoviesData?.items[indexPath.row] else {
+            return cell
+        }
         
         cell.nameLabel.text = movie.title
         
@@ -101,9 +110,7 @@ extension MoviesViewController: UITableViewDataSource {
             cell.typeLabel.text = movie.type
         }
         
-        if let image = moviesDataManager.fetchMovieImage(for: movie.poster) {
-            cell.posterImageView.image = image
-        }
+        cell.posterImageView.setImage(from: movie.poster)
         
         return cell
     }
@@ -117,37 +124,19 @@ extension MoviesViewController: UITableViewDelegate {
         
         tableView.deselectRow(at: indexPath, animated: false)
         
-        let id = searchController.isActive ? filteredMoviesData[indexPath.row].imdbID : moviesData[indexPath.row].imdbID
-        
-        guard let movie = moviesDataManager.fetchMovieData(for: id) else {
+        guard let id = filteredMoviesData?.items[indexPath.row].imdbID else {
             return
         }
-        
-        let detailsVC = DetailsViewController.create(movie: movie)
-        navigationController?.pushViewController(detailsVC, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .delete {
-            guard let itemToRemoveIndex = searchController.isActive ?  moviesData.firstIndex(of: filteredMoviesData[indexPath.row]) : indexPath.row else {
+        moviesDataManager.fetchMovie(for: id) { [weak self] movie in
+            guard let movie = movie else {
                 return
             }
-            moviesData.remove(at: itemToRemoveIndex)
-            if searchController.isActive {
-                filteredMoviesData.remove(at: indexPath.row)
-            }
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            let detailsVC = DetailsViewController.create(movie: movie)
+            self?.navigationController?.pushViewController(detailsVC, animated: true)
         }
     }
-}
-
-extension MoviesViewController: UISearchControllerDelegate {
     
-    func didDismissSearchController(_ searchController: UISearchController) {
-
-        tableView.removePlaceholder()
-    }
+    
 }
 
 // MARK: - UISearchResultsUpdating
@@ -155,19 +144,22 @@ extension MoviesViewController: UISearchControllerDelegate {
 extension MoviesViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        searchController.searchBar.isLoading = true
         
-        guard let enteredText = searchController.searchBar.text else {
+        guard let enteredText = searchController.searchBar.text, enteredText.count > 2 else {
+            filteredMoviesData?.items = []
             return
         }
-        filteredMoviesData = moviesData.filter{ $0.title.contains(enteredText) }
-        if filteredMoviesData.isEmpty {
-            tableView.addPlaceholder(image: tableViewPlaceholder)
-        } else {
-            tableView.removePlaceholder()
+        searchController.searchBar.isLoading = true
+        
+        MoviesDataManager.shared.fetchMoviesList(for: enteredText, page: 1) { [weak self] data in
+            guard let data = data else {
+                searchController.searchBar.isLoading = false
+                self?.filteredMoviesData?.items = []
+                return
+            }
+            self?.filteredMoviesData = data
+            searchController.searchBar.isLoading = false
         }
-        tableView.reloadData()
-        searchController.searchBar.isLoading = false
     }
 }
 
@@ -177,8 +169,8 @@ extension MoviesViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchController.searchBar.isLoading = false
+        filteredMoviesData?.items = []
         tableView.reloadData()
-        tableView.removePlaceholder()
     }
 }
 
@@ -187,7 +179,7 @@ extension MoviesViewController: UISearchBarDelegate {
 extension MoviesViewController: AddNewMovieViewControllerDelegate {
     
     func saveNewMovie(_ movie: Movie) {
-        moviesData.append(movie)
-        tableView.reloadData()
+        
+        // Place to add new movie
     }
 }

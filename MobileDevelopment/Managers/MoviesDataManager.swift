@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 final class MoviesDataManager {
     
@@ -13,44 +14,84 @@ final class MoviesDataManager {
     
     private init() { }
     
-    public let moviesList = "MoviesList"
+    static let apiKEY = "779d5b49"
     
-    public func fetchMoviesList() -> [Movie]? {
+    var urlComponents: URLComponents {
         
-        do {
-            if let path = Bundle.main.path(forResource: moviesList, ofType: "txt"),
-               let jsonData = try String(contentsOfFile: path, encoding: String.Encoding.utf8).data(using: .utf8) {
-                
-                let decodedData = try JSONDecoder().decode(Search.self, from: jsonData)
-                return decodedData.search
-            }
-        } catch {
-            print(error)
-        }
-        return nil
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "http"
+        urlComponents.host = "www.omdbapi.com"
+        urlComponents.queryItems = [URLQueryItem(name: "apikey", value: MoviesDataManager.apiKEY)]
+        return urlComponents
     }
     
-    public func fetchMovieImage(for imageName: String) -> UIImage? {
+    public func fetchMoviesList(for searchText: String, page: Int = 1, completion: @escaping(Pagination<Movie>?) -> Void){
         
-        guard imageName != "", let image = UIImage(named: imageName) else {
-            return nil
-        }
-
-        return image
+        let parameters = [
+            "s" : "\(searchText)",
+            "page" : "\(page)",
+            "count" : "20",
+        ]
+        printJson(parameters: parameters)
+        
+        AF.request(urlComponents, parameters: parameters)
+            .validate()
+            .responseDecodable(of: Pagination<Movie>.self) { response in
+                
+                guard let data = response.value else {
+                    completion(nil)
+                    return
+                }
+                completion(data)
+            }
     }
     
-    public func fetchMovieData(for id: String) -> Movie? {
+    public func fetchMovie(for id: String, completion: @escaping(Movie?) -> Void) {
         
-        do {
-            if let path = Bundle.main.path(forResource: id, ofType: "txt"),
-               let jsonData = try String(contentsOfFile: path, encoding: String.Encoding.utf8).data(using: .utf8) {
-                
-                let decodedData = try JSONDecoder().decode(Movie.self, from: jsonData)
-                return decodedData
+        let parameters = [
+            "i" : "\(id)",
+        ]
+        
+        printJson(parameters: parameters)
+        
+        AF.request(urlComponents, parameters: parameters)
+            .validate()
+            .responseDecodable(of: Movie.self) { response in
+                guard let data = response.value else {
+                    completion(nil)
+                    return
+                }
+                completion(data)
             }
-        } catch {
-            print(error)
+    }
+    
+    func loadImage(url: String, completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: url) else {
+            return
         }
-        return nil
+        AF.request(url)
+            .validate()
+            .responseData { response in
+                guard let data = response.value, let image = UIImage(data: data) else {
+                    completion(nil)
+                    return
+                }
+                completion(image)
+            }
+    }
+    
+    func printJson(parameters: [String: String]) {
+        
+        AF.request(urlComponents, parameters: parameters)
+            .validate()
+            .responseData { response in
+                if let data = response.value,
+                   let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
+                   let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
+                    print(String(decoding: jsonData, as: UTF8.self))
+                } else {
+                    print("JSON data incorrect")
+                }
+            }
     }
 }

@@ -12,7 +12,7 @@ import Foundation
 struct Search: Codable {
     
     let search: [Movie]
-
+    
     enum CodingKeys: String, CodingKey {
         
         case search = "Search"
@@ -28,11 +28,15 @@ struct Movie: Codable, Equatable {
     let imdbID: String
     let type: String
     let poster: String
-    let rated, released, production: String?
+    let rated, released: String?
     let runtime, genre, director, writer: String?
     let actors, plot, language, country: String?
-    let awards, imdbRating, imdbVotes: String?
-
+    let awards: String?
+    let ratings: [Rating]?
+    let metascore, imdbRating, imdbVotes: String?
+    let dvd, boxOffice, production: String?
+    let website, response: String?
+    
     enum CodingKeys: String, CodingKey {
         
         case title = "Title"
@@ -49,10 +53,17 @@ struct Movie: Codable, Equatable {
         case country = "Country"
         case awards = "Awards"
         case poster = "Poster"
+        case ratings = "Ratings"
+        case metascore = "Metascore"
         case imdbRating, imdbVotes, imdbID
         case type = "Type"
+        case dvd = "DVD"
+        case boxOffice = "BoxOffice"
         case production = "Production"
+        case website = "Website"
+        case response = "Response"
     }
+    
     
     var notEmptyProperties: [(String, String)] {
         
@@ -72,7 +83,7 @@ struct Movie: Codable, Equatable {
                 ("Language: ", language),
                 ("Country: ", country),
                 ("Awards: ", awards),
-                ("Poster: ", poster),
+                ("Ratings: ", Rating.arrayToString(ratings)),
                 ("imdbRating: ", imdbRating),
                 ("imdbVotes: ", imdbVotes),]
             
@@ -86,5 +97,31 @@ struct Movie: Codable, Equatable {
             
             return result
         }
+    }
+}
+
+// MARK: - Rating
+
+struct Rating: Codable, Equatable {
+    let source, value: String
+
+    enum CodingKeys: String, CodingKey {
+        case source = "Source"
+        case value = "Value"
+    }
+    
+    var stringDescribing: String {
+        get {
+            return "\(source): \(value)\n"
+        }
+    }
+    
+    static func arrayToString(_ arr: [Rating]?) -> String? {
+        guard let arr = arr, !arr.isEmpty else {
+            return nil
+        }
+        var string = arr.reduce("", { $0 + $1.stringDescribing })
+        string.removeLast(2)
+        return string
     }
 }

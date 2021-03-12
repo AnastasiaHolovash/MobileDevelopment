@@ -49,5 +49,10 @@
 	<string>This application needs access to your phtos for a simple display.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This application needs access to camera to take phtos for a simple display.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
