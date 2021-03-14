@@ -101,9 +101,9 @@ final class AddNewMovieViewController: UIViewController {
         let year = !yearTextField.text!.isEmpty ? yearTextField.text! : yearTextField.placeholder!
         let type = !typeTextField.text!.isEmpty ? typeTextField.text! : typeTextField.placeholder!
         
-//        let movie = Movie(title: name, year: year, imdbID: "noId", type: type, poster: "", rated: nil, released: nil, runtime: nil, genre: nil, director: nil, writer: nil, actors: nil, plot: nil, language: nil, country: nil, awards: nil, ratings: nil, metascore: nil, imdbRating: nil)
+        let movie = Movie(title: name, year: year, imdbID: "", type: type, poster: "", rated: nil, released: nil, runtime: nil, genre: nil, director: nil, writer: nil, actors: nil, plot: nil, language: nil, country: nil, awards: nil, ratings: nil, metascore: nil, imdbRating: nil, imdbVotes: nil, dvd: nil, boxOffice: nil, production: nil, website: nil, response: nil)
         
-//        delegate?.saveNewMovie(movie)
+        delegate?.saveNewMovie(movie)
         navigationController?.popViewController(animated: true)
     }
 }

@@ -132,10 +132,13 @@ extension MoviesViewController: UITableViewDelegate {
         guard let id = filteredMoviesData?.items[indexPath.row].imdbID else {
             return
         }
+        Loader.show()
         moviesDataManager.fetchMovie(for: id) { [weak self] movie in
             guard let movie = movie else {
+                Loader.hide()
                 return
             }
+            Loader.hide()
             let detailsVC = DetailsViewController.create(movie: movie)
             self?.navigationController?.pushViewController(detailsVC, animated: true)
         }
@@ -159,7 +162,7 @@ extension MoviesViewController: UITableViewDelegate {
                 return
             }
             self?.filteredMoviesData?.merge(with: data)
-            print(self?.filteredMoviesData?.items.count)
+//            print(self?.filteredMoviesData?.items.count)
             tableView.tableFooterView?.isHidden = true
             self?.tableView.reloadData()
         }

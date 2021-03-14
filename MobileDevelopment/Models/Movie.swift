@@ -90,7 +90,7 @@ struct Movie: Codable, Equatable {
             var result: [(String, String)] = []
             
             allProperties.forEach { (name, item) in
-                if let item = item, !item.isEmpty {
+                if let item = item, !item.isEmpty, item != "N/A" {
                     result.append((name, item))
                 }
             }
