@@ -77,7 +77,7 @@ class PhotoCollectionViewController: UICollectionViewController {
         view.addSubview(collectionView)
     }
     
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?){
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         
         if motion == .motionShake {
             
@@ -157,7 +157,6 @@ extension PhotoCollectionViewController {
               let next = hits?.nextPage else {
             return
         }
-        
         Loader.show()
         dataManager.fetchImages(page: next) { [weak self] data in
             guard let data = data else {
@@ -167,25 +166,8 @@ extension PhotoCollectionViewController {
             self?.hits?.merge(with: data)
             Loader.hide()
             if let snapshot = self?.newSnapshot() {
-                self?.dataSource.apply(snapshot, animatingDifferences: false)
+                self?.dataSource.apply(snapshot, animatingDifferences: true)
             }
-        }
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        switch kind {
-        
-        case UICollectionView.elementKindSectionFooter:
-            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath)
-            
-            footerView.backgroundColor = .green
-            footerView.frame = CGRect(x: 0, y: 0, width: footerView.frame.height, height: 100)
-            return footerView
-            
-        default:
-            
-            assert(false, "Unexpected element kind")
         }
     }
 }

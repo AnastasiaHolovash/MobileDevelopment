@@ -11,7 +11,7 @@ extension UIImage {
     
     static let plusCircle = UIImage(systemName: "plus.circle", withConfiguration: UIImage.SymbolConfiguration(weight: UIImage.SymbolWeight.thin))!
     
-    static let placeholderImages = UIImage(systemName: "scribble.variable")
+    static let placeholderImages = UIImage(named: "Scribble")!
     
     static let tableViewPlaceholder = UIImage(named: "Placeholder")!
 }

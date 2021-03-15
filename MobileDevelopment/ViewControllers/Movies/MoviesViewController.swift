@@ -100,23 +100,7 @@ extension MoviesViewController: UITableViewDataSource {
         guard let movie = filteredMoviesData?.items[indexPath.row] else {
             return cell
         }
-        
-        cell.nameLabel.text = movie.title
-        
-        if movie.year == "" {
-            cell.yearLabel.isHidden = true
-        } else {
-            cell.yearLabel.text = movie.year
-        }
-        
-        if movie.type == "" {
-            cell.typeLabel.isHidden = true
-        } else {
-            cell.typeLabel.text = movie.type
-        }
-        
-        cell.posterImageView.setImage(from: movie.poster)
-        
+        cell.config(movie)
         return cell
     }
 }

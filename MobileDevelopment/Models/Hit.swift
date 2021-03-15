@@ -59,4 +59,8 @@ struct Hit: Codable, Hashable {
         case userID = "user_id"
         case user, userImageURL
     }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(webformatURL)
+    }
 }

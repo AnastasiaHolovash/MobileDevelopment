@@ -37,6 +37,19 @@ final class MoviesDataManager {
         return urlComponents
     }
     
+    private func fetch<Type: Decodable>(urlComponents: URLComponents, parameters: [String: String], completion: @escaping(Type?) -> Void) {
+        
+        AF.request(urlComponents, parameters: parameters)
+            .validate()
+            .responseDecodable(of: Type.self) { response in
+                guard let data = response.value else {
+                    completion(nil)
+                    return
+                }
+                completion(data)
+            }
+    }
+    
     public func fetchMoviesList(for searchText: String, page: Int = 1, completion: @escaping(Pagination<Movie>?) -> Void){
         
         let parameters = [
@@ -44,18 +57,7 @@ final class MoviesDataManager {
             "page" : "\(page)",
             "count" : "10",
         ]
-        
-        printJson(urlComponents: urlComponents, parameters: parameters)
-        
-        AF.request(urlComponents, parameters: parameters)
-            .validate()
-            .responseDecodable(of: Pagination<Movie>.self) { response in
-                guard let data = response.value else {
-                    completion(nil)
-                    return
-                }
-                completion(data)
-            }
+        fetch(urlComponents: urlComponents, parameters: parameters, completion: completion)
     }
     
     public func fetchMovie(for id: String, completion: @escaping(Movie?) -> Void) {
@@ -63,40 +65,18 @@ final class MoviesDataManager {
         let parameters = [
             "i" : "\(id)",
         ]
-        
-        printJson(urlComponents: urlComponents, parameters: parameters)
-        
-        AF.request(urlComponents, parameters: parameters)
-            .validate()
-            .responseDecodable(of: Movie.self) { response in
-                guard let data = response.value else {
-                    completion(nil)
-                    return
-                }
-                completion(data)
-            }
+        fetch(urlComponents: urlComponents, parameters: parameters, completion: completion)
     }
     
     public func fetchImages(page: Int = 1, completion: @escaping(Hits?) -> Void) {
         
         let parameters = [
-            "q" : "​fun+party​",
+            "q" : "​fun+party",
             "image_type": "photo",
             "per_page" : "30",
             "page" : "\(page)"
         ]
-        
-        printJson(urlComponents: imagesUrlComponents, parameters: parameters)
-        
-        AF.request(imagesUrlComponents, parameters: parameters)
-            .validate()
-            .responseDecodable(of: Hits.self) { response in
-                guard let data = response.value else {
-                    completion(nil)
-                    return
-                }
-                completion(data)
-            }
+        fetch(urlComponents: imagesUrlComponents, parameters: parameters, completion: completion)
     }
     
     public func loadImage(url: String, completion: @escaping (UIImage?) -> Void) {
@@ -125,7 +105,7 @@ final class MoviesDataManager {
                    let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
                     print(String(decoding: jsonData, as: UTF8.self))
                 } else {
-                    print("JSON data incorrect")
+                    print(response.error as Any)
                 }
             }
     }

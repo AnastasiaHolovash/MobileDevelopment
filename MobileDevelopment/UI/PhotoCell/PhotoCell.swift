@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MosaicCell: UICollectionViewCell {
+final class MosaicCell: UICollectionViewCell {
     
     static let identifier = "kMosaicCollectionViewCell"
 

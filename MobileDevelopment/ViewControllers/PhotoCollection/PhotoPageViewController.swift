@@ -23,7 +23,7 @@ class PhotoPageViewController: UIPageViewController {
     // MARK: - Private Variables
     
     private var controllers = [UIViewController]()
-//    private var images: [UIImage]!
+    //    private var images: [UIImage]!
     private var hits: [Hit]!
     private var currentIndex: Int!
     

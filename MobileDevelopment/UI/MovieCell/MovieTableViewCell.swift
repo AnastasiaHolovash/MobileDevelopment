@@ -38,4 +38,23 @@ class MovieTableViewCell: UITableViewCell {
         
         selectionStyle = .default
     }
+    
+    public func config(_ movie: Movie) {
+        
+        nameLabel.text = movie.title
+        
+        if movie.year == "" {
+            yearLabel.isHidden = true
+        } else {
+            yearLabel.text = movie.year
+        }
+        
+        if movie.type == "" {
+            typeLabel.isHidden = true
+        } else {
+            typeLabel.text = movie.type
+        }
+        
+        posterImageView.setImage(from: movie.poster)
+    }
 }
