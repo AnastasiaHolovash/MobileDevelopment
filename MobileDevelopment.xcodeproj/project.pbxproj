@@ -17,6 +17,8 @@
 		5D24107225FB888F00E2FDC1 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D24107125FB888F00E2FDC1 /* App.swift */; };
 		5D24107625FB895200E2FDC1 /* UIImageViewExtrnsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D24107525FB895200E2FDC1 /* UIImageViewExtrnsion.swift */; };
 		5D26B8FD25FE47FB00AA75B9 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D26B8FC25FE47FB00AA75B9 /* Loader.swift */; };
+		5D26B90425FE5AFB00AA75B9 /* Hit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D26B90325FE5AFB00AA75B9 /* Hit.swift */; };
+		5D26B90825FF5E0D00AA75B9 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D26B90725FF5E0D00AA75B9 /* File.swift */; };
 		5D3A486725F95D690023FA07 /* PhotoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3A486625F95D690023FA07 /* PhotoPageViewController.swift */; };
 		5D3A487125FB708A0023FA07 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3A487025FB708A0023FA07 /* Pagination.swift */; };
 		5D5A5F6F25F4FEE200053029 /* MosaicCompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5A5F6E25F4FEE200053029 /* MosaicCompositionalLayout.swift */; };
@@ -84,6 +86,8 @@
 		5D24107125FB888F00E2FDC1 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		5D24107525FB895200E2FDC1 /* UIImageViewExtrnsion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtrnsion.swift; sourceTree = "<group>"; };
 		5D26B8FC25FE47FB00AA75B9 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
+		5D26B90325FE5AFB00AA75B9 /* Hit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hit.swift; sourceTree = "<group>"; };
+		5D26B90725FF5E0D00AA75B9 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		5D3A486625F95D690023FA07 /* PhotoPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPageViewController.swift; sourceTree = "<group>"; };
 		5D3A487025FB708A0023FA07 /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		5D5A5F6E25F4FEE200053029 /* MosaicCompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicCompositionalLayout.swift; sourceTree = "<group>"; };
@@ -250,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				5DA1962825D3138000962062 /* Movie.swift */,
+				5D26B90325FE5AFB00AA75B9 /* Hit.swift */,
 				5D3A487025FB708A0023FA07 /* Pagination.swift */,
 				5D26B8FC25FE47FB00AA75B9 /* Loader.swift */,
 			);
@@ -345,6 +350,7 @@
 				5DA1962B25D315A700962062 /* MovieCell */,
 				5DA1966625D58EC200962062 /* DetailsCell */,
 				5DDBCA2725DFEE6F00FC76B0 /* PhotoCell */,
+				5D26B90725FF5E0D00AA75B9 /* File.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -540,12 +546,14 @@
 				5DA1968325D6C16F00962062 /* UIViewExtension.swift in Sources */,
 				5DA195F425D1CB6300962062 /* DiagramView.swift in Sources */,
 				5DA1965825D562A600962062 /* MoviesDataManager.swift in Sources */,
+				5D26B90825FF5E0D00AA75B9 /* File.swift in Sources */,
 				5DA1968725D9C11400962062 /* UITableviewExtension.swift in Sources */,
 				5DA1966B25D58F4A00962062 /* DetailsTableViewCell.swift in Sources */,
 				5DDBCA2425DFEE6C00FC76B0 /* PhotoCell.swift in Sources */,
 				5DDBCA3225E044C400FC76B0 /* ImagePicker.swift in Sources */,
 				5D3A486725F95D690023FA07 /* PhotoPageViewController.swift in Sources */,
 				5D716BCB25DD73AF0007A460 /* UIApplicationExtension.swift in Sources */,
+				5D26B90425FE5AFB00AA75B9 /* Hit.swift in Sources */,
 				5D0CDB0925D0A5FE00932892 /* DrawingViewController.swift in Sources */,
 				5DDBCA2B25DFEED500FC76B0 /* MosaicFlowLayout.swift in Sources */,
 				5D26B8FD25FE47FB00AA75B9 /* Loader.swift in Sources */,

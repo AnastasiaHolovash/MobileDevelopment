@@ -11,7 +11,7 @@ extension UIImageView {
     
     func setImage(from url: String) {
         
-        image = UIImage.placeholderPoster
+        image = UIImage.placeholderImages
         tintColor = .placeholderText
         guard let imageFromCache = App.imageCache.object(forKey: NSString(string: url)) else {
             

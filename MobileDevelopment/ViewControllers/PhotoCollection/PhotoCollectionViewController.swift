@@ -13,12 +13,12 @@ class PhotoCollectionViewController: UICollectionViewController {
     // MARK: - Private properties
     
     private let imagePicker = ImagePicker(type: .image)
-    private var photos: [UIImage] = []
-    private var loader = UIActivityIndicatorView(style: .large)
+    private var hits: Hits?
     private var selectedIndexPath: IndexPath!
     private var layoutType: LayoutType = .compositional
-    private var dataSource: UICollectionViewDiffableDataSource<Section, UIImage>!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Hit>!
     private var mosaicLayout: UICollectionViewLayout!
+    private let dataManager = MoviesDataManager.shared
     
     // MARK: - Nested Types
     
@@ -36,18 +36,21 @@ class PhotoCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        #if DEBUG
-        for i in 1...30 {
-            if let image = UIImage(named: "\(i)") {
-                photos.append(image)
-            }
-        }
-        #endif
-        
         setupMosaicLayout()
         setupMosaicCollectionView()
-        loaderSetup()
         configureDataSource()
+        
+        // Loading Images
+        Loader.show()
+        dataManager.fetchImages { [weak self] data in
+            if let data = data {
+                self?.hits = data
+                if let snapshot = self?.newSnapshot() {
+                    self?.dataSource.apply(snapshot, animatingDifferences: false)
+                }
+            }
+            Loader.hide()
+        }
         
         // Request authorisation to access the Photo Library.
         PHPhotoLibrary.requestAuthorization { (status: PHAuthorizationStatus) in
@@ -72,14 +75,6 @@ class PhotoCollectionViewController: UICollectionViewController {
         collectionView.delegate = self
         
         view.addSubview(collectionView)
-    }
-    
-    private func loaderSetup() {
-        
-        loader.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(loader)
-        loader.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loader.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?){
@@ -110,35 +105,13 @@ class PhotoCollectionViewController: UICollectionViewController {
         view.layoutIfNeeded()
     }
     
-    // MARK: - Private Functions
-    
-    private func selectImage() {
+    private func newSnapshot() -> NSDiffableDataSourceSnapshot<Section, Hit> {
         
-        view.isUserInteractionEnabled = false
-        loader.startAnimating()
-        
-        imagePicker.setType(type: .image, from: .all).show(in: self) { [weak self] result in
-            switch result {
-            case let .success(image: image):
-                self?.photos.append(image)
-                if let snapshot = self?.newSnapshot() {
-                    self?.dataSource.apply(snapshot, animatingDifferences: true)
-                }
-                self?.view.isUserInteractionEnabled = true
-                self?.loader.stopAnimating()
-            default:
-                self?.view.isUserInteractionEnabled = true
-                self?.loader.stopAnimating()
-            }
-        }
-    }
-    
-    private func newSnapshot() -> NSDiffableDataSourceSnapshot<Section, UIImage> {
-        
-        var newSnapshot = NSDiffableDataSourceSnapshot<Section, UIImage>()
+        var newSnapshot = NSDiffableDataSourceSnapshot<Section, Hit>()
         newSnapshot.appendSections([.main])
-        var itemsArray = photos
-        itemsArray.append(.plusCircle)
+        guard let itemsArray = hits?.hits else {
+            return newSnapshot
+        }
         
         newSnapshot.appendItems(itemsArray)
         return newSnapshot
@@ -151,12 +124,12 @@ extension PhotoCollectionViewController {
     
     func configureDataSource() {
         
-        let cellRegistration = UICollectionView.CellRegistration<MosaicCell, UIImage> { (cell, indexPath, item) in
+        let cellRegistration = UICollectionView.CellRegistration<MosaicCell, Hit> { (cell, indexPath, item) in
             
             // Populate the cell with our item description.
-            cell.imageView.image = item
+            cell.imageView.setImage(from: item.webformatURL)
         }
-        dataSource = UICollectionViewDiffableDataSource<Section, UIImage>(collectionView: collectionView) { collectionView, indexPath, identifier in
+        dataSource = UICollectionViewDiffableDataSource<Section, Hit>(collectionView: collectionView) { collectionView, indexPath, identifier in
             
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: identifier)
         }
@@ -171,15 +144,48 @@ extension PhotoCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if indexPath.item == photos.count {
-            selectImage()
+        selectedIndexPath = indexPath
+        
+        let photoVC = PhotoPageViewController(images: hits?.hits ?? [], initialIndex: indexPath.item)
+        photoVC.goBackToImageDelegate = self
+        navigationController?.pushViewController(photoVC, animated: true)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        guard indexPath.row >= collectionView.numberOfItems(inSection: 0) - 1,
+              let next = hits?.nextPage else {
+            return
+        }
+        
+        Loader.show()
+        dataManager.fetchImages(page: next) { [weak self] data in
+            guard let data = data else {
+                Loader.hide()
+                return
+            }
+            self?.hits?.merge(with: data)
+            Loader.hide()
+            if let snapshot = self?.newSnapshot() {
+                self?.dataSource.apply(snapshot, animatingDifferences: false)
+            }
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        
+        case UICollectionView.elementKindSectionFooter:
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath)
             
-        } else if indexPath.item < photos.count {
-            selectedIndexPath = indexPath
+            footerView.backgroundColor = .green
+            footerView.frame = CGRect(x: 0, y: 0, width: footerView.frame.height, height: 100)
+            return footerView
             
-            let photoVC = PhotoPageViewController(images: photos, initialIndex: indexPath.item)
-            photoVC.goBackToImageDelegate = self
-            navigationController?.pushViewController(photoVC, animated: true)
+        default:
+            
+            assert(false, "Unexpected element kind")
         }
     }
 }

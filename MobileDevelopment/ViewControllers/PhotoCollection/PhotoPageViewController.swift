@@ -23,16 +23,17 @@ class PhotoPageViewController: UIPageViewController {
     // MARK: - Private Variables
     
     private var controllers = [UIViewController]()
-    private var images: [UIImage]!
-    private var curentIndex: Int!
+//    private var images: [UIImage]!
+    private var hits: [Hit]!
+    private var currentIndex: Int!
     
     // MARK: - Life cycle
     
-    init(images: [UIImage], initialIndex: Int) {
+    init(images: [Hit], initialIndex: Int) {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         
-        self.images = images
-        self.curentIndex = initialIndex
+        self.hits = images
+        self.currentIndex = initialIndex
     }
     
     required init?(coder: NSCoder) {
@@ -45,17 +46,17 @@ class PhotoPageViewController: UIPageViewController {
         dataSource = self
         delegate = self
         
-        images.forEach { image in
-            let vc = PhotoViewController.create(image: image)
+        hits.forEach { item in
+            let vc = PhotoViewController.create(with: item.webformatURL)
             controllers.append(vc)
         }
         
-        setViewControllers([controllers[curentIndex]], direction: .forward, animated: false)
+        setViewControllers([controllers[currentIndex]], direction: .forward, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         
-        goBackToImageDelegate?.sourceImage(index: curentIndex)
+        goBackToImageDelegate?.sourceImage(index: currentIndex)
     }
     
 }
@@ -96,7 +97,7 @@ extension PhotoPageViewController: UIPageViewControllerDataSource, UIPageViewCon
         guard let index = controllers.firstIndex(of: viewController) else {
             return
         }
-        curentIndex = index
+        currentIndex = index
     }
 }
 
@@ -106,7 +107,7 @@ extension PhotoPageViewController: ZoomingViewDelegate {
     
     func zoomingImageView(for transition: ZoomTransitioningManager) -> UIImageView? {
         
-        let imageView = (controllers[curentIndex] as? PhotoViewController)?.imageView
+        let imageView = (controllers[currentIndex] as? PhotoViewController)?.imageView
         return imageView
     }
 }

@@ -12,7 +12,7 @@ class MosaicCell: UICollectionViewCell {
     static let identifier = "kMosaicCollectionViewCell"
 
     var imageView = UIImageView()
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -34,6 +34,7 @@ class MosaicCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        imageView.image = nil
+        imageView.image = .placeholderImages
     }
+    
 }

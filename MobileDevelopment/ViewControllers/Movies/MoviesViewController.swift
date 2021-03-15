@@ -156,17 +156,13 @@ extension MoviesViewController: UITableViewDelegate {
         }
         moviesDataManager.fetchMoviesList(for: enteredText, page: next) { [weak self] data in
             guard let data = data else {
-                self?.filteredMoviesData?.items = []
                 tableView.tableFooterView?.isHidden = true
-
                 return
             }
             self?.filteredMoviesData?.merge(with: data)
-//            print(self?.filteredMoviesData?.items.count)
             tableView.tableFooterView?.isHidden = true
             self?.tableView.reloadData()
         }
-        
     }
 }
 

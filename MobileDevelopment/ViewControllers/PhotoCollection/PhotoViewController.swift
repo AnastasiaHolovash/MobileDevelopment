@@ -13,10 +13,18 @@ class PhotoViewController: UIViewController {
     
     static let id = "PhotoViewController"
     
-    static func create(image: UIImage) -> PhotoViewController {
+    static func create(with image: UIImage) -> PhotoViewController {
         
         let vc = UIStoryboard.main.instantiateViewController(identifier: id) as! PhotoViewController
         vc.image = image
+        
+        return vc
+    }
+    
+    static func create(with url: String) -> PhotoViewController {
+        
+        let vc = UIStoryboard.main.instantiateViewController(identifier: id) as! PhotoViewController
+        vc.url = url
         
         return vc
     }
@@ -27,7 +35,8 @@ class PhotoViewController: UIViewController {
     
     // MARK: - Public Variables
     
-    public var image: UIImage!
+    public var image: UIImage?
+    public var url: String?
     
     // MARK: - Life cycle
     
@@ -35,6 +44,11 @@ class PhotoViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .clear
-        imageView.image = image
+        
+        if let image = image {
+            imageView.image = image
+        } else {
+            imageView.setImage(from: url ?? "")
+        }
     }
 }

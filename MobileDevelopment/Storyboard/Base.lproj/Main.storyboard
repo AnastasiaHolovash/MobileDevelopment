@@ -212,7 +212,7 @@
                     <tabBarItem key="tabBarItem" title="Lab 3, 4" image="tablecells" catalog="system" id="eRL-Xw-cY6"/>
                     <navigationItem key="navigationItem" title="Star Wars" id="bSq-kS-kjS">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="zLm-Ei-Agt">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pTD-GW-Uw6">
+                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pTD-GW-Uw6">
                                 <rect key="frame" x="354" y="10" width="40" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -402,18 +402,18 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="Zyg-ku-eHN"/>
-                                <exclude reference="3rX-kK-XwQ"/>
                                 <exclude reference="8iU-hf-xPd"/>
+                                <exclude reference="3rX-kK-XwQ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
                                 <exclude reference="BeB-Ns-HBh"/>
                                 <include reference="Zyg-ku-eHN"/>
-                                <include reference="3rX-kK-XwQ"/>
-                                <exclude reference="Cmy-rQ-Ow8"/>
                                 <include reference="8iU-hf-xPd"/>
                                 <exclude reference="cJm-F4-o6N"/>
+                                <include reference="3rX-kK-XwQ"/>
+                                <exclude reference="Cmy-rQ-Ow8"/>
                             </mask>
                         </variation>
                     </view>

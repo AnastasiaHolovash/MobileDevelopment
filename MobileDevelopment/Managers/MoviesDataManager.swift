@@ -15,6 +15,7 @@ final class MoviesDataManager {
     private init() { }
     
     static let apiKEY = "779d5b49"
+    static let imagesApiKey = "19193969-87191e5db266905fe8936d565"
     
     var urlComponents: URLComponents {
         
@@ -25,6 +26,17 @@ final class MoviesDataManager {
         return urlComponents
     }
     
+    var imagesUrlComponents: URLComponents {
+        
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "pixabay.com"
+        urlComponents.path = "/api/"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "key", value: MoviesDataManager.imagesApiKey)]
+        return urlComponents
+    }
+    
     public func fetchMoviesList(for searchText: String, page: Int = 1, completion: @escaping(Pagination<Movie>?) -> Void){
         
         let parameters = [
@@ -32,12 +44,12 @@ final class MoviesDataManager {
             "page" : "\(page)",
             "count" : "10",
         ]
-        printJson(parameters: parameters)
+        
+        printJson(urlComponents: urlComponents, parameters: parameters)
         
         AF.request(urlComponents, parameters: parameters)
             .validate()
             .responseDecodable(of: Pagination<Movie>.self) { response in
-                
                 guard let data = response.value else {
                     completion(nil)
                     return
@@ -52,7 +64,7 @@ final class MoviesDataManager {
             "i" : "\(id)",
         ]
         
-        printJson(parameters: parameters)
+        printJson(urlComponents: urlComponents, parameters: parameters)
         
         AF.request(urlComponents, parameters: parameters)
             .validate()
@@ -65,7 +77,29 @@ final class MoviesDataManager {
             }
     }
     
-    func loadImage(url: String, completion: @escaping (UIImage?) -> Void) {
+    public func fetchImages(page: Int = 1, completion: @escaping(Hits?) -> Void) {
+        
+        let parameters = [
+            "q" : "​fun+party​",
+            "image_type": "photo",
+            "per_page" : "30",
+            "page" : "\(page)"
+        ]
+        
+        printJson(urlComponents: imagesUrlComponents, parameters: parameters)
+        
+        AF.request(imagesUrlComponents, parameters: parameters)
+            .validate()
+            .responseDecodable(of: Hits.self) { response in
+                guard let data = response.value else {
+                    completion(nil)
+                    return
+                }
+                completion(data)
+            }
+    }
+    
+    public func loadImage(url: String, completion: @escaping (UIImage?) -> Void) {
         guard url != "N/A" , let url = URL(string: url) else {
             completion(nil)
             return
@@ -81,7 +115,7 @@ final class MoviesDataManager {
             }
     }
     
-    func printJson(parameters: [String: String]) {
+    private func printJson(urlComponents: URLComponents, parameters: [String: String]) {
         
         AF.request(urlComponents, parameters: parameters)
             .validate()
