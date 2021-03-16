@@ -18,7 +18,7 @@ class PhotoCollectionViewController: UICollectionViewController {
     private var layoutType: LayoutType = .compositional
     private var dataSource: UICollectionViewDiffableDataSource<Section, Hit>!
     private var mosaicLayout: UICollectionViewLayout!
-    private let dataManager = MoviesDataManager.shared
+    private let dataManager = DataManager.shared
     
     // MARK: - Nested Types
     

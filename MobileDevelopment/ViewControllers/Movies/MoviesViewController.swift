@@ -30,7 +30,7 @@ final class MoviesViewController: UIViewController {
     private var searchController: UISearchController!
     private var keyboardHandler: KeyboardEventsHandler!
     private var footerActivityIndicator: UIActivityIndicatorView!
-    private let moviesDataManager = MoviesDataManager.shared
+    private let moviesDataManager = DataManager.shared
     
     // MARK: - Life cycle
     

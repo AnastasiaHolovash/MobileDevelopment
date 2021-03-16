@@ -55,7 +55,7 @@ final class DetailsViewController: UIViewController {
         
         nameLabel.text = movie.title
         
-        MoviesDataManager.shared.loadImage(url: movie.poster) { [weak self] image in
+        DataManager.shared.loadImage(url: movie.poster) { [weak self] image in
             guard let image = image else {
                 self?.imageView.isHidden = true
                 self?.tableView.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: self?.tableView.frame.width ?? 300, height: self?.nameLabel.frame.height ?? 50)

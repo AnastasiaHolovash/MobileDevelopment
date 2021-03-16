@@ -47,7 +47,7 @@
 		5DA1965225D55E9C00962062 /* tt2527336.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5DA1964825D55E9C00962062 /* tt2527336.txt */; };
 		5DA1965325D55E9C00962062 /* tt3748528.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5DA1964925D55E9C00962062 /* tt3748528.txt */; };
 		5DA1965425D55E9C00962062 /* tt0796366.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5DA1964A25D55E9C00962062 /* tt0796366.txt */; };
-		5DA1965825D562A600962062 /* MoviesDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1965725D562A600962062 /* MoviesDataManager.swift */; };
+		5DA1965825D562A600962062 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1965725D562A600962062 /* DataManager.swift */; };
 		5DA1965E25D56F6F00962062 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1965D25D56F6F00962062 /* DetailsViewController.swift */; };
 		5DA1966225D579F500962062 /* UIStorybourdExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1966125D579F500962062 /* UIStorybourdExtension.swift */; };
 		5DA1966B25D58F4A00962062 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1966925D58F4A00962062 /* DetailsTableViewCell.swift */; };
@@ -115,7 +115,7 @@
 		5DA1964825D55E9C00962062 /* tt2527336.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tt2527336.txt; sourceTree = "<group>"; };
 		5DA1964925D55E9C00962062 /* tt3748528.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tt3748528.txt; sourceTree = "<group>"; };
 		5DA1964A25D55E9C00962062 /* tt0796366.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tt0796366.txt; sourceTree = "<group>"; };
-		5DA1965725D562A600962062 /* MoviesDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesDataManager.swift; sourceTree = "<group>"; };
+		5DA1965725D562A600962062 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		5DA1965D25D56F6F00962062 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		5DA1966125D579F500962062 /* UIStorybourdExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStorybourdExtension.swift; sourceTree = "<group>"; };
 		5DA1966925D58F4A00962062 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
@@ -306,7 +306,7 @@
 		5DA1965B25D5699900962062 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				5DA1965725D562A600962062 /* MoviesDataManager.swift */,
+				5DA1965725D562A600962062 /* DataManager.swift */,
 				5DA1969925DD6EA600962062 /* KeyboardEventsHandler.swift */,
 				5DA1969225DA873400962062 /* Validator.swift */,
 				5DDBCA3125E044C400FC76B0 /* ImagePicker.swift */,
@@ -542,7 +542,7 @@
 				5D0CDAF725CF480F00932892 /* ViewController.swift in Sources */,
 				5DA1968325D6C16F00962062 /* UIViewExtension.swift in Sources */,
 				5DA195F425D1CB6300962062 /* DiagramView.swift in Sources */,
-				5DA1965825D562A600962062 /* MoviesDataManager.swift in Sources */,
+				5DA1965825D562A600962062 /* DataManager.swift in Sources */,
 				5DA1968725D9C11400962062 /* UITableviewExtension.swift in Sources */,
 				5DA1966B25D58F4A00962062 /* DetailsTableViewCell.swift in Sources */,
 				5DDBCA2425DFEE6C00FC76B0 /* PhotoCell.swift in Sources */,

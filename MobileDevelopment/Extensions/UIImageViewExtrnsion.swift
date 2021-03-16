@@ -17,7 +17,7 @@ extension UIImageView {
             image = imageFromCache
 
         } else {
-            let moviesDataManager = MoviesDataManager.shared
+            let moviesDataManager = DataManager.shared
             moviesDataManager.loadImage(url: url) { [weak self] newImage in
                 guard let newImage = newImage else {
                     return
